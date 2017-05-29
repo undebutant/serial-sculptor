@@ -144,7 +144,7 @@
     <ClCompile Include="testsUnitaires.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Documents\Visual Studio 2017\Projects\Créer une nouvelle édition\GoogleTestAvecMain\GoogleTestAvecMain.vcxproj">
+    <ProjectReference Include="..\..\..\..\Documents\Visual Studio 2017\Projects\GoogleTestAvecMain\GoogleTestAvecMain\GoogleTestAvecMain.vcxproj">
       <Project>{ce4e4b3f-c236-4aae-9a39-eaabd0b75624}</Project>
     </ProjectReference>
     <ProjectReference Include="..\code-serial-sculptor\code-serial-sculptor.vcxproj">
