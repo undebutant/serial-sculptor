@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MaBibliotheque", "MaBibliot
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{70BD2ADB-BF09-4802-9582-1BEEB26809BF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTestAvecMain", "..\..\..\Documents\Visual Studio 2017\Projects\GoogleTestAvecMain\GoogleTestAvecMain\GoogleTestAvecMain.vcxproj", "{CE4E4B3F-C236-4AAE-9A39-EAABD0B75624}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoogleTestAvecMain", "GoogleTestAvecMain\GoogleTestAvecMain\GoogleTestAvecMain.vcxproj", "{CE4E4B3F-C236-4AAE-9A39-EAABD0B75624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
