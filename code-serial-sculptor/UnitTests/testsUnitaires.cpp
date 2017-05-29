@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 
-TEST(Exemple1, UserCreated)
+TEST(Exemple1, ScultorCreated)
 {
 	
 	Scultor scultor;

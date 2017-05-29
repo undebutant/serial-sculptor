@@ -89,7 +89,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Software\googletest-master\googletest\include;C:\Software\SFML-2.4.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Software\SFML-2.4.2\include;C:\Software\googletest-master\googletest\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,7 +116,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Software\googletest-master\googletest\include;C:\Software\SFML-2.4.2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Software\SFML-2.4.2\include;C:\Software\googletest-master\googletest\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +146,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Documents\Visual Studio 2017\Projects\Créer une nouvelle édition\GoogleTestAvecMain\GoogleTestAvecMain.vcxproj">
       <Project>{ce4e4b3f-c236-4aae-9a39-eaabd0b75624}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\code-serial-sculptor\code-serial-sculptor.vcxproj">
+      <Project>{5879daac-e434-4099-ba1d-de76d7cff096}</Project>
     </ProjectReference>
     <ProjectReference Include="..\MaBibliotheque\MaBibliotheque.vcxproj">
       <Project>{af694f2b-b42a-4753-b9cb-5dad76038534}</Project>
