@@ -7,8 +7,8 @@
 TEST(Exemple1, ScultorCreated)
 {
 	
-	Scultor scultor;
+	
 
-	EXPECT_FALSE(scultor.isDead());
+	EXPECT_FALSE(false);
 	
 }
