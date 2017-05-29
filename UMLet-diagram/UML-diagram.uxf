@@ -4,60 +4,90 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>680</x>
-      <y>460</y>
+      <x>620</x>
+      <y>820</y>
       <w>200</w>
-      <h>30</h>
+      <h>100</h>
     </coordinates>
-    <panel_attributes>Ennemi Random 1
+    <panel_attributes>CloudEasy
+--
+
+
+--
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>180</y>
-      <w>200</w>
-      <h>160</h>
+      <x>690</x>
+      <y>400</y>
+      <w>350</w>
+      <h>340</h>
     </coordinates>
-    <panel_attributes>&lt;Abstract&gt; Ennemi
+    <panel_attributes>&lt;Abstract&gt; Cloud
 --
-- Color
-- destroyKeyList
-- shape
++shape : RectangleShape
++pathToSprite : string
++color : Color
++alterKeyList : vector&lt;enum Keyboard::Key&gt;
+
 --
--setter &amp; getter
--tryDestroy(key)
+-draw(RenderWindow renderer)
+
+-setPosition(float x, float y)
+-getPosition()
+-setSize(float x, float y)
+-getSize()
+
+-setSprite(string pathToSprite)
+
+-setColor(Color)
+-getColor()
+
+-setAlterKeyList(vector&lt;enum Keyboard::Key&gt; list)
+-getAlterKeyList()
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>330</y>
-      <w>110</w>
-      <h>150</h>
+      <x>710</x>
+      <y>730</y>
+      <w>150</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>20.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>130.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>180</y>
-      <w>200</w>
-      <h>160</h>
+      <x>380</x>
+      <y>220</y>
+      <w>240</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>&lt;Abstract&gt; User
 --
-- health
-- shape
++shape : RectangleShape
++pathToSprite : string
++health : int
+
 --
--setter &amp; getter
+-draw(RenderWindow renderer)
+
+-setPosition(float x, float y)
+-getPosition()
+-setSize(float x, float y)
+-getSize()
+
+-setSprite(string pathToSprite)
+
+-setHealth(int health)
+-getHealth()
 -incrHealth(int a)
 -decrHealth(int a)
 </panel_attributes>
@@ -66,188 +96,295 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>330</y>
-      <w>130</w>
-      <h>80</h>
+      <x>490</x>
+      <y>540</y>
+      <w>110</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>390</y>
-      <w>210</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>scultor
---
-health = 100;
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>0</x>
-      <y>350</y>
-      <w>210</w>
-      <h>140</h>
+      <x>40</x>
+      <y>470</y>
+      <w>310</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>Graphic
 --
 
+
 --
-initWindow()
-updateWIndow()
-updateInterupt()</panel_attributes>
+-initWindow()
+
+-updateWindow(RenderWindow renderer)
+-updateForInteruption(RenderWindow renderer)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>610</y>
-      <w>210</w>
-      <h>100</h>
+      <x>40</x>
+      <y>720</y>
+      <w>310</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>Drawing
 --
-- RenderTarget
++RenderTarget
+
 --
-draw(&amp;listOfItem)</panel_attributes>
+-drawList(&amp;listOfItem, RenderWindow renderer)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
-      <y>480</y>
+      <x>180</x>
+      <y>610</y>
       <w>30</w>
-      <h>150</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>550</x>
-      <y>10</y>
-      <w>200</w>
-      <h>50</h>
+      <x>780</x>
+      <y>100</y>
+      <w>230</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>&lt;Abstract&gt; Item
 --
--draw()</panel_attributes>
+
+
+--
+-draw(RenderWindow renderer)</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>650</x>
-      <y>50</y>
-      <w>130</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;110.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>520</x>
-      <y>50</y>
-      <w>150</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>130.0;10.0;10.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>710</x>
-      <y>50</y>
-      <w>260</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;240.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>180</y>
-      <w>200</w>
-      <h>160</h>
+      <x>1250</x>
+      <y>320</y>
+      <w>210</w>
+      <h>230</h>
     </coordinates>
-    <panel_attributes>&lt;Abstract&gt; BaseItem
+    <panel_attributes>&lt;Abstract&gt; SceneryItem
 --
-- Image
++shape : RectangleShape
++pathToSprite : string
+
 --
--setter &amp; getter
-</panel_attributes>
+-draw(RenderWindow renderer)
+
+-setPosition(float x, float y)
+-getPosition()
+-setSize(float x, float y)
+-getSize()
+
+-setSprite(string pathToSprite)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>950</x>
-      <y>330</y>
-      <w>110</w>
-      <h>150</h>
+      <x>1200</x>
+      <y>540</y>
+      <w>150</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>20.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>90.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>890</x>
-      <y>460</y>
-      <w>200</w>
-      <h>30</h>
+      <x>90</x>
+      <y>70</y>
+      <w>210</w>
+      <h>320</h>
     </coordinates>
-    <panel_attributes>Sprite Random 1
+    <panel_attributes>Engine
+--
++sceneryItems : vector&lt;Item&gt;
++activeItems : vector&lt;Item&gt;
+
+--
+-launchGame()
+
+-addActiveItem(Item)
+-removeActiveItem(Item)
+
+-addSceneryItem(Item)
+-removeSceneryItem(Item)
+
+-isTimeUp()
+-setTimer()
+
+-popupKeyAsked()
+-generateEnnemi()
+-destroyEnnemi()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>380</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>620</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Sculptor
+--
++ int health = 100
+
+--
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>50</y>
-      <w>210</w>
-      <h>170</h>
+      <x>1110</x>
+      <y>640</y>
+      <w>200</w>
+      <h>100</h>
     </coordinates>
-    <panel_attributes>Engine
+    <panel_attributes>SceneryBackground
 --
--listOfItem&lt;Item&gt;
+
+
 --
-launch()
-add(Item)
-remove(Item)
-timer()
-popup()
-generateEnnemi()
-destroyEnnemi()</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
-      <y>210</y>
-      <w>30</w>
-      <h>160</h>
+      <x>470</x>
+      <y>120</y>
+      <w>330</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>310.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>200</y>
+      <w>30</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1000</x>
+      <y>120</y>
+      <w>370</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;350.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>820</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>CloudBoss
+--
+
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>890</x>
+      <y>730</y>
+      <w>150</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1340</x>
+      <y>640</y>
+      <w>200</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>SceneryLaneRight
+--
+
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1360</x>
+      <y>540</y>
+      <w>150</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;instanceOf&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1030</x>
+      <y>420</y>
+      <w>240</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>330</y>
+      <w>660</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>640.0;50.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
