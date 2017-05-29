@@ -10,7 +10,7 @@ void Ennemi::draw(sf::RenderTarget &target) {
 
 std::ostream& operator<<(std::ostream &strm, const Ennemi &a) {
 	std::stringstream keys;
-	for (int i = 0; i < a.keyVector.size(); i++) {
+	for (int i = 0; i < (int) a.keyVector.size(); i++) {
 		if (i != 0) {
 			keys << ",";
 		}
