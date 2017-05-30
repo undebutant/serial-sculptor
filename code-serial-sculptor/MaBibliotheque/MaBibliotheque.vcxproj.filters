@@ -27,15 +27,6 @@
     <ClCompile Include="monMain.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="BaseItem.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Ennemi.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Ennemi1.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
@@ -54,24 +45,21 @@
     <ClCompile Include="Drawing.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="SceneryItem.cpp">
+      <Filter>Fichiers sources\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloud.cpp">
+      <Filter>Fichiers sources\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy.cpp">
+      <Filter>Fichiers sources\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="monMain.h">
-      <Filter>Fichiers sources</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseItem.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Drawing.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Engine.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Ennemi.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Ennemi1.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Graphic.h">
@@ -84,6 +72,18 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="monMain.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneryItem.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Cloud.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

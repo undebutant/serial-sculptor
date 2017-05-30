@@ -10,6 +10,7 @@ class Engine
 public:
 	Engine();
 	~Engine();
+
 private:
 	std::vector<Item> listOfExistingItem;
 };

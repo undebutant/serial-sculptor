@@ -1,16 +1,16 @@
 #pragma once
 
+
 #include <SFML/Graphics.hpp>
 
 #include "Item.h"
-#include "SceneryItem.h"
 
 
-class User : public Item
+class SceneryItem : public Item
 {
 public:
-	User();
-	~User();
+	SceneryItem();
+	~SceneryItem();
 
 	void draw(sf::RenderTarget &target);
 
@@ -21,14 +21,7 @@ public:
 
 	void setSprite(std::string pathToSprite);
 
-	void setHealth(int a);
-	int getHealth();
-	void incrHealth(int a);
-	void decrHealth(int a);
-
-	virtual bool isGameOver() = 0;
-
 private:
-	SceneryItem sprite;
-	int health;
+	sf::RectangleShape shape;
+	std::string pathToSprite;
 };

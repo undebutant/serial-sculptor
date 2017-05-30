@@ -1,13 +1,46 @@
 #include "User.h"
 
-void User::draw(sf::RenderTarget &target) {
-	
-	target.draw(shape);
+
+User::User() : health(100) {
+
 }
+
+User::~User() {
+
+}
+
+
+void User::draw(sf::RenderTarget &target) {
+	sprite.draw(target);
+}
+
+
+void User::setPosition(float x, float y) {
+	sprite.setPosition(x, y);
+}
+
+sf::Vector2f User::getPosition() {
+	return sprite.getPosition();
+}
+
+void User::setSize(float x, float y) {
+	sprite.setSize(x, y);
+}
+
+sf::Vector2f User::getSize() {
+	return sprite.getSize();
+}
+
+
+void User::setSprite(std::string newSpritePath) {
+	sprite.setSprite(newSpritePath);
+}
+
 
 int User::getHealth() {
 	return health;
 }
+
 void User::setHealth(int a) {
 	health = a;
 }
@@ -30,13 +63,4 @@ void User::decrHealth(int a) {
 	}
 
 	health = b;
-}
-
-User::User() : health(100)
-{
-}
-
-
-User::~User()
-{
 }
