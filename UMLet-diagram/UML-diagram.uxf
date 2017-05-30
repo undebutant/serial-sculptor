@@ -217,8 +217,8 @@
 -setTimer()
 
 -popupKeyAsked()
--generateEnnemi()
--destroyEnnemi()</panel_attributes>
+-generateCloud()
+-destroyCloud()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

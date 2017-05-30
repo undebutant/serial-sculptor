@@ -30,9 +30,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
-    <ClCompile Include="Scultor.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
     <ClCompile Include="User.cpp">
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
@@ -54,6 +51,9 @@
     <ClCompile Include="CloudEasy.cpp">
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Sculptor.cpp">
+      <Filter>Fichiers sources\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Drawing.h">
@@ -66,9 +66,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Scultor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
@@ -84,6 +81,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CloudEasy.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sculptor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

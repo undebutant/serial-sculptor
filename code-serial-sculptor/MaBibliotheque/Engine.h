@@ -13,11 +13,11 @@ public:
 
 	void launchGame();
 
-	void addActiveItem(Item activeToAdd);
-	void removeActiveItem(Item activeToAdd);
+	//void addActiveItem(Item activeToAdd);
+	//void removeActiveItem(Item activeToAdd);
 
-	void addSceneryItem(Item sceneryToAdd);
-	void removeSceneryItem(Item activeToAdd);
+	//void addSceneryItem(Item sceneryToAdd);
+	//void removeSceneryItem(Item activeToAdd);
 
 	bool isTimeUp();
 	void setTimer();

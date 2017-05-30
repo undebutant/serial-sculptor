@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Scultor.h"
+#include "Sculptor.h"
 #include "CloudEasy.h"
 #include "monMain.h"
 

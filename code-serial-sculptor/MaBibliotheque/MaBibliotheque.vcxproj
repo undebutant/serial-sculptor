@@ -141,7 +141,7 @@
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="monMain.cpp" />
-    <ClCompile Include="Scultor.cpp" />
+    <ClCompile Include="Sculptor.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +153,7 @@
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="monMain.h" />
-    <ClInclude Include="Scultor.h" />
+    <ClInclude Include="Sculptor.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

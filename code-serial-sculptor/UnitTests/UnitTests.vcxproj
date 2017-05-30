@@ -142,6 +142,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CloudEasyTest.cpp" />
+    <ClCompile Include="SculptorTest.cpp" />
     <ClCompile Include="testsUnitaires.cpp" />
   </ItemGroup>
   <ItemGroup>
