@@ -14,6 +14,8 @@ Drawing::~Drawing() {
 }
 
 
-void Drawing::drawList(vector<Item> &listItemsToDraw) {
-
+void Drawing::drawList(vector<Item> &listItemsToDraw, sf::RenderTarget &target) {
+	for (auto itemToDraw : listItemsToDraw) {
+		itemToDraw.draw(target);
+	}
 }

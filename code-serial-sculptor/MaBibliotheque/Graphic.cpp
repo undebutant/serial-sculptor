@@ -1,4 +1,5 @@
 #include "Graphic.h"
+#include "Drawing.h"
 
 
 using namespace std;
@@ -15,15 +16,15 @@ Graphic::~Graphic() {
 }
 
 
-void Graphic::initWindow() {
-
+void Graphic::initWindow(RenderTarget &target, vector<Item> &listOfSceneryItems, vector<Item> &listOfActiveItems) {
+	//Drawing.drawList(target, listOfSceneryItems);
 }
 
 
-void Graphic::updateWindow() {
+void Graphic::updateWindow(RenderTarget &target, vector<Item> &listOfSceneryItems, vector<Item> &listOfActiveItems) {
 
 }
 
-void Graphic::updateForInterruption() {
+void Graphic::updateForInterruption(RenderTarget &target, vector<Item> &listOfActiveItems) {
 
 }

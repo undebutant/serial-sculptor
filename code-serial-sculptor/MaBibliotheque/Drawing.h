@@ -9,7 +9,7 @@ public:
 	Drawing();
 	~Drawing();
 
-	void drawList(std::vector<Item> &listItemsToDraw);
+	void drawList(std::vector<Item> &listItemsToDraw, sf::RenderTarget &target);
 
 private:
 

@@ -9,10 +9,10 @@ public:
 	Graphic();
 	~Graphic();
 
-	void initWindow();
+	void initWindow(sf::RenderTarget &target, std::vector<Item> &listOfSceneryItems, std::vector<Item> &listOfActiveItems);
 
-	void updateWindow();
-	void updateForInterruption();
+	void updateWindow(sf::RenderTarget &target, std::vector<Item> &listOfSceneryItems, std::vector<Item> &listOfActiveItems);
+	void updateForInterruption(sf::RenderTarget &target, std::vector<Item> &listOfActiveItems);
 
 private:
 

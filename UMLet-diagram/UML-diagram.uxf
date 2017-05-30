@@ -106,7 +106,7 @@
 
 
 --
--initWindow()
+-initWindow(RenderTarget &amp;target)
 
 -updateWindow(RenderTarget &amp;target)
 -updateForInteruption(RenderTarget &amp;target)</panel_attributes>
