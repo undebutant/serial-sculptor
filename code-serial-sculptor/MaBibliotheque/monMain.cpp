@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "Sculptor.h"
-#include "CloudEasy.h"
+#include "CloudBoss1.h"
 #include "monMain.h"
 #include "SceneryRectangleBasic.h"
 #include "SceneryItem.h"
@@ -12,7 +12,7 @@ using namespace sf;
 
 int monMain()
 {
-	CloudEasy cloud1;
+	CloudBoss1 cloud1;
 	cloud1.setIsRight(false);
 
 	
@@ -33,12 +33,18 @@ int monMain()
 			if (event.type == sf::Event::Closed)
 				window.close();
 			if (event.type == sf::Event::KeyPressed) {
-				bool a = cloud1.tryKeyInput(event.key.code);
-				cout << "La touche appuyee est-elle correcte (0 pour non, 1 pour oui) ?" << endl;
-				cout << "Resultat : " << a << endl;
+				if (event.key.code == sf::Keyboard::Return) {
+					CloudBoss1 cloud2;
+					cloud1 = cloud2;
+				}
+				else {
+					bool a = cloud1.tryKeyInput(event.key.code);
+					cout << "La touche appuyee est-elle correcte (0 pour non, 1 pour oui) ?" << endl;
+					cout << "Resultat : " << a << endl;
 
-				cout << "Le nuage a-t-il ete sculpte totalement (0 pour non, 1 pour oui) ?" << endl;
-				cout << "Resultat : " << cloud1.isDone() << "\n" << endl;
+					cout << "Le nuage a-t-il ete sculpte totalement (0 pour non, 1 pour oui) ?" << endl;
+					cout << "Resultat : " << cloud1.isDone() << "\n" << endl;
+				}
 			}
 		}
 		window.clear();

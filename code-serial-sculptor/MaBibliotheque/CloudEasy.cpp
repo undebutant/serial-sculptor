@@ -9,17 +9,9 @@ CloudEasy::CloudEasy() {
 
 
 	addKey(sf::Keyboard::A);
-	SceneryRectangleBasic newSpriteA;
-	newSpriteA.setColor(sf::Color::Green);
-	addSprite(newSpriteA);
 	addKey(sf::Keyboard::B);
-	SceneryRectangleBasic newSpriteB;
-	newSpriteB.setColor(sf::Color::Blue);
-	addSprite(newSpriteB);
 	addKey(sf::Keyboard::C);
-	SceneryRectangleBasic newSpriteC;
-	newSpriteC.setColor(sf::Color::Red);
-	addSprite(newSpriteC);
+	
 
 
 	update();

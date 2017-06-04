@@ -133,6 +133,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CloudBoss1.cpp" />
     <ClCompile Include="SceneryRectangleBasic.cpp" />
     <ClCompile Include="SceneryItem.cpp" />
     <ClCompile Include="Drawing.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CloudBoss1.h" />
     <ClInclude Include="SceneryRectangleBasic.h" />
     <ClInclude Include="SceneryItem.h" />
     <ClInclude Include="Drawing.h" />
