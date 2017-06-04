@@ -34,7 +34,7 @@ public:
 
 	bool tryKeyInput(enum sf::Keyboard::Key key);
 	virtual bool isDone() = 0;
-
+	void setIsRight(bool newBool);
 	void update();
 	
 private:
@@ -42,6 +42,8 @@ private:
 
 	SceneryItem spriteImage;
 	std::vector<SceneryItem> spriteList;
+
+	bool isRight;
 
 
 	sf::Color color;

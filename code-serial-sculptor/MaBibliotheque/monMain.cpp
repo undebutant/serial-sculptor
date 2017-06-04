@@ -13,6 +13,7 @@ using namespace sf;
 int monMain()
 {
 	CloudEasy cloud1;
+	cloud1.setIsRight(false);
 
 	
 

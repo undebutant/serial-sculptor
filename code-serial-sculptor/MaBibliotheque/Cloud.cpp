@@ -20,6 +20,12 @@ void Cloud::draw(sf::RenderTarget &target) {
 	}
 }
 
+void Cloud::setIsRight(bool newBool) {
+	isRight = newBool;
+	update();
+}
+
+
 void Cloud::update() {
 	spriteImage.setSize(100,100);
 	int n = alterKeyList.size();
@@ -27,7 +33,12 @@ void Cloud::update() {
 
 	for (int i = 0; i < n; i++) {
 		spriteList[i].setSize(100/n,100);
-		spriteList[i].setPosition(pos.x+(100/n)*i,pos.y);
+		if (isRight) {
+			spriteList[i].setPosition(pos.x + (100 / n)*(i), pos.y);
+		}
+		else {
+			spriteList[i].setPosition(pos.x + (100 / n)*(n - i - 1), pos.y);
+		}
 	}
 }
 
