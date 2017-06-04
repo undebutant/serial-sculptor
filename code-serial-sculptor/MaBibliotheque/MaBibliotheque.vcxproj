@@ -133,6 +133,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SceneryRectangleBasic.cpp" />
     <ClCompile Include="SceneryItem.cpp" />
     <ClCompile Include="Drawing.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SceneryRectangleBasic.h" />
     <ClInclude Include="SceneryItem.h" />
     <ClInclude Include="Drawing.h" />
     <ClInclude Include="Engine.h" />
@@ -155,6 +157,9 @@
     <ClInclude Include="monMain.h" />
     <ClInclude Include="Sculptor.h" />
     <ClInclude Include="User.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sprite\chaton.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

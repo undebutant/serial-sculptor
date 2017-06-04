@@ -3,7 +3,8 @@
 #include "Sculptor.h"
 #include "CloudEasy.h"
 #include "monMain.h"
-
+#include "SceneryRectangleBasic.h"
+#include "SceneryItem.h"
 
 using namespace std;
 using namespace sf;
@@ -13,9 +14,13 @@ int monMain()
 {
 	CloudEasy cloud1;
 
+	
+
+	
+
 	cout << cloud1 << "\n" << endl;
 
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(800, 800), "serial scultor");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
@@ -36,7 +41,7 @@ int monMain()
 			}
 		}
 		window.clear();
-		window.draw(shape);
+		cloud1.draw(window);
 		window.display();
 	}
 	return 0;

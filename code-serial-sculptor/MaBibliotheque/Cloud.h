@@ -28,15 +28,22 @@ public:
 	void setAlterKeyList(std::vector<enum sf::Keyboard::Key> keyList);
 	std::vector<enum sf::Keyboard::Key> getAlterKeyList();
 	void addKey(enum sf::Keyboard::Key key);
+	void addSprite(SceneryItem newSprite);
+
 	int getAlterKeyListSize();
 
 	bool tryKeyInput(enum sf::Keyboard::Key key);
 	virtual bool isDone() = 0;
+
+	void update();
 	
 private:
 	friend std::ostream& operator<<(std::ostream&, const Cloud&);
 
-	SceneryItem sprite;
+	SceneryItem spriteImage;
+	std::vector<SceneryItem> spriteList;
+
+
 	sf::Color color;
 	int currentKeyIndice;
 	std::vector<enum sf::Keyboard::Key> alterKeyList;

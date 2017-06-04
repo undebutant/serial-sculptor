@@ -13,8 +13,9 @@ public:
 	~SceneryItem();
 
 	void draw(sf::RenderTarget &target);
-
+	void setPath(std::string newPath);
 	void setPosition(float x, float y);
+	void setColor(sf::Color newColor);
 	sf::Vector2f getPosition();
 	void setSize(float x, float y);
 	sf::Vector2f getSize();

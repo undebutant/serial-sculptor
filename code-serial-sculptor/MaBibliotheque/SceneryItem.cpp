@@ -1,6 +1,8 @@
 #include "SceneryItem.h"
 
 
+using namespace std;
+
 SceneryItem::SceneryItem() {
 
 }
@@ -11,9 +13,18 @@ SceneryItem::~SceneryItem() {
 
 
 void SceneryItem::draw(sf::RenderTarget &target) {
+	
 	target.draw(shape);
 }
 
+
+void SceneryItem::setColor(sf::Color newColor) {
+	shape.setFillColor(newColor);
+}
+
+void SceneryItem::setPath(std::string newPath) {
+	pathToSprite = newPath;
+}
 
 void SceneryItem::setPosition(float x, float y) {
 	shape.setPosition(x, y);

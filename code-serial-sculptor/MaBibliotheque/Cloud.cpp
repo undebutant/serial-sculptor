@@ -14,29 +14,42 @@ Cloud::~Cloud() {
 
 
 void Cloud::draw(sf::RenderTarget &target) {
-	sprite.draw(target);
+	spriteImage.draw(target);
+	for (int i = currentKeyIndice; i < alterKeyList.size(); i++) {
+		spriteList[i].draw(target);
+	}
 }
 
+void Cloud::update() {
+	spriteImage.setSize(100,100);
+	int n = alterKeyList.size();
+	auto pos = spriteImage.getPosition();
+
+	for (int i = 0; i < n; i++) {
+		spriteList[i].setSize(100/n,100);
+		spriteList[i].setPosition(pos.x+(100/n)*i,pos.y);
+	}
+}
 
 void Cloud::setPosition(float x, float y) {
-	sprite.setPosition(x, y);
+	spriteImage.setPosition(x, y);
 }
 
 sf::Vector2f Cloud::getPosition() {
-	return sprite.getPosition();
+	return spriteImage.getPosition();
 }
 
 void Cloud::setSize(float x, float y) {
-	sprite.setSize(x, y);
+	spriteImage.setSize(x, y);
 }
 
 sf::Vector2f Cloud::getSize() {
-	return sprite.getSize();
+	return spriteImage.getSize();
 }
 
 
 void Cloud::setSprite(std::string newSpritePath) {
-	sprite.setSprite(newSpritePath);
+	spriteImage.setSprite(newSpritePath);
 }
 
 
@@ -67,6 +80,10 @@ std::vector<enum sf::Keyboard::Key> Cloud::getAlterKeyList() {
 
 void Cloud::addKey(sf::Keyboard::Key key) {
 	alterKeyList.push_back(key);
+}
+
+void Cloud::addSprite(SceneryItem newSprite) {
+	spriteList.push_back(newSprite);
 }
 
 int Cloud::getAlterKeyListSize() {
