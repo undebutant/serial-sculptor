@@ -60,14 +60,26 @@ int monMain()
 				window.close();
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Return) {
-					vectorOfItem.clear();
+					
+					vector<Item*> vectorOfItemTemp;
 
-					CloudBoss1 cloud2;
-					cloud2.setIsRight(isRight);
-					isRight = !isRight;
-					cloud1 = cloud2;
+					for (int i = 0; i < (int)vectorOfItem.size();i++) {
+						Item * item = vectorOfItem[i];
+						Cloud * cloud = (Cloud *)item;
+						if (cloud->isDone()) {
+							CloudBoss1 cloud2;
+							cloud2.setIsRight(isRight);
+							isRight = !isRight;
+							cloud1 = cloud2;
 
-					vectorOfItem.push_back(&cloud1);
+							
+						} 
+						vectorOfItemTemp.push_back(&cloud1);
+					}
+
+					vectorOfItem.swap(vectorOfItemTemp);
+
+					
 				}
 				else {
 					bool a = cloud1.tryKeyInput(event.key.code);
