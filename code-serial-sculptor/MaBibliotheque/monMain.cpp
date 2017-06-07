@@ -27,7 +27,7 @@ sf::Texture *getTexture(std::string texture) {
 int monMain()
 {
 	sf::Texture mytexture;
-	if (!mytexture.loadFromFile("chaton.png"))
+	if (!mytexture.loadFromFile("sprite\\chaton.png"))
 	{
 		cout << "bug texture" << endl;
 		// erreur...
@@ -106,7 +106,7 @@ int monMain()
 		}
 
 
-		for (int i = 0; i < vectorOfItem.size(); i++) {
+		for (int i = 0; i < (int) vectorOfItem.size(); i++) {
 			Item * item = vectorOfItem[i];
 			item->draw(window);
 

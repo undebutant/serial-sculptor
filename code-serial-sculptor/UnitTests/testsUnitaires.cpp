@@ -75,16 +75,16 @@ TEST_F(CloudEasyTest, wrong_key_list_entered) {
 }
 
 TEST_F(CloudEasyTest, change_cloud_size) {
-	CloudEasyToTest.setSize(10.f, -20.4);
+	CloudEasyToTest.setSize(10.f, -20.4f);
 
 	EXPECT_EQ(CloudEasyToTest.getSize().x, 10.f);
-	EXPECT_EQ(CloudEasyToTest.getSize().y, (float) -20.4);
+	EXPECT_EQ(CloudEasyToTest.getSize().y, -20.4f);
 }
 
 TEST_F(CloudEasyTest, change_cloud_position) {
-	CloudEasyToTest.setPosition(7.2, -20.f);
+	CloudEasyToTest.setPosition(7.2f, -20.f);
 
-	EXPECT_EQ(CloudEasyToTest.getPosition().x, (float) 7.2);
+	EXPECT_EQ(CloudEasyToTest.getPosition().x, 7.2f);
 	EXPECT_EQ(CloudEasyToTest.getPosition().y, -20.f);
 }
 
