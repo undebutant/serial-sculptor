@@ -21,12 +21,7 @@ void SceneryItem::setTexture(std::string texture) {
 	
 	
 	
-	if (getTexture(texture) == NULL) {
-		cout << "c'est la merde"<< endl;
-	}
-	else {
-		cout << "ici tout semble ok"<< endl;
-	};
+	
 	shape.setTexture(getTexture(texture));
 		
 	

@@ -35,7 +35,7 @@ int monMain()
 		// erreur...
 	}
 	else {
-		cout << "Texture charge" << endl;
+		cout << "Texture charge : " << "chaton.png"<< endl;
 		textureLoaded["chaton.png"] = mytexture;
 	}
 	
