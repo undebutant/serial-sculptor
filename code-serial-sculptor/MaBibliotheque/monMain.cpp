@@ -29,14 +29,14 @@ string chemin()
 int monMain()
 {
 	sf::Texture mytexture;
-	if (!mytexture.loadFromFile("chaton.jpg"))
+	if (!mytexture.loadFromFile("chaton.png"))
 	{
 		cout << "bug texture" << endl;
 		// erreur...
 	}
 	else {
-		cout << "Texture chargé" << endl;
-		textureLoaded["chaton.jpg"] = mytexture;
+		cout << "Texture charge" << endl;
+		textureLoaded["chaton.png"] = mytexture;
 	}
 	
 	CloudBoss1 cloud1;
