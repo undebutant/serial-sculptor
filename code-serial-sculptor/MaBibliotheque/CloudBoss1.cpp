@@ -6,6 +6,7 @@ CloudBoss1::CloudBoss1() {
 	setColor(sf::Color(255, 0, 0)); // Setting color of the easy cloud to green
 	setIsRight(false);
 	setPosition(10, 10);
+	setSpeed(10.0);
 	setTexture("chaton.png");
 	
 

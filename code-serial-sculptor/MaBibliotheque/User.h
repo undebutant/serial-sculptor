@@ -25,7 +25,7 @@ public:
 	int getHealth();
 	void incrHealth(int a);
 	void decrHealth(int a);
-
+	void update(float time);
 	virtual bool isGameOver() = 0;
 
 private:

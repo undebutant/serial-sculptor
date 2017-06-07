@@ -22,7 +22,7 @@ public:
 	sf::Vector2f getPosition();
 	void setSize(float x, float y);
 	sf::Vector2f getSize();
-
+	void update(float time);
 	void setSprite(std::string pathToSprite);
 
 private:

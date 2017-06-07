@@ -14,17 +14,15 @@ using namespace sf;
 
 map<string, sf::Texture> textureLoaded;
 
+vector<Item*> vectorOfItem;
+
 sf::Texture *getTexture(std::string texture) {
 	
 	return &(textureLoaded[texture]);
 }
 
 
-string chemin()
-{
-	const string s(__FILE__);
-	return s.substr(0, s.rfind('\\\\')); // dos/windows only  
-}
+
 
 int monMain()
 {
@@ -42,7 +40,7 @@ int monMain()
 	CloudBoss1 cloud1;
 	cloud1.setIsRight(false);
 
-	
+	vectorOfItem.push_back(&cloud1);
 
 	
 
@@ -51,7 +49,8 @@ int monMain()
 	sf::RenderWindow window(sf::VideoMode(800, 800), "serial scultor");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
-
+	sf::Clock clock;
+	bool isRight= true;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -61,8 +60,14 @@ int monMain()
 				window.close();
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Return) {
+					vectorOfItem.clear();
+
 					CloudBoss1 cloud2;
+					cloud2.setIsRight(isRight);
+					isRight = !isRight;
 					cloud1 = cloud2;
+
+					vectorOfItem.push_back(&cloud1);
 				}
 				else {
 					bool a = cloud1.tryKeyInput(event.key.code);
@@ -75,7 +80,28 @@ int monMain()
 			}
 		}
 		window.clear();
-		cloud1.draw(window);
+		
+		
+		
+		float time = clock.restart().asSeconds();
+
+		
+
+		for (int i = 0; i < (int) vectorOfItem.size(); i++) {
+			Item * item = vectorOfItem[i];
+			item->update(time);
+
+		}
+
+
+		for (int i = 0; i < vectorOfItem.size(); i++) {
+			Item * item = vectorOfItem[i];
+			item->draw(window);
+
+		}
+
+
+		
 		window.display();
 	}
 	return 0;

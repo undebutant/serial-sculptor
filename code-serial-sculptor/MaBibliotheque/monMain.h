@@ -4,5 +4,5 @@
 using namespace std;
 
 sf::Texture *getTexture(std::string texture);
-string chemin();
+
 int monMain();

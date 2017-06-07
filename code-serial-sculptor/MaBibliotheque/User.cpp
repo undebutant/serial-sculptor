@@ -9,6 +9,9 @@ User::~User() {
 
 }
 
+void User::update(float time) {
+	//TODO
+}
 
 void User::draw(sf::RenderTarget &target) {
 	sprite.draw(target);

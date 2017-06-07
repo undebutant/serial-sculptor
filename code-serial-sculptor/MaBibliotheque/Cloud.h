@@ -11,6 +11,10 @@ class Cloud : public Item
 public:
 	Cloud();
 	~Cloud();
+	
+	void setSpeed(float newSpeed);
+
+	void update(float time);
 
 	void draw(sf::RenderTarget &target);
 
@@ -47,6 +51,7 @@ private:
 
 	bool isRight;
 
+	float speed;
 
 	sf::Color color;
 	int currentKeyIndice;

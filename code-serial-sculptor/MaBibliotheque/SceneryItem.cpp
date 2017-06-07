@@ -27,6 +27,10 @@ void SceneryItem::setTexture(std::string texture) {
 	
 }
 
+void SceneryItem::update(float time) {
+	//TODO
+}
+
 void SceneryItem::setColor(sf::Color newColor) {
 	shape.setFillColor(newColor);
 }
