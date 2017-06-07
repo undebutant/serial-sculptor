@@ -21,7 +21,7 @@ public:
 
 	void setSprite(std::string pathToSprite);
 
-	void setTexture();
+	void setTexture(std::string texture);
 
 	void setColor(sf::Color newcolor);
 	sf::Color getColor();

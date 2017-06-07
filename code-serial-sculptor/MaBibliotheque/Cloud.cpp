@@ -16,7 +16,7 @@ Cloud::~Cloud() {
 
 void Cloud::draw(sf::RenderTarget &target) {
 	spriteImage.draw(target);
-	for (int i = currentKeyIndice; i < alterKeyList.size(); i++) {
+	for (int i = currentKeyIndice; i < ((int) alterKeyList.size()); i++) {
 		spriteList[i].draw(target);
 	}
 }
@@ -26,8 +26,8 @@ void Cloud::setIsRight(bool newBool) {
 	update();
 }
 
-void Cloud::setTexture() {
-	spriteImage.setTexture();
+void Cloud::setTexture(std::string texture) {
+	spriteImage.setTexture(texture);
 }
 
 void Cloud::update() {
@@ -36,12 +36,13 @@ void Cloud::update() {
 	auto pos = spriteImage.getPosition();
 
 	for (int i = 0; i < n; i++) {
-		spriteList[i].setSize(100./n,100);
+		float temp = (float) (100.0 / n);
+		spriteList[i].setSize(temp,100);
 		if (isRight) {
-			spriteList[i].setPosition(pos.x + (100. / n)*(i), pos.y);
+			spriteList[i].setPosition(pos.x + (temp)*(i), pos.y);
 		}
 		else {
-			spriteList[i].setPosition(pos.x + (100. / n)*(n - i - 1), pos.y);
+			spriteList[i].setPosition(pos.x + (temp)*(n - i - 1), pos.y);
 		}
 	}
 }

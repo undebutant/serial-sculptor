@@ -14,7 +14,7 @@ public:
 	~SceneryItem();
 
 
-	void setTexture();
+	void setTexture(std::string texture);
 	void draw(sf::RenderTarget &target);
 	void setPath(std::string newPath);
 	void setPosition(float x, float y);
@@ -27,6 +27,6 @@ public:
 
 private:
 	sf::RectangleShape shape;
-	sf::Texture mytexture;
+	
 	std::string pathToSprite;
 };

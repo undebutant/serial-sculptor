@@ -17,20 +17,13 @@ void SceneryItem::draw(sf::RenderTarget &target) {
 	target.draw(shape);
 }
 
-void SceneryItem::setTexture() {
-	/*
-	string chemin (chemin());
-	chemin = chemin + "\\sprite\\chaton.jpg";
-	cout << chemin << endl;
+void SceneryItem::setTexture(std::string texture) {
 	
-	if (!mytexture.loadFromFile(chemin))
-	{
-		//cout << "bug texture" << endl;
-		// erreur...
-	}
-	else {
-		shape.setTexture(&mytexture);
-	}*/
+	
+	
+	shape.setTexture(getTexture(texture));
+		
+	
 }
 
 void SceneryItem::setColor(sf::Color newColor) {

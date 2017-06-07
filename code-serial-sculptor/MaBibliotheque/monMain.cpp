@@ -9,6 +9,17 @@
 using namespace std;
 using namespace sf;
 
+
+
+
+map<string, sf::Texture> textureLoaded;
+
+sf::Texture *getTexture(std::string texture) {
+	
+	return &(textureLoaded[texture]);
+}
+
+
 string chemin()
 {
 	const string s(__FILE__);
@@ -18,20 +29,16 @@ string chemin()
 int monMain()
 {
 	sf::Texture mytexture;
-	string chemin(chemin());
-	chemin = chemin + "\\sprite\\chaton.jpg";
-	cout << chemin << endl;
-
-	if (!mytexture.loadFromFile(chemin))
+	if (!mytexture.loadFromFile("chaton.jpg"))
 	{
 		cout << "bug texture" << endl;
 		// erreur...
 	}
 	else {
-		cout << "ça a marché"<< endl;
+		cout << "Texture chargé" << endl;
+		textureLoaded["chaton.jpg"] = mytexture;
 	}
-
-
+	
 	CloudBoss1 cloud1;
 	cloud1.setIsRight(false);
 
