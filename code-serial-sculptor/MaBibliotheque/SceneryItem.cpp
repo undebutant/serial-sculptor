@@ -1,5 +1,5 @@
 #include "SceneryItem.h"
-
+#include <iostream>
 
 using namespace std;
 
@@ -17,6 +17,21 @@ void SceneryItem::draw(sf::RenderTarget &target) {
 	target.draw(shape);
 }
 
+void SceneryItem::setTexture() {
+	/*
+	string chemin (chemin());
+	chemin = chemin + "\\sprite\\chaton.jpg";
+	cout << chemin << endl;
+	
+	if (!mytexture.loadFromFile(chemin))
+	{
+		//cout << "bug texture" << endl;
+		// erreur...
+	}
+	else {
+		shape.setTexture(&mytexture);
+	}*/
+}
 
 void SceneryItem::setColor(sf::Color newColor) {
 	shape.setFillColor(newColor);

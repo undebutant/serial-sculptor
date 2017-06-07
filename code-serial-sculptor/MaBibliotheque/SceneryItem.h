@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Item.h"
+#include "monMain.h"
 
 
 class SceneryItem : public Item
@@ -12,6 +13,8 @@ public:
 	SceneryItem();
 	~SceneryItem();
 
+
+	void setTexture();
 	void draw(sf::RenderTarget &target);
 	void setPath(std::string newPath);
 	void setPosition(float x, float y);
@@ -24,5 +27,6 @@ public:
 
 private:
 	sf::RectangleShape shape;
+	sf::Texture mytexture;
 	std::string pathToSprite;
 };

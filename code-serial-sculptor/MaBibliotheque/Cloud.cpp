@@ -26,6 +26,9 @@ void Cloud::setIsRight(bool newBool) {
 	update();
 }
 
+void Cloud::setTexture() {
+	spriteImage.setTexture();
+}
 
 void Cloud::update() {
 	spriteImage.setSize(100,100);

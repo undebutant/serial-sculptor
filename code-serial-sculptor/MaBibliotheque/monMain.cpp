@@ -9,9 +9,29 @@
 using namespace std;
 using namespace sf;
 
+string chemin()
+{
+	const string s(__FILE__);
+	return s.substr(0, s.rfind('\\\\')); // dos/windows only  
+}
 
 int monMain()
 {
+	sf::Texture mytexture;
+	string chemin(chemin());
+	chemin = chemin + "\\sprite\\chaton.jpg";
+	cout << chemin << endl;
+
+	if (!mytexture.loadFromFile(chemin))
+	{
+		cout << "bug texture" << endl;
+		// erreur...
+	}
+	else {
+		cout << "ça a marché"<< endl;
+	}
+
+
 	CloudBoss1 cloud1;
 	cloud1.setIsRight(false);
 
