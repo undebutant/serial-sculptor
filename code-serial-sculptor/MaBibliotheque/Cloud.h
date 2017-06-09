@@ -12,6 +12,7 @@ public:
 	Cloud();
 	~Cloud();
 	
+	void init();
 	void setSpeed(float newSpeed);
 
 	void update(float time);
@@ -48,6 +49,7 @@ private:
 
 	SceneryItem spriteImage;
 	std::vector<SceneryItem> spriteList;
+	std::vector<SceneryItem> keyItemList;
 
 	bool isRight;
 

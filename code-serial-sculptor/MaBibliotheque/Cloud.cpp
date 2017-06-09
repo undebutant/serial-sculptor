@@ -3,9 +3,13 @@
 #include "SceneryRectangleBasic.h"
 #include "Cloud.h"
 #include <assert.h>
+#include <iostream>
 
 
-Cloud::Cloud() : currentKeyIndice(0) {
+Cloud::Cloud(){
+	
+	
+
 
 }
 
@@ -13,7 +17,9 @@ Cloud::~Cloud() {
 
 }
 
-
+void Cloud::init() {
+	currentKeyIndice = 0;
+}
 void Cloud::setSpeed(float newSpeed) {
 	speed = newSpeed;
 }
@@ -40,6 +46,11 @@ void Cloud::draw(sf::RenderTarget &target) {
 	spriteImage.draw(target);
 	for (int i = currentKeyIndice; i < ((int) alterKeyList.size()); i++) {
 		spriteList[i].draw(target);
+	}
+	
+	for (int i = currentKeyIndice; i < ((int)keyItemList.size()); i++) {
+		keyItemList[i].draw(target);
+
 	}
 }
 
@@ -73,6 +84,14 @@ void Cloud::update() {
 			spriteList[i].setPosition(pos.x + (temp)*(n - i - 1), pos.y);
 		}
 	}
+
+	
+	for (int i = currentKeyIndice; i < n; i++) {
+		keyItemList[i].setPosition(10+i*(50), 10);
+	}
+
+	
+
 }
 
 void Cloud::setPosition(float x, float y) {
@@ -131,7 +150,77 @@ void Cloud::addKey(sf::Keyboard::Key key) {
 	addSprite(newSprite);
 	
 	
+
+	SceneryItem newKeySprite;
+	newKeySprite.setSize(50, 50);
+	newKeySprite.setPosition(0,0);
+
+
+	if (key == sf::Keyboard::A) {
+		newKeySprite.setTexture("A.png");
+	} else 	if (key == sf::Keyboard::B) {
+		newKeySprite.setTexture("B.png");
+	} else 	if (key == sf::Keyboard::C) {
+		newKeySprite.setTexture("C.png");
+	} else 	if (key == sf::Keyboard::D) {
+		newKeySprite.setTexture("D.png");
+	} else 	if (key == sf::Keyboard::E) {
+		newKeySprite.setTexture("E.png");
+	} else 	if (key == sf::Keyboard::F) {
+		newKeySprite.setTexture("F.png");
+	} else 	if (key == sf::Keyboard::G) {
+		newKeySprite.setTexture("G.png");
+	} else 	if (key == sf::Keyboard::H) {
+		newKeySprite.setTexture("H.png");
+	} else 	if (key == sf::Keyboard::I) {
+		newKeySprite.setTexture("I.png");
+	} else 	if (key == sf::Keyboard::J) {
+		newKeySprite.setTexture("J.png");
+	} else 	if (key == sf::Keyboard::K) {
+		newKeySprite.setTexture("K.png");
+	} else 	if (key == sf::Keyboard::L) {
+		newKeySprite.setTexture("L.png");
+	} else 	if (key == sf::Keyboard::M) {
+		newKeySprite.setTexture("M.png");
+	} else 	if (key == sf::Keyboard::N) {
+		newKeySprite.setTexture("N.png");
+	} else 	if (key == sf::Keyboard::O) {
+		newKeySprite.setTexture("O.png");
+	} else 	if (key == sf::Keyboard::P) {
+		newKeySprite.setTexture("P.png");
+	} else 	if (key == sf::Keyboard::Q) {
+		newKeySprite.setTexture("Q.png");
+	} else 	if (key == sf::Keyboard::R) {
+		newKeySprite.setTexture("R.png");
+	} else 	if (key == sf::Keyboard::S) {
+		newKeySprite.setTexture("S.png");
+	} else 	if (key == sf::Keyboard::T) {
+		newKeySprite.setTexture("T.png");
+	} else 	if (key == sf::Keyboard::U) {
+		newKeySprite.setTexture("U.png");
+	} else 	if (key == sf::Keyboard::V) {
+		newKeySprite.setTexture("V.png");
+	} else 	if (key == sf::Keyboard::W) {
+		newKeySprite.setTexture("W.png");
+	} else 	if (key == sf::Keyboard::X) {
+		newKeySprite.setTexture("X.png");
+	} else 	if (key == sf::Keyboard::Y) {
+		newKeySprite.setTexture("Y.png");
+	} else 	if (key == sf::Keyboard::Z) {
+		newKeySprite.setTexture("Z.png");
+	} else {
+		cout << "Ton ennemi n'a aucun sens"<< endl;
+	}
+
+
 	
+	
+
+
+
+
+
+	keyItemList.push_back(newKeySprite);
 
 
 }

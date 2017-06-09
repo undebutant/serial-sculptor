@@ -36,6 +36,27 @@ int monMain()
 		cout << "Texture charge : " << "chaton.png"<< endl;
 		textureLoaded["chaton.png"] = mytexture;
 	}
+
+
+	for (char i = 'A'; i <= 'Z'; i++) {
+		sf::Texture mytexture;
+		std::string path = "sprite\\";
+		std::string name;
+		name.push_back(i);
+		name = name + ".png";
+		path = path + name;
+		cout << endl;
+		cout << path << endl;
+		if (!mytexture.loadFromFile(path))
+		{
+			cout << "bug texture" << endl;
+			// erreur...
+		}
+		else {
+			cout << "Texture charge : " << name << endl;
+			textureLoaded[name] = mytexture;
+		}
+	}
 	
 	CloudBoss1 cloud1;
 	cloud1.setIsRight(false);
