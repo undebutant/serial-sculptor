@@ -48,7 +48,9 @@ void Cloud::draw(sf::RenderTarget &target) {
 		spriteList[i].draw(target);
 	}
 	
-	for (int i = currentKeyIndice; i < ((int)keyItemList.size()); i++) {
+	int n = (int)keyItemList.size();
+	n = min(4+currentKeyIndice, n);
+	for (int i = currentKeyIndice; i < (n); i++) {
 		keyItemList[i].draw(target);
 
 	}
@@ -87,7 +89,13 @@ void Cloud::update() {
 
 	
 	for (int i = currentKeyIndice; i < n; i++) {
-		keyItemList[i].setPosition(10+i*(50), 10);
+		if (isRight) {
+			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(25), pos.y - 50);
+		}
+		else {
+			keyItemList[i].setPosition(pos.x + 75 - (i - currentKeyIndice)*(25), pos.y - 50);
+		}
+		
 	}
 
 	
@@ -152,7 +160,7 @@ void Cloud::addKey(sf::Keyboard::Key key) {
 	
 
 	SceneryItem newKeySprite;
-	newKeySprite.setSize(50, 50);
+	newKeySprite.setSize(25, 25);
 	newKeySprite.setPosition(0,0);
 
 

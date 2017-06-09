@@ -44,7 +44,7 @@ TEST_F(SculptorTest, test_if_game_over) {
 // Tests for the CloudEasy class
 
 TEST_F(CloudEasyTest, initialize) {
-	EXPECT_EQ(CloudEasyToTest.getAlterKeyListSize(), 3);
+	EXPECT_EQ(CloudEasyToTest.getAlterKeyListSize(), 4);
 	EXPECT_EQ(CloudEasyToTest.getColor(), sf::Color(0, 255, 0));
 	EXPECT_EQ(CloudEasyToTest.getCurrentKeyIndice(), 0);
 	EXPECT_EQ(CloudEasyToTest.isDone(), 0);
@@ -53,7 +53,7 @@ TEST_F(CloudEasyTest, initialize) {
 TEST_F(CloudEasyTest, add_new_key) {
 	CloudEasyToTest.addKey(CloudEasyToTest.getAlterKeyList()[0]);
 
-	EXPECT_EQ(CloudEasyToTest.getAlterKeyListSize(), 4);
+	EXPECT_EQ(CloudEasyToTest.getAlterKeyListSize(), 5);
 	EXPECT_EQ(CloudEasyToTest.getCurrentKeyIndice(), 0);
 	EXPECT_EQ(CloudEasyToTest.isDone(), 0);
 }
@@ -62,6 +62,7 @@ TEST_F(CloudEasyTest, right_key_list_entered) {
 	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[0]), 1);
 	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[1]), 1);
 	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[2]), 1);
+	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[3]), 1);
 
 	EXPECT_EQ(CloudEasyToTest.isDone(), 1);
 }
@@ -70,6 +71,7 @@ TEST_F(CloudEasyTest, wrong_key_list_entered) {
 	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[0]), 1);
 	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[2]), 0);
 	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[1]), 1);
+	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[3]), 0);
 
 	EXPECT_EQ(CloudEasyToTest.isDone(), 0);
 }
