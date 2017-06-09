@@ -2,6 +2,7 @@
 
 #include "Sculptor.h"
 #include "CloudBoss1.h"
+#include "CloudEasy.h"
 #include "monMain.h"
 #include "SceneryRectangleBasic.h"
 #include "SceneryItem.h"
@@ -14,7 +15,7 @@ using namespace sf;
 
 map<string, sf::Texture> textureLoaded;
 
-vector<Item*> vectorOfItem;
+
 
 sf::Texture *getTexture(std::string texture) {
 	
@@ -61,8 +62,9 @@ int monMain()
 	CloudBoss1 cloud1;
 	cloud1.setIsRight(false);
 
-	vectorOfItem.push_back(&cloud1);
-
+	
+	CloudEasy cloud2;
+	cloud2.setIsRight(false);
 	
 
 	cout << cloud1 << "\n" << endl;
@@ -72,6 +74,7 @@ int monMain()
 	shape.setFillColor(sf::Color::Green);
 	sf::Clock clock;
 	bool isRight= true;
+	bool chat = false;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -82,33 +85,56 @@ int monMain()
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Return) {
 					
-					vector<Item*> vectorOfItemTemp;
+					
+						if ((cloud1.isDone()&&(!chat)) || (cloud2.isDone() && (chat))) {
+							if (chat) {
+								CloudEasy cloud2New;
+								cloud2New.setIsRight(isRight);
+								isRight = !isRight;
+								cloud2 = cloud2New;
 
-					for (int i = 0; i < (int)vectorOfItem.size();i++) {
-						Item * item = vectorOfItem[i];
-						Cloud * cloud = (Cloud *)item;
-						if (cloud->isDone()) {
-							CloudBoss1 cloud2;
-							cloud2.setIsRight(isRight);
-							isRight = !isRight;
-							cloud1 = cloud2;
+
+							}
+							else {
+								CloudBoss1 cloud1New;
+								cloud1New.setIsRight(isRight);
+								isRight = !isRight;
+								cloud1 = cloud1New;
+							}
+							if (isRight) {
+								
+									chat = !chat;
+							}
 
 							
 						} 
-						vectorOfItemTemp.push_back(&cloud1);
-					}
+						
+					
 
-					vectorOfItem.swap(vectorOfItemTemp);
+					
 
 					
 				}
 				else {
-					bool a = cloud1.tryKeyInput(event.key.code);
+					bool a;
+					if (chat) {
+						a = cloud2.tryKeyInput(event.key.code);
+					}
+					else {
+						a = cloud1.tryKeyInput(event.key.code);
+					}
 					cout << "La touche appuyee est-elle correcte (0 pour non, 1 pour oui) ?" << endl;
 					cout << "Resultat : " << a << endl;
 
-					cout << "Le nuage a-t-il ete sculpte totalement (0 pour non, 1 pour oui) ?" << endl;
-					cout << "Resultat : " << cloud1.isDone() << "\n" << endl;
+					if (chat) {
+						a = cloud2.isDone();
+					}
+					else {
+						a = cloud1.isDone();
+					}
+					cout << "Ennemie mort (0 pour non, 1 pour oui) ?" << endl;
+					cout << "Resultat : " << a << endl;
+
 				}
 			}
 		}
@@ -119,19 +145,19 @@ int monMain()
 		float time = clock.restart().asSeconds();
 
 		
-
-		for (int i = 0; i < (int) vectorOfItem.size(); i++) {
-			Item * item = vectorOfItem[i];
-			item->update(time);
-
+		if (chat) {
+			
+			cloud2.update(time);
+			cloud2.draw(window);
 		}
-
-
-		for (int i = 0; i < (int) vectorOfItem.size(); i++) {
-			Item * item = vectorOfItem[i];
-			item->draw(window);
-
+		else {
+			
+			cloud1.update(time);
+			cloud1.draw(window);
 		}
+		
+		
+
 
 
 		
