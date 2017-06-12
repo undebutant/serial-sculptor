@@ -28,7 +28,7 @@ void Cloud::setIsBoss(bool newBool) {
 void Cloud::init() {
 	currentKeyIndice = 0;
 	isBoss = false;
-	setPosition(10, 210);
+	setPosition(10, 610);
 	setSpeed(10.0);
 	isRight = false;
 }

@@ -1,4 +1,4 @@
-#include "../MaBibliotheque/CloudEasy.h"
+#include "../MaBibliotheque/CloudEasy1.h"
 #include "gtest/gtest.h"
 
 
@@ -32,5 +32,5 @@ protected:
 
 	// Objects declared here can be used by all tests in the test case for Foo
 
-	CloudEasy CloudEasyToTest = CloudEasy();
+	CloudEasy1 CloudEasyToTest = CloudEasy1();
 };

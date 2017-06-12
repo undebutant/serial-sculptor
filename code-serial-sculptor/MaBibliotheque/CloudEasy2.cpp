@@ -15,16 +15,6 @@ CloudEasy2::CloudEasy2() {
 	addKey(sf::Keyboard::B);
 	addKey(sf::Keyboard::O);
 
-	/*
-
-	KFQCUTOBKF 
-
-	MKLPBOCST
-
-
-
-	
-	*/
 	update();
 }
 

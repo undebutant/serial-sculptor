@@ -4,16 +4,17 @@
 
 CloudEasy10::CloudEasy10() {
 	init();
-	setColor(sf::Color(255, 255, 255)); // Setting color of the easy cloud to green
+	setColor(sf::Color(20, 20, 100)); // Setting color of the easy cloud to green
 
 	setTexture("CloudEasy10.png");
 
-	addKey(sf::Keyboard::B);
-	addKey(sf::Keyboard::B);
-	addKey(sf::Keyboard::H);
-	addKey(sf::Keyboard::W);
-	addKey(sf::Keyboard::N);
-
+	addKey(sf::Keyboard::C);
+	addKey(sf::Keyboard::O);
+	addKey(sf::Keyboard::V);
+	addKey(sf::Keyboard::F);
+	addKey(sf::Keyboard::E);
+	addKey(sf::Keyboard::F);
+	addKey(sf::Keyboard::E);
 
 
 
