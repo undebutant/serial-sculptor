@@ -46,10 +46,8 @@ public:
 	void createNewRandomEasy();
 	void deleteCloudsDone();
 	void deleteCloudsOld();
-
-	//std::unique_ptr<HudItems> createNewHudItem(int hudToCreate);
-	//void destroyHudItem(int indexOfHudItem);
-	//std::unique_ptr<HudItems> getHudItem(int indexOfHudItem);
+	
+	void deleteHudItem(int indexOfHudItem);
 
 	std::unique_ptr<SceneryItem> createNewSceneryItem(int sceneryItemToCreate);
 	void destroySceneryItem(int indexOfSceneryItem);
@@ -80,7 +78,7 @@ private:
 
 	std::vector<std::unique_ptr<Cloud>> listOfClouds;
 	std::vector<std::unique_ptr<Cloud>> listOfOldClouds;
-	//std::vector<std::unique_ptr<HudItems>> listOfHUDItems;
+	std::vector<std::unique_ptr<SceneryItem>> listOfHUDItems;
 	std::vector<std::unique_ptr<SceneryItem>> listOfBackgroundItems;
 	std::vector<std::unique_ptr<SceneryItem>> listOfBackgroundItemsMainMenu;
 };

@@ -55,6 +55,27 @@ void Engine::init() {
 	gameBackground->setSize(1200, 600);
 	gameBackground->setTexture("gameBackground.jpeg");
 	listOfBackgroundItems.push_back(move(gameBackground));
+
+	//HUD layout
+	std::unique_ptr<SceneryItem> heartContainer1 = std::unique_ptr<SceneryItem>(new SceneryItem());
+	std::unique_ptr<SceneryItem> heartContainer2 = std::unique_ptr<SceneryItem>(new SceneryItem());
+	std::unique_ptr<SceneryItem> heartContainer3 = std::unique_ptr<SceneryItem>(new SceneryItem());
+
+	heartContainer1->setSize(100, 100);
+	heartContainer2->setSize(100, 100);
+	heartContainer3->setSize(100, 100);
+
+	heartContainer1->setTexture("heartFull.png");
+	heartContainer2->setTexture("heartFull.png");
+	heartContainer3->setTexture("heartFull.png");
+
+	heartContainer1->setPosition(20, 20);
+	heartContainer2->setPosition(140, 20);
+	heartContainer3->setPosition(260, 20);
+
+	listOfHUDItems.push_back(move(heartContainer1));
+	listOfHUDItems.push_back(move(heartContainer2));
+	listOfHUDItems.push_back(move(heartContainer3));
 }
 
 void Engine::launchMainMenu() {
@@ -237,15 +258,6 @@ void Engine::deleteCloudsOld() {
 	listOfOldClouds.swap(swapVector);
 }
 
-/*
-std::unique_ptr<HudItems> Engine::createNewHudItem(int hudToCreate) {
-	
-}
-void Engine::destroyHudItem(int indexOfHudItem) {
-	
-}
-*/
-
 
 std::unique_ptr<SceneryItem> Engine::createNewSceneryItem(int sceneryItemToCreate) {
 	SceneryItem *sceneryToAdd;
@@ -301,9 +313,7 @@ void Engine::update(float time) {
 				timeUntilNextSpawn = 0;
 				numberOfSpawnedClouds++;
 			}
-
 		}
-
 	}
 	else if (phase == 1) {
 		if (numberOfSpawnedClouds >= maxSpawn) {
@@ -344,7 +354,6 @@ void Engine::update(float time) {
 				timeUntilNextSpawn = 0;
 				numberOfSpawnedClouds++;
 			}
-
 		}
 	}
 	else if (phase == 2) {
@@ -356,15 +365,10 @@ void Engine::update(float time) {
 				resetValue();
 			}
 		}
-
-		
 	}
 	else {
 		assert(false);
 	}
-
-	
-	
 }
 
 void Engine::drawAllInGame(sf::RenderWindow &renderer) {
@@ -380,6 +384,9 @@ void Engine::drawAllInGame(sf::RenderWindow &renderer) {
 	}
 	if (!listOfClouds.empty()) {
 		listOfClouds.back()->drawLetter(renderer);
+	}
+	for (int i = 0; i < ((int)listOfHUDItems.size()); i++) {
+		listOfHUDItems[i]->draw(renderer);
 	}
 	sculptor.draw(renderer);
 }
