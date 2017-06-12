@@ -34,15 +34,50 @@ void loadTexture() {
 		textureLoaded["chaton.png"] = mytexture;
 	}
 
-	sf::Texture mytexture2;
-	if (!mytexture2.loadFromFile("sprite\\CloudBoss1.png"))
-	{
-		cout << "bug texture" << endl;
-		// erreur...
+	
+
+	for (int i = 1; i <= 6; i++) {
+		sf::Texture mytexture;
+		std::string path = "sprite\\";
+		std::string name;
+		name = "CloudBoss";
+		std::string str = std::to_string(i);
+		name = name + str;
+		name = name + ".png";
+		path = path + name;
+		cout << endl;
+		cout << path << endl;
+		if (!mytexture.loadFromFile(path))
+		{
+			cout << "bug texture" << endl;
+			// erreur...
+		}
+		else {
+			cout << "Texture charge : " << name << endl;
+			textureLoaded[name] = mytexture;
+		}
 	}
-	else {
-		cout << "Texture charge : " << "CloudBoss1.png" << endl;
-		textureLoaded["CloudBoss1.png"] = mytexture2;
+
+	for (int i = 1; i <= 10; i++) {
+		sf::Texture mytexture;
+		std::string path = "sprite\\";
+		std::string name;
+		name = "CloudEasy";
+		std::string str = std::to_string(i);
+		name = name + str;
+		name = name + ".png";
+		path = path + name;
+		cout << endl;
+		cout << path << endl;
+		if (!mytexture.loadFromFile(path))
+		{
+			cout << "bug texture" << endl;
+			// erreur...
+		}
+		else {
+			cout << "Texture charge : " << name << endl;
+			textureLoaded[name] = mytexture;
+		}
 	}
 
 	for (char i = 'A'; i <= 'Z'; i++) {
