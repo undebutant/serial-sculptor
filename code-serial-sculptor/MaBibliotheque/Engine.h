@@ -16,10 +16,14 @@ public:
 	~Engine();
 
 	void launchMainMenu();
+	void drawMainMenu(sf::RenderWindow &renderer);
+
 	void newGame();
 	void endGame();
 
 	bool loadTexture(string pathToTexture, string nameToStore);
+	void loadAllTextures();
+	sf::Texture* getTexture(std::string texture);
 
 	void createNewCloud(int cloudToCreate, bool isRightCloud);
 	void deleteCloudsDone();

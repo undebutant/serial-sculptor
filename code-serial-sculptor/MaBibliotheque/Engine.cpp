@@ -14,8 +14,51 @@ Engine::~Engine() {
 
 
 void Engine::launchMainMenu() {
-	//TODO
+	RenderWindow window(sf::VideoMode(1200, 600), "Serial sculptor");
+
+	Clock clock;
+	Event event;
+
+	loadAllTextures();
+
+	while (window.isOpen()) {
+		while (window.pollEvent(event))
+		{
+			if (event.type == Event::Closed)
+				window.close();
+			if (event.type == Event::KeyPressed) {
+				if (event.key.code == Keyboard::Escape) {
+					window.close();
+				}
+			}
+		}
+		window.clear();
+		
+		float time = clock.restart().asSeconds();
+		//TODO call update functions
+		drawMainMenu(window);
+
+		window.display();
+	}
 }
+
+void Engine::drawMainMenu(RenderWindow &renderer) {
+	RectangleShape menuBackground(Vector2f(1200, 600));
+	RectangleShape newGameButton(Vector2f(566, 80));
+	RectangleShape exitButton(Vector2f(382, 80));
+
+	menuBackground.setTexture(getTexture("mainMenuBackground.jpeg"));
+	newGameButton.setTexture(getTexture("newGameButton.png"));
+	exitButton.setTexture(getTexture("exitButton.png"));
+
+	newGameButton.setPosition(150, 140);
+	exitButton.setPosition(242, 260);
+
+	renderer.draw(menuBackground);
+	renderer.draw(newGameButton);
+	renderer.draw(exitButton);
+}
+
 
 void Engine::newGame() {
 	//TODO
@@ -38,14 +81,73 @@ bool Engine::loadTexture(string pathToTexture, string nameToStore) {
 	}
 }
 
+void Engine::loadAllTextures() {
+	Texture textureLoaded;
+
+	string pathToSprite = "sprite\\";
+	string nameForSprite;
+	string iteratorToString;
+
+	string variousImages[4] = { "chaton.png", "mainMenuBackground.jpeg", "exitButton.png", "newGameButton.png" };
+
+	for (int i = 0; i < 4; i++) {
+		if (!loadTexture(pathToSprite + variousImages[i], variousImages[i])) {
+			cout << "Impossible de charger la texture " << nameForSprite << endl;
+		}
+	}
+
+	for (int i = 1; i < 6; i++) {
+		pathToSprite = "sprite\\";
+		nameForSprite = "CloudBoss";
+		iteratorToString = to_string(i);
+
+		nameForSprite = nameForSprite + iteratorToString + ".png";
+		pathToSprite = pathToSprite + nameForSprite;
+
+		if (!loadTexture(pathToSprite, nameForSprite)) {
+			cout << "Impossible de charger la texture " << nameForSprite << endl;
+		}
+	}
+
+	for (int i = 1; i <= 10; i++) {
+		pathToSprite = "sprite\\";
+		nameForSprite = "CloudEasy";
+		iteratorToString = to_string(i);
+
+		nameForSprite = nameForSprite + iteratorToString + ".png";
+		pathToSprite = pathToSprite + nameForSprite;
+
+		if (!loadTexture(pathToSprite, nameForSprite)) {
+			cout << "Impossible de charger la texture " << nameForSprite << endl;
+		}
+	}
+
+	for (char i = 'A'; i <= 'Z'; i++) {
+		pathToSprite = "sprite\\";
+		nameForSprite = "";
+
+		nameForSprite.push_back(i);
+		nameForSprite = nameForSprite + ".png";
+		pathToSprite = pathToSprite + nameForSprite;
+
+		if (!loadTexture(pathToSprite, nameForSprite)) {
+			cout << "Impossible de charger la texture " << nameForSprite << endl;
+		}
+	}
+}
+
+sf::Texture* Engine::getTexture(std::string texture) {
+	return &(textureLoaded[texture]);
+}
+
 
 void Engine::createNewCloud(int cloudToCreate, bool isRightCloud) {
 	Cloud *cloudToAdd;
 	if (cloudToCreate == 0) {
-		CloudEasy1 *cloudToAdd = new CloudEasy1();
+		cloudToAdd = new CloudEasy1();
 	}
 	else {
-		CloudBoss1 *cloudToAdd = new CloudBoss1();
+		cloudToAdd = new CloudBoss1();
 	}
 
 	unique_ptr<Cloud> ptrCloudToAdd(cloudToAdd);

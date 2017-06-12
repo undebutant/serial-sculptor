@@ -2,24 +2,12 @@
 
 #include "Sculptor.h"
 #include "CloudBoss1.h"
-#include "CloudBoss2.h"
-#include "CloudBoss3.h"
-#include "CloudBoss4.h"
-#include "CloudBoss5.h"
-#include "CloudBoss6.h"
 #include "CloudEasy1.h"
-#include "CloudEasy2.h"
-#include "CloudEasy3.h"
-#include "CloudEasy4.h"
-#include "CloudEasy5.h"
-#include "CloudEasy6.h"
-#include "CloudEasy7.h"
-#include "CloudEasy8.h"
-#include "CloudEasy9.h"
-#include "CloudEasy10.h"
 #include "monMain.h"
 #include "SceneryRectangleBasic.h"
 #include "SceneryItem.h"
+
+#include "Engine.h"
 
 using namespace std;
 using namespace sf;
@@ -32,7 +20,7 @@ map<string, sf::Texture> textureLoaded;
 
 
 sf::Texture *getTexture(std::string texture) {
-	
+
 	return &(textureLoaded[texture]);
 }
 
@@ -48,7 +36,7 @@ void loadTexture() {
 		textureLoaded["chaton.png"] = mytexture;
 	}
 
-	
+
 
 	for (int i = 1; i <= 6; i++) {
 		sf::Texture mytexture;
@@ -118,17 +106,30 @@ void loadTexture() {
 
 int monMain()
 {
-	
-	loadTexture();
-	Cloud* cloud = new CloudBoss1;
-	int number = 2;
+	Engine mainEngine = Engine();
+	mainEngine.launchMainMenu();
 
+
+
+
+
+	loadTexture();
+
+	CloudBoss1 cloud1;
+	cloud1.setIsRight(false);
+
+
+	CloudEasy1 cloud2;
+	cloud2.setIsRight(false);
+
+
+	cout << cloud1 << "\n" << endl;
 
 	sf::RenderWindow window(sf::VideoMode(800, 800), "serial scultor");
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 	sf::Clock clock;
-	bool isRight= true;
+	bool isRight = true;
 	bool chat = false;
 	while (window.isOpen())
 	{
@@ -139,90 +140,83 @@ int monMain()
 				window.close();
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Return) {
-					
-					if (cloud->isDone()) {
-						 if (number == 1) {
-							cloud = new CloudBoss1;
-						} else  if (number == 2) {
-							cloud = new CloudBoss2;
+
+
+					if ((cloud1.isDone() && (!chat)) || (cloud2.isDone() && (chat))) {
+						if (chat) {
+							CloudEasy1 cloud2New;
+							cloud2New.setIsRight(isRight);
+							isRight = !isRight;
+							cloud2 = cloud2New;
+
+
 						}
-						else if (number == 3) {
-							cloud = new CloudBoss3;
+						else {
+							CloudBoss1 cloud1New;
+							cloud1New.setIsRight(isRight);
+							isRight = !isRight;
+							cloud1 = cloud1New;
 						}
-						else if (number == 4) {
-							cloud = new CloudBoss4;
-						}
-						else if (number == 5) {
-							cloud = new CloudBoss5;
-						}
-						else if (number == 6) {
-							cloud = new CloudBoss6;
-						}
-						else if (number == 7) {
-							cloud = new CloudEasy1;
-						}
-						else if (number == 8) {
-							cloud = new CloudEasy2;
-						}
-						else if (number == 9) {
-							cloud = new CloudEasy3;
-						}
-						else if (number == 10) {
-							cloud = new CloudEasy4;
-						}
-						else if (number == 11) {
-							cloud = new CloudEasy5;
-						}
-						else if (number == 12) {
-							cloud = new CloudEasy6;
-						}
-						else if (number == 13) {
-							cloud = new CloudEasy7;
-						}
-						else if (number == 14) {
-							cloud = new CloudEasy8;
-						}
-						else if (number == 15) {
-							cloud = new CloudEasy9;
-						}
-						else if (number == 16) {
-							cloud = new CloudEasy10;
+						if (isRight) {
+
+							chat = !chat;
 						}
 
-						cloud->setIsRight(isRight);
-						isRight = !isRight;
 
-						number++;
-						if (number == 17) {
-							number = 1;
-						}
 					}
+
+
+
+
+
+
 				}
 				else {
 					bool a;
-					a = cloud->tryKeyInput(event.key.code);
-					
+					if (chat) {
+						a = cloud2.tryKeyInput(event.key.code);
+					}
+					else {
+						a = cloud1.tryKeyInput(event.key.code);
+					}
+					cout << "La touche appuyee est-elle correcte (0 pour non, 1 pour oui) ?" << endl;
+					cout << "Resultat : " << a << endl;
+
+					if (chat) {
+						a = cloud2.isDone();
+					}
+					else {
+						a = cloud1.isDone();
+					}
+					cout << "Ennemie mort (0 pour non, 1 pour oui) ?" << endl;
+					cout << "Resultat : " << a << endl;
 
 				}
 			}
 		}
 		window.clear();
-		
-		
-		
+
+
+
 		float time = clock.restart().asSeconds();
 
-		
-		
-		cloud->update(time);
-		cloud->draw(window);
-		
-		
-		
+
+		if (chat) {
+
+			cloud2.update(time);
+			cloud2.draw(window);
+		}
+		else {
+
+			cloud1.update(time);
+			cloud1.draw(window);
+		}
 
 
 
-		
+
+
+
 		window.display();
 	}
 	return 0;
