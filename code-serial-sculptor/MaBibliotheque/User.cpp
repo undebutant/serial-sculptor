@@ -13,7 +13,7 @@ User::~User() {
 void User::init() {
 	sprite.setTexture("sculptor_left.png");
 	sprite.setSize(150,200);
-	sprite.setPosition(550,400);
+	sprite.setPosition(525,400);
 }
 
 void User::update(float time) {

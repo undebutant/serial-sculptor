@@ -252,6 +252,9 @@ void Engine::drawAllInGame(sf::RenderWindow &renderer) {
 	for (int i = 0; i < ((int)listOfBackgroundItems.size()); i++) {
 		listOfBackgroundItems[i]->draw(renderer);
 	}
+	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
+		listOfOldClouds[i]->draw(renderer);
+	}
 	for (int i = 0; i < (int)listOfClouds.size(); i++) {
 		listOfClouds[i]->draw(renderer);
 	}
