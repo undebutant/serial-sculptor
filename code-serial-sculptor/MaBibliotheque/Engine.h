@@ -40,20 +40,12 @@ public:
 	void drawMainMenu(sf::RenderWindow &renderer);
 
 	void newGame();
-	void bossPhase();
 	void endGame();
-
-	
-	
-	
-	
 
 	void createNewCloud(int cloudToCreate);
 	void createNewRandomEasy();
 	void deleteCloudsDone();
 	void deleteCloudsOld();
-
-	
 
 	//std::unique_ptr<HudItems> createNewHudItem(int hudToCreate);
 	//void destroyHudItem(int indexOfHudItem);
@@ -68,21 +60,20 @@ public:
 	void keyPressed(sf::Keyboard::Key);
 
 	void resetValue();
+
+
 private:
 	sf::Text menuTitle;
 	sf::Font fontLoaded;
-	bool isGameLaunched;
 	
+	bool isGameLaunched;
 	bool isRight;
 
 	int vague;
-
 	int phase; // 0 phase easy, 1 phase boss, 2 phase pause
-
-	
-
 	int numberOfSpawnedClouds;
 	int numberOfSpawnedBoss;
+
 	float timeUntilNextSpawn;
 
 	Sculptor sculptor;

@@ -16,6 +16,7 @@ Engine::~Engine() {
 
 void Engine::init() {
 	srand((unsigned int)time(NULL));
+
 	//Main Menu
 	std::unique_ptr<SceneryItem> menuBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
 	menuBackground->setSize(1200, 600);
@@ -27,7 +28,6 @@ void Engine::init() {
 	exitButton->setSize(382, 80);
 
 	
-
 	menuBackground->setTexture("mainMenuBackground.jpeg");
 	newGameButton->setTexture("newGameButton.png");
 	exitButton->setTexture("exitButton.png");
@@ -50,7 +50,7 @@ void Engine::init() {
 
 	menuTitle.setPosition(210, 30);
 
-	//Game
+	//Game layout
 	std::unique_ptr<SceneryItem> gameBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
 	gameBackground->setSize(1200, 600);
 	gameBackground->setTexture("gameBackground.jpeg");
@@ -68,11 +68,8 @@ void Engine::launchMainMenu() {
 
 	Clock clock;
 	Event event;
-
 	
 	init();
-	cout << "init finished" << endl;
-	
 
 	while (window.isOpen()) {
 		while (window.pollEvent(event))
@@ -119,13 +116,6 @@ void Engine::launchMainMenu() {
 }
 
 void Engine::drawMainMenu(RenderWindow &renderer) {
-	
-
-	
-	
-	
-	
-	
 	for (int i = 0; i < ((int)listOfBackgroundItemsMainMenu.size()); i++) {
 		listOfBackgroundItemsMainMenu[i]->draw(renderer);
 	}
@@ -144,26 +134,11 @@ void Engine::newGame() {
 	numberOfSpawnedBoss = 0;
 	Sculptor newsculptor;
 	sculptor = newsculptor;
-	
-
-}
-
-void Engine::bossPhase() {
-
 }
 
 void Engine::endGame() {
 	//TODO
 }
-
-
-
-
-
-
-
-
-
 
 
 void Engine::createNewCloud(int cloudToCreate) {
@@ -204,13 +179,10 @@ void Engine::createNewCloud(int cloudToCreate) {
 		cloudToAdd = new CloudBoss6();
 	}
 	
-
 	unique_ptr<Cloud> ptrCloudToAdd(cloudToAdd);
 	ptrCloudToAdd->setIsRight(isRight);
 	
-
 	if(listOfClouds.empty()) {
-		cout << "appel updateTexture depuis createNewClous: " << isRight << endl;
 		sculptor.updateTexture(isRight);
 	}
 
@@ -237,7 +209,6 @@ void Engine::deleteCloudsDone() {
 			listOfOldClouds.push_back(move(listOfClouds[listOfClouds.size() - 1]));
 			listOfClouds.pop_back();
 			if (!listOfClouds.empty()) {
-				cout << "appel updateTexture depuis deleteClouds: " << listOfClouds.back()->getIsRight() << endl;
 				sculptor.updateTexture(listOfClouds.back()->getIsRight());
 			}
 		}

@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 
 
-
 bool loadTexture(std::string pathToTexture, std::string nameToStore) {
 	sf::Texture newTexture;
 
@@ -15,7 +14,6 @@ bool loadTexture(std::string pathToTexture, std::string nameToStore) {
 		return true;
 	}
 }
-
 
 
 bool loadFont(std::string pathToFont) {

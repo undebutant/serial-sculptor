@@ -58,16 +58,11 @@ void Cloud::update() {
 	}
 
 	for (int i = currentKeyIndice; i < n; i++) {
-		if (isRight) {
+		if (isBoss) {
 			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(25), pos.y - 50);
 		}
 		else {
-			if (isBoss) {
-				keyItemList[i].setPosition(pos.x + 175 - (i - currentKeyIndice)*(25), pos.y - 50);
-			}
-			else {
-				keyItemList[i].setPosition(pos.x + 75 - (i - currentKeyIndice)*(25), pos.y - 50);
-			}
+			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(25), pos.y - 50);
 		}
 	}
 }
