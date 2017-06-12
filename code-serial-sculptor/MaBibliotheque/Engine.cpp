@@ -95,6 +95,10 @@ void Engine::newGame() {
 	bossPhase();
 }
 
+void Engine::bossPhase() {
+
+}
+
 void Engine::endGame() {
 	//TODO
 }
