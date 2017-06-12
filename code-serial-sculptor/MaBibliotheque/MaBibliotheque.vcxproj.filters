@@ -48,16 +48,43 @@
     <ClCompile Include="Cloud.cpp">
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
-    <ClCompile Include="CloudEasy.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
     <ClCompile Include="Sculptor.cpp">
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
     <ClCompile Include="SceneryRectangleBasic.cpp">
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
+    <ClCompile Include="CloudEasy1.cpp">
+      <Filter>Fichiers sources\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy2.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
     <ClCompile Include="CloudBoss1.cpp">
+      <Filter>Fichiers sources\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy3.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy4.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy5.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy6.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy7.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy8.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy9.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CloudEasy10.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,9 +113,6 @@
     <ClInclude Include="Cloud.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="CloudEasy.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Sculptor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -96,6 +120,36 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CloudBoss1.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy1.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy2.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy3.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy4.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy5.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy6.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy7.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy8.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy9.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CloudEasy10.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
