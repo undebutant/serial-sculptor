@@ -22,7 +22,8 @@ public:
 	void endGame();
 
 	bool loadTexture(string pathToTexture, string nameToStore);
-	void loadAllTextures();
+	bool loadFont(string pathToFont);
+	void loadAll();
 	sf::Texture* getTexture(std::string texture);
 
 	void createNewCloud(int cloudToCreate, bool isRightCloud);
@@ -43,6 +44,7 @@ public:
 
 private:
 	map<string, sf::Texture> textureLoaded;
+	sf::Font fontLoaded;
 
 	std::vector<std::unique_ptr<Cloud>> listOfClouds;
 	//std::vector<std::unique_ptr<HudItems>> listOfHUDItems;

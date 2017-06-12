@@ -14,12 +14,15 @@ Engine::~Engine() {
 
 
 void Engine::launchMainMenu() {
-	RenderWindow window(sf::VideoMode(1200, 600), "Serial sculptor");
+	ContextSettings settings;
+	settings.antialiasingLevel = 8;
+	
+	RenderWindow window(sf::VideoMode(1200, 600), "Serial sculptor", Style::Resize, settings);
 
 	Clock clock;
 	Event event;
 
-	loadAllTextures();
+	loadAll();
 
 	while (window.isOpen()) {
 		while (window.pollEvent(event))
@@ -51,12 +54,21 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 	newGameButton.setTexture(getTexture("newGameButton.png"));
 	exitButton.setTexture(getTexture("exitButton.png"));
 
+	Text menuTitle;
+	menuTitle.setString(L"Serial Sculptor");
+	menuTitle.setCharacterSize(70);
+	menuTitle.setFillColor(Color(255, 255, 255, 255));
+	menuTitle.setFont(fontLoaded);
+	menuTitle.setStyle(Text::Bold);
+
 	newGameButton.setPosition(150, 140);
 	exitButton.setPosition(242, 260);
+	menuTitle.setPosition(210, 30);
 
 	renderer.draw(menuBackground);
 	renderer.draw(newGameButton);
 	renderer.draw(exitButton);
+	renderer.draw(menuTitle);
 }
 
 
@@ -81,7 +93,23 @@ bool Engine::loadTexture(string pathToTexture, string nameToStore) {
 	}
 }
 
-void Engine::loadAllTextures() {
+bool Engine::loadFont(string pathToFont) {
+	Font newFont;
+
+	if (!newFont.loadFromFile(pathToFont)) {
+		return false;
+	}
+	else {
+		fontLoaded = newFont;
+		return true;
+	}
+}
+
+void Engine::loadAll() {
+	if (!loadFont("font\\SilentReaction.ttf")) {
+		cout << "Impossible de charger la police SilentReaction.ttf" << endl;
+	}
+
 	Texture textureLoaded;
 
 	string pathToSprite = "sprite\\";
