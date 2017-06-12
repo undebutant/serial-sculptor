@@ -107,6 +107,9 @@ void Cloud::draw(sf::RenderTarget &target) {
 		spriteList[i].draw(target);
 	}
 
+	
+}
+void Cloud::drawLetter(sf::RenderTarget &target) {
 	int n = (int)keyItemList.size();
 	int number = 4;
 	if (isBoss) {
@@ -118,7 +121,6 @@ void Cloud::draw(sf::RenderTarget &target) {
 		keyItemList[i].draw(target);
 	}
 }
-
 
 void Cloud::setPosition(float x, float y) {
 	spriteImage.setPosition(x, y);
@@ -176,9 +178,12 @@ void Cloud::setIsRight(bool newBool) {
 
 	if (newBool) {
 		auto pos = getPosition();
-		setPosition(800 - pos.x - spriteImage.getSize().x, pos.y);
+		setPosition(1200 - pos.x - spriteImage.getSize().x, pos.y);
 	}
 	update();
+}
+bool Cloud::getIsRight() {
+	return isRight;
 }
 
 void Cloud::setIsBoss(bool newBool) {

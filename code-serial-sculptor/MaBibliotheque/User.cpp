@@ -10,8 +10,19 @@ User::~User() {
 
 }
 
+void User::updateTexture(bool isRight) {
+	cout << "isRight : " << isRight << endl;
+	if (isRight) {
+		sprite.setTexture("sculptor_right.png");
+	}
+	else {
+		sprite.setTexture("sculptor_left.png");
+	}
+
+}
+
 void User::init() {
-	sprite.setTexture("sculptor_left.png");
+	sprite.setTexture("sculptor_right.png");
 	sprite.setSize(150,200);
 	sprite.setPosition(525,400);
 }

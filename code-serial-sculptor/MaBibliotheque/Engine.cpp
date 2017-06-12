@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "TextureManager.h"
+#include <assert.h>
 
 using namespace std;
 using namespace sf;
@@ -14,6 +15,7 @@ Engine::~Engine() {
 }
 
 void Engine::init() {
+	srand((unsigned int)time(NULL));
 	//Main Menu
 	std::unique_ptr<SceneryItem> menuBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
 	menuBackground->setSize(1200, 600);
@@ -74,7 +76,7 @@ void Engine::launchMainMenu() {
 				}
 				
 				if (isGameLaunched) {
-					//tryimput
+					keyPressed(event.key.code);
 				}
 			}
 
@@ -95,7 +97,7 @@ void Engine::launchMainMenu() {
 		
 		float time = clock.restart().asSeconds();
 		if (isGameLaunched) {
-			updateItems(time);
+			update(time);
 			drawAllInGame(window);
 		}
 		else {
@@ -130,8 +132,13 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 
 
 void Engine::newGame() {
+	isRight = false;
 	isGameLaunched = true;
-
+	vague = 1;
+	timeUntilNextSpawn = 0;
+	phase = 0;
+	numberOfSpawnedClouds = 0;
+	numberOfSpawnedBoss = 0;
 	Sculptor newsculptor;
 	sculptor = newsculptor;
 	
@@ -156,20 +163,55 @@ void Engine::endGame() {
 
 
 
-void Engine::createNewCloud(int cloudToCreate, bool isRightCloud) {
+void Engine::createNewCloud(int cloudToCreate) {
 	Cloud *cloudToAdd;
 	vector<unique_ptr<Cloud>> swapVector;
 
-	if (cloudToCreate == 0) {
+	if (cloudToCreate == 1) {
 		cloudToAdd = new CloudEasy1();
-	}
-	else {
+	}	else if (cloudToCreate == 2) {
+		cloudToAdd = new CloudEasy2();
+	}	else if (cloudToCreate == 3) {
+		cloudToAdd = new CloudEasy3();
+	}	else if (cloudToCreate == 4) {
+		cloudToAdd = new CloudEasy4();
+	}	else if (cloudToCreate == 5) {
+		cloudToAdd = new CloudEasy5();
+	}	else if (cloudToCreate == 6) {
+		cloudToAdd = new CloudEasy6();
+	}	else if (cloudToCreate == 7) {
+		cloudToAdd = new CloudEasy7();
+	}   else if (cloudToCreate == 8) {
+		cloudToAdd = new CloudEasy8();
+	}	else if (cloudToCreate == 9) {
+		cloudToAdd = new CloudEasy9();
+	}	else if (cloudToCreate == 10) {
+		cloudToAdd = new CloudEasy10();
+	}   else if (cloudToCreate == 11) {
 		cloudToAdd = new CloudBoss1();
+	}	else if (cloudToCreate == 12) {
+		cloudToAdd = new CloudBoss2();
+	}	else if (cloudToCreate == 13) {
+		cloudToAdd = new CloudBoss3();
+	}	else if (cloudToCreate == 14) {
+		cloudToAdd = new CloudBoss4();
+	}	else if (cloudToCreate == 15) {
+		cloudToAdd = new CloudBoss5();
+	}	else if (cloudToCreate == 16) {
+		cloudToAdd = new CloudBoss6();
 	}
+	
 
 	unique_ptr<Cloud> ptrCloudToAdd(cloudToAdd);
-	ptrCloudToAdd->setIsRight(isRightCloud);
+	ptrCloudToAdd->setIsRight(isRight);
+	
 
+	if(listOfClouds.empty()) {
+		cout << "appel updateTexture depuis createNewClous: " << isRight << endl;
+		sculptor.updateTexture(isRight);
+	}
+
+	isRight = !isRight;
 	swapVector.push_back(move(ptrCloudToAdd));
 
 	for (int i = 0; i < (int)listOfClouds.size(); i++) {
@@ -179,22 +221,33 @@ void Engine::createNewCloud(int cloudToCreate, bool isRightCloud) {
 	listOfClouds.swap(swapVector);
 }
 
+void Engine::createNewRandomEasy() {
+
+	int i = rand() % 10 + 1;
+	createNewCloud(i);
+
+}
+
 void Engine::deleteCloudsDone() {
 	if (!listOfClouds.empty()) {
-		if (listOfClouds[listOfClouds.size() - 1]->isDone()) {
+		if (listOfClouds.back()->isDone()) {
 			listOfOldClouds.push_back(move(listOfClouds[listOfClouds.size() - 1]));
 			listOfClouds.pop_back();
+			if (!listOfClouds.empty()) {
+				cout << "appel updateTexture depuis deleteClouds: " << listOfClouds.back()->getIsRight() << endl;
+				sculptor.updateTexture(listOfClouds.back()->getIsRight());
+			}
 		}
 	}
 
 	vector<unique_ptr<Cloud>> swapVector;
-	for (int i = 0; i < (int)listOfClouds.size(); i++) {
-		if (!listOfClouds[i]->isDone()) {
-			swapVector.push_back(move(listOfClouds[i]));
+	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
+		if (!listOfOldClouds[i]->isTimeOut()) {
+			swapVector.push_back(move(listOfOldClouds[i]));
 		}
 	}
 
-	listOfClouds.swap(swapVector);
+	listOfOldClouds.swap(swapVector);
 }
 
 
@@ -239,12 +292,117 @@ void Engine::destroySceneryItem(int indexOfSceneryItem) {
 }
 
 
-void Engine::updateItems(float time) {
+void Engine::update(float time) {
 	deleteCloudsDone();
-
+	timeUntilNextSpawn += time;
 	for (int i = 0; i < (int) listOfClouds.size(); i++) {
 		listOfClouds[i]->update(time);
 	}
+
+	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
+		listOfOldClouds[i]->update(time);
+	}
+
+	int n = vague / 6;
+
+	float spawnDelay = 2.f-(n*0.1f);
+	if (spawnDelay < 1) {
+		spawnDelay = 1;
+	}
+	int maxSpawn = vague * 2;
+
+	if (phase == 0) {
+		if (numberOfSpawnedClouds >= maxSpawn) {
+			if (listOfClouds.empty()) {
+				phase = 1;
+				resetValue();
+				if (vague % 6 == 0) {
+					numberOfSpawnedBoss++;
+				}
+			}
+		}
+		else {
+			if (timeUntilNextSpawn>spawnDelay) {
+				createNewRandomEasy();
+				timeUntilNextSpawn = 0;
+				numberOfSpawnedClouds++;
+			}
+
+		}
+
+	}
+	else if (phase == 1) {
+		if (numberOfSpawnedClouds >= maxSpawn) {
+			if (listOfClouds.empty()) {
+				phase = 2;
+				resetValue();
+			}
+		}
+		else {
+			if (timeUntilNextSpawn>spawnDelay) {
+				if (numberOfSpawnedBoss < (n+1)) {
+					if (vague % 6 == 1) {
+						createNewCloud(14);
+						numberOfSpawnedBoss++;
+					}
+					else if (vague % 6 == 2) {
+						createNewCloud(12);
+						numberOfSpawnedBoss++;
+					}
+					else if (vague % 6 == 3) {
+						createNewCloud(13);
+						numberOfSpawnedBoss++;
+					}
+					else if (vague % 6 == 4) {
+						createNewCloud(11);
+						numberOfSpawnedBoss++;
+					}
+					else if (vague % 6 == 5) {
+						createNewCloud(16);
+						numberOfSpawnedBoss++;
+					}
+					else if (vague % 6 == 0) {
+						createNewCloud(15);
+						numberOfSpawnedBoss++;
+					}
+				}
+				createNewRandomEasy();
+				timeUntilNextSpawn = 0;
+				numberOfSpawnedClouds++;
+			}
+
+		}
+	}
+	else if (phase == 2) {
+		
+		if (timeUntilNextSpawn>spawnDelay) {
+			if (listOfOldClouds.empty()) {
+				phase = 0;
+				vague++;
+				resetValue();
+			}
+		}
+
+		
+	}
+	else {
+		assert(false);
+	}
+
+	
+	/*
+	if (counter % 6 == 1) { // Pour savoir quelle boss on utilise
+		if (timer>valeuràdefinir) {
+			 // Pour savoir combien de boss on créer
+								 //Avec ici de la manche 1 à 6 un seul boss de 7 à 12 2 etc ...
+			if (numberBossCreated<n) {
+				vectorEnnemie.add(CloudBoss1)
+			}
+			else {
+				counter++;
+			}
+		}
+	}*/
 }
 
 void Engine::drawAllInGame(sf::RenderWindow &renderer) {
@@ -258,11 +416,22 @@ void Engine::drawAllInGame(sf::RenderWindow &renderer) {
 	for (int i = 0; i < (int)listOfClouds.size(); i++) {
 		listOfClouds[i]->draw(renderer);
 	}
+	if (!listOfClouds.empty()) {
+		listOfClouds.back()->drawLetter(renderer);
+	}
 	sculptor.draw(renderer);
 }
 
 void Engine::keyPressed(Keyboard::Key keyPressed) {
 	if (!listOfClouds.empty()) {
-		listOfClouds[0]->tryKeyInput(keyPressed);
+		listOfClouds.back()->tryKeyInput(keyPressed);
 	}
+}
+
+void Engine::resetValue() {
+	isRight = false;
+	sculptor.updateTexture(isRight);
+	numberOfSpawnedClouds = 0;
+	timeUntilNextSpawn = 0;
+	numberOfSpawnedBoss = 0;
 }

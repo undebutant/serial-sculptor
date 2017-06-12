@@ -18,6 +18,7 @@ public:
 	void update();
 	void update(float time);
 	void draw(sf::RenderTarget &target);
+	void drawLetter(sf::RenderTarget &target);
 
 	void setPosition(float x, float y);
 	void setSize(float x, float y);
@@ -33,6 +34,7 @@ public:
 	void setTexture(std::string texture);
 	void setSpeed(float newSpeed);
 	void setIsRight(bool newBool);
+	bool getIsRight();
 	void setIsBoss(bool newBool);
 	
 	int getCurrentKeyIndice();

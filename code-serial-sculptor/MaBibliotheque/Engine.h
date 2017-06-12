@@ -48,9 +48,12 @@ public:
 	
 	
 
-	void createNewCloud(int cloudToCreate, bool isRightCloud);
+	void createNewCloud(int cloudToCreate);
+	void createNewRandomEasy();
 	void deleteCloudsDone();
 	void deleteCloudsOld();
+
+	
 
 	//std::unique_ptr<HudItems> createNewHudItem(int hudToCreate);
 	//void destroyHudItem(int indexOfHudItem);
@@ -59,19 +62,26 @@ public:
 	std::unique_ptr<SceneryItem> createNewSceneryItem(int sceneryItemToCreate);
 	void destroySceneryItem(int indexOfSceneryItem);
 
-	void updateItems(float time);
+	void update(float time);
 	void drawAllInGame(sf::RenderWindow &renderer);
 	
 	void keyPressed(sf::Keyboard::Key);
 
-
+	void resetValue();
 private:
 	bool isGameLaunched;
 	
+	bool isRight;
+
+	int vague;
+
+	int phase; // 0 phase easy, 1 phase boss, 2 phase pause
+
 	
 
 	int numberOfSpawnedClouds;
-	float timeUntilWaveEnd;
+	int numberOfSpawnedBoss;
+	float timeUntilNextSpawn;
 
 	Sculptor sculptor;
 

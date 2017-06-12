@@ -12,6 +12,8 @@ public:
 	User();
 	~User();
 
+	void updateTexture(bool isRight);
+	
 	void init();
 
 	void draw(sf::RenderTarget &target);
