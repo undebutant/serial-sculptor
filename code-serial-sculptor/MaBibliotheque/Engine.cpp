@@ -92,7 +92,7 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 
 
 void Engine::newGame() {
-	
+	bossPhase();
 }
 
 void Engine::endGame() {

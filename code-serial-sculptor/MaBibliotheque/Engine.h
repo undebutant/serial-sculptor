@@ -38,6 +38,7 @@ public:
 	void drawMainMenu(sf::RenderWindow &renderer);
 
 	void newGame();
+	void bossPhase();
 	void endGame();
 
 	bool loadTexture(string pathToTexture, string nameToStore);
@@ -65,6 +66,9 @@ public:
 private:
 	map<string, sf::Texture> textureLoaded;
 	sf::Font fontLoaded;
+
+	int numberOfSpawnedClouds;
+	float timeUntilWaveEnd;
 
 	std::vector<std::unique_ptr<Cloud>> listOfClouds;
 	std::vector<std::unique_ptr<Cloud>> listOfOldClouds;
