@@ -41,6 +41,15 @@ void Engine::init() {
 	listOfBackgroundItemsMainMenu.push_back(move(exitButton));
 
 
+	menuTitle.setString(L"Serial Sculptor");
+	menuTitle.setCharacterSize(70);
+	menuTitle.setFillColor(Color(255, 255, 255, 255));
+	fontLoaded = TextureManager::getFont();
+	menuTitle.setFont(fontLoaded);
+	menuTitle.setStyle(Text::Bold);
+
+	menuTitle.setPosition(210, 30);
+
 	//Game
 	std::unique_ptr<SceneryItem> gameBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
 	gameBackground->setSize(1200, 600);
@@ -112,14 +121,8 @@ void Engine::launchMainMenu() {
 void Engine::drawMainMenu(RenderWindow &renderer) {
 	
 
-	Text menuTitle;
-	menuTitle.setString(L"Serial Sculptor");
-	menuTitle.setCharacterSize(70);
-	menuTitle.setFillColor(Color(255, 255, 255, 255));
-	menuTitle.setFont(fontLoaded);
-	menuTitle.setStyle(Text::Bold);
-
-	menuTitle.setPosition(210, 30);
+	
+	
 	
 	
 	
@@ -390,19 +393,7 @@ void Engine::update(float time) {
 	}
 
 	
-	/*
-	if (counter % 6 == 1) { // Pour savoir quelle boss on utilise
-		if (timer>valeuràdefinir) {
-			 // Pour savoir combien de boss on créer
-								 //Avec ici de la manche 1 à 6 un seul boss de 7 à 12 2 etc ...
-			if (numberBossCreated<n) {
-				vectorEnnemie.add(CloudBoss1)
-			}
-			else {
-				counter++;
-			}
-		}
-	}*/
+	
 }
 
 void Engine::drawAllInGame(sf::RenderWindow &renderer) {

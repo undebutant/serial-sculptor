@@ -15,6 +15,7 @@ bool loadFont(std::string pathToFont);
 namespace TextureManager {
 	bool loadAll();
 	sf::Texture* getTexture(std::string texture);
+	sf::Font getFont();
 }
 
 
