@@ -3,15 +3,17 @@
 #include "Cloud.h"
 
 
-class CloudEasy : public Cloud
+class CloudEasy2 : public Cloud
 {
 
 public:
-	CloudEasy();
-	~CloudEasy();
+	CloudEasy2();
+	~CloudEasy2();
 
 	bool isDone();
 
 private:
 
 };
+
+

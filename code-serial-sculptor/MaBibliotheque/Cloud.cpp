@@ -19,6 +19,10 @@ Cloud::~Cloud() {
 
 void Cloud::init() {
 	currentKeyIndice = 0;
+
+	setPosition(10, 210);
+	setSpeed(10.0);
+	isRight = false;
 }
 void Cloud::setSpeed(float newSpeed) {
 	speed = newSpeed;

@@ -2,7 +2,7 @@
 
 #include "Sculptor.h"
 #include "CloudBoss1.h"
-#include "CloudEasy.h"
+#include "CloudEasy1.h"
 #include "monMain.h"
 #include "SceneryRectangleBasic.h"
 #include "SceneryItem.h"
@@ -38,6 +38,16 @@ int monMain()
 		textureLoaded["chaton.png"] = mytexture;
 	}
 
+	sf::Texture mytexture2;
+	if (!mytexture2.loadFromFile("sprite\\CloudBoss1.png"))
+	{
+		cout << "bug texture" << endl;
+		// erreur...
+	}
+	else {
+		cout << "Texture charge : " << "CloudBoss1.png" << endl;
+		textureLoaded["CloudBoss1.png"] = mytexture2;
+	}
 
 	for (char i = 'A'; i <= 'Z'; i++) {
 		sf::Texture mytexture;
@@ -63,7 +73,7 @@ int monMain()
 	cloud1.setIsRight(false);
 
 	
-	CloudEasy cloud2;
+	CloudEasy1 cloud2;
 	cloud2.setIsRight(false);
 	
 
@@ -88,7 +98,7 @@ int monMain()
 					
 						if ((cloud1.isDone()&&(!chat)) || (cloud2.isDone() && (chat))) {
 							if (chat) {
-								CloudEasy cloud2New;
+								CloudEasy1 cloud2New;
 								cloud2New.setIsRight(isRight);
 								isRight = !isRight;
 								cloud2 = cloud2New;

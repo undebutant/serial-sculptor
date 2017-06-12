@@ -6,9 +6,8 @@ CloudBoss1::CloudBoss1() {
 	init();
 	
 	setColor(sf::Color(255, 0, 0)); // Setting color of the easy cloud to green
-	setPosition(10, 210);
-	setSpeed(10.0);
-	setTexture("chaton.png");
+	
+	setTexture("CloudBoss1.png");
 
 	addKey(sf::Keyboard::P);
 	addKey(sf::Keyboard::S);
@@ -29,7 +28,7 @@ CloudBoss1::CloudBoss1() {
 	addKey(sf::Keyboard::R);
 
 	
-	setIsRight(false);
+	
 	
 
 	update();
