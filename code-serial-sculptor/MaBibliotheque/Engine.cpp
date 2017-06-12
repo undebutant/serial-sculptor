@@ -42,7 +42,7 @@ bool Engine::loadTexture(string pathToTexture, string nameToStore) {
 void Engine::createNewCloud(int cloudToCreate, bool isRightCloud) {
 	Cloud *cloudToAdd;
 	if (cloudToCreate == 0) {
-		CloudEasy *cloudToAdd = new CloudEasy();
+		CloudEasy1 *cloudToAdd = new CloudEasy1();
 	}
 	else {
 		CloudBoss1 *cloudToAdd = new CloudBoss1();

@@ -43,6 +43,8 @@ public:
 	virtual bool isDone() = 0;
 	void setIsRight(bool newBool);
 	void update();
+	void setIsBoss(bool newBool);
+
 	
 private:
 	friend std::ostream& operator<<(std::ostream&, const Cloud&);
@@ -52,6 +54,8 @@ private:
 	std::vector<SceneryItem> keyItemList;
 
 	bool isRight;
+
+	bool isBoss;
 
 	float speed;
 

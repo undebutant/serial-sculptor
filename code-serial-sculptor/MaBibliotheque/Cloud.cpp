@@ -17,9 +17,17 @@ Cloud::~Cloud() {
 
 }
 
+void Cloud::setIsBoss(bool newBool) {
+	isBoss = newBool;
+	setSize(200, 200);
+	auto pos = getPosition();
+	setPosition(pos.x , pos.y-100);
+
+}
+
 void Cloud::init() {
 	currentKeyIndice = 0;
-
+	isBoss = false;
 	setPosition(10, 210);
 	setSpeed(10.0);
 	isRight = false;
@@ -53,7 +61,12 @@ void Cloud::draw(sf::RenderTarget &target) {
 	}
 	
 	int n = (int)keyItemList.size();
-	n = min(4+currentKeyIndice, n);
+	int number = 4;
+	if (isBoss) {
+		number = 8;
+	}
+
+	n = min(number+currentKeyIndice, n);
 	for (int i = currentKeyIndice; i < (n); i++) {
 		keyItemList[i].draw(target);
 
@@ -82,12 +95,25 @@ void Cloud::update() {
 
 	for (int i = 0; i < n; i++) {
 		float temp = (float) (100.0 / n);
-		spriteList[i].setSize(temp,100);
+		
+		if (isBoss) {
+			spriteList[i].setSize(2*temp, 2*100);
+		} else {
+			spriteList[i].setSize(temp, 100);
+		}
 		if (isRight) {
-			spriteList[i].setPosition(pos.x + (temp)*(i), pos.y);
+			if (isBoss) {
+				spriteList[i].setPosition(pos.x + (temp)*(2*i), pos.y);
+			} else {
+				spriteList[i].setPosition(pos.x + (temp)*(i), pos.y);
+			}
 		}
 		else {
-			spriteList[i].setPosition(pos.x + (temp)*(n - i - 1), pos.y);
+			if (isBoss) {
+				spriteList[i].setPosition(pos.x + (temp)*(2*n - 2*i - 2), pos.y);
+			} else {
+				spriteList[i].setPosition(pos.x + (temp)*(n - i - 1), pos.y);
+			}
 		}
 	}
 

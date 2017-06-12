@@ -145,11 +145,9 @@
     <ClCompile Include="CloudEasy9.cpp" />
     <ClCompile Include="SceneryRectangleBasic.cpp" />
     <ClCompile Include="SceneryItem.cpp" />
-    <ClCompile Include="Drawing.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="CloudEasy1.cpp" />
-    <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="monMain.cpp" />
     <ClCompile Include="Sculptor.cpp" />
@@ -168,11 +166,9 @@
     <ClInclude Include="CloudEasy9.h" />
     <ClInclude Include="SceneryRectangleBasic.h" />
     <ClInclude Include="SceneryItem.h" />
-    <ClInclude Include="Drawing.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Cloud.h" />
     <ClInclude Include="CloudEasy1.h" />
-    <ClInclude Include="Graphic.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="monMain.h" />
     <ClInclude Include="Sculptor.h" />
