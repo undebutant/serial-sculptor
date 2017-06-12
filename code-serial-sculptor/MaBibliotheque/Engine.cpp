@@ -45,7 +45,8 @@ void Engine::launchMainMenu() {
 			else {
 				if (event.type == Event::MouseButtonPressed) {
 					if (event.mouseButton.x > 150 && event.mouseButton.x < 716 && event.mouseButton.y > 140 && event.mouseButton.y < 220) {
-						//newGame();
+						isGameLaunched = true;
+						newGame();
 					}
 					if (event.mouseButton.x > 242 && event.mouseButton.x < 624 && event.mouseButton.y > 260 && event.mouseButton.y < 340) {
 						window.close();
@@ -91,7 +92,7 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 
 
 void Engine::newGame() {
-	//TODO
+	
 }
 
 void Engine::endGame() {
@@ -142,7 +143,7 @@ void Engine::loadAll() {
 		}
 	}
 
-	for (int i = 1; i < 6; i++) {
+	for (int i = 1; i <= 6; i++) {
 		pathToSprite = "sprite\\";
 		nameForSprite = "CloudBoss";
 		iteratorToString = to_string(i);
@@ -278,7 +279,7 @@ void Engine::updateItems(float time) {
 	}
 }
 
-void Engine::drawAll(sf::RenderWindow &renderer) {
+void Engine::drawAllInGame(sf::RenderWindow &renderer) {
 	for (int i = 0; i < (int)listOfClouds.size(); i++) {
 		listOfClouds[i]->draw(renderer);
 	}
