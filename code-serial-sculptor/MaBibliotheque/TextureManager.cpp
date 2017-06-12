@@ -95,4 +95,7 @@ namespace TextureManager {
 	sf::Texture* getTexture(std::string texture) {
 		return &(textureLoaded[texture]);
 	}
+	sf::Font getFont() {
+		return fontLoaded;
+	}
 }

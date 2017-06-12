@@ -69,6 +69,8 @@ public:
 
 	void resetValue();
 private:
+	sf::Text menuTitle;
+	sf::Font fontLoaded;
 	bool isGameLaunched;
 	
 	bool isRight;
