@@ -149,95 +149,10 @@ int monMain()
 			if (event.type == sf::Event::Closed)
 				window.close();
 			if (event.type == sf::Event::KeyPressed) {
-				if (event.key.code == sf::Keyboard::Return) {
-
-
-					if (cloud->isDone()) {
-						if (number == 1) {
-							cloud = new CloudBoss1;
-							
-						}
-						else  if (number == 2) {
-							cloud = new CloudBoss2;
-							
-						}
-						else if (number == 3) {
-							cloud = new CloudBoss3;
-							
-						}
-						else if (number == 4) {
-							cloud = new CloudBoss4;
-							
-						}
-						else if (number == 5) {
-							cloud = new CloudBoss5;
-							
-						}
-						else if (number == 6) {
-							cloud = new CloudBoss6;
-							
-						}
-						else if (number == 7) {
-							cloud = new CloudEasy1;
-							
-						}
-						else if (number == 8) {
-							cloud = new CloudEasy2;
-							}
-						else if (number == 9) {
-							cloud = new CloudEasy3;
-							
-						}
-						else if (number == 10) {
-							cloud = new CloudEasy4;
-							
-						}
-						else if (number == 11) {
-							cloud = new CloudEasy5;
-							
-						}
-						else if (number == 12) {
-							cloud = new CloudEasy6;
-							
-						}
-						else if (number == 13) {
-							cloud = new CloudEasy7;
-							
-						}
-						else if (number == 14) {
-							cloud = new CloudEasy8;
-							
-						}
-						else if (number == 15) {
-							cloud = new CloudEasy9;
-							
-						}
-						else if (number == 16) {
-							cloud = new CloudEasy10;
-							
-						}
-						
-							cloud->setIsRight(isRight);
-						isRight = !isRight;
-						
-							number++;
-						if (number == 17) {
-							number = 1;
-							
-						}
-						
-					}
-
-
-
-
-
-
-				}
-				else {
-					bool a;
-					a = cloud->tryKeyInput(event.key.code);
-				}
+				
+				bool a;
+				a = cloud->tryKeyInput(event.key.code);
+				
 			}
 		}
 		window.clear();
@@ -246,8 +161,84 @@ int monMain()
 
 		float time = clock.restart().asSeconds();
 
-
+		
 		cloud->update(time);
+		if (cloud->isDone()) {
+			if (cloud->isTimeOut()) {
+				if (number == 1) {
+					cloud = new CloudBoss1;
+
+				}
+				else  if (number == 2) {
+					cloud = new CloudBoss2;
+
+				}
+				else if (number == 3) {
+					cloud = new CloudBoss3;
+
+				}
+				else if (number == 4) {
+					cloud = new CloudBoss4;
+
+				}
+				else if (number == 5) {
+					cloud = new CloudBoss5;
+
+				}
+				else if (number == 6) {
+					cloud = new CloudBoss6;
+
+				}
+				else if (number == 7) {
+					cloud = new CloudEasy1;
+
+				}
+				else if (number == 8) {
+					cloud = new CloudEasy2;
+				}
+				else if (number == 9) {
+					cloud = new CloudEasy3;
+
+				}
+				else if (number == 10) {
+					cloud = new CloudEasy4;
+
+				}
+				else if (number == 11) {
+					cloud = new CloudEasy5;
+
+				}
+				else if (number == 12) {
+					cloud = new CloudEasy6;
+
+				}
+				else if (number == 13) {
+					cloud = new CloudEasy7;
+
+				}
+				else if (number == 14) {
+					cloud = new CloudEasy8;
+
+				}
+				else if (number == 15) {
+					cloud = new CloudEasy9;
+
+				}
+				else if (number == 16) {
+					cloud = new CloudEasy10;
+
+				}
+
+				cloud->setIsRight(isRight);
+				isRight = !isRight;
+
+				number++;
+				if (number == 17) {
+					number = 1;
+
+				}
+			}
+		}
 		cloud->draw(window);
 
 
