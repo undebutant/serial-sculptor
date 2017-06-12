@@ -12,6 +12,8 @@ public:
 	Cloud();
 	~Cloud();
 	
+
+
 	void init();
 	void setSpeed(float newSpeed);
 
@@ -41,6 +43,7 @@ public:
 
 	bool tryKeyInput(enum sf::Keyboard::Key key);
 	virtual bool isDone() = 0;
+	bool isTimeOut();
 	void setIsRight(bool newBool);
 	void update();
 	void setIsBoss(bool newBool);
@@ -52,6 +55,8 @@ private:
 	SceneryItem spriteImage;
 	std::vector<SceneryItem> spriteList;
 	std::vector<SceneryItem> keyItemList;
+
+	float timer = 1;
 
 	bool isRight;
 

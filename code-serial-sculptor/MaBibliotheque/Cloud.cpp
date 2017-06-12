@@ -17,6 +17,10 @@ Cloud::~Cloud() {
 
 }
 
+bool Cloud::isTimeOut() {
+	return (timer >= 1);
+}
+
 void Cloud::setIsBoss(bool newBool) {
 	isBoss = newBool;
 	setSize(200, 200);
@@ -40,17 +44,28 @@ void Cloud::update(float time) {
 	if (!isDone()) {
 		auto pos = spriteImage.getPosition();
 		float x = pos.x;
+		float factSlow = 1;
+		if (timer < 1) {
+			factSlow = 0.5;
+			timer += time;
+		}
+
 		if (isRight) {
-			x -= time*speed;
+			x -= time*speed*factSlow;
 		}
 		else {
-			x += time*speed;
+			x += time*speed*factSlow;
 		}
 		
 
 		spriteImage.setPosition(x, pos.y);
 
 		update();
+	}
+	else {
+		if (timer < 1) {
+			timer += time;
+		}
 	}
 }
 
@@ -281,6 +296,7 @@ bool Cloud::tryKeyInput(sf::Keyboard::Key key) {
 	if (!isDone()) {
 		if (key == alterKeyList[currentKeyIndice]) {
 			currentKeyIndice++;
+			timer = 0;
 			return true;
 		}
 		else {
