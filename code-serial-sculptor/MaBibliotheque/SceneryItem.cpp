@@ -1,5 +1,9 @@
 #include "SceneryItem.h"
 #include <iostream>
+#include "TextureManager.h"
+
+
+
 
 using namespace std;
 
@@ -22,7 +26,7 @@ void SceneryItem::setTexture(std::string texture) {
 	
 	
 	
-	shape.setTexture(getTexture(texture));
+	shape.setTexture(TextureManager::getTexture(texture));
 		
 	
 }

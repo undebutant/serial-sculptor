@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "TextureManager.h"
 
 using namespace std;
 using namespace sf;
@@ -12,8 +13,36 @@ Engine::~Engine() {
 
 }
 
+void Engine::init() {
+	std::unique_ptr<SceneryItem> menuBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
+	menuBackground->setSize(1200, 600);
+
+	std::unique_ptr<SceneryItem> newGameButton = std::unique_ptr<SceneryItem>(new SceneryItem());
+	newGameButton->setSize(566, 80);
+
+	std::unique_ptr<SceneryItem> exitButton = std::unique_ptr<SceneryItem>(new SceneryItem());
+	exitButton->setSize(382, 80);
+
+	
+
+	menuBackground->setTexture("mainMenuBackground.jpeg");
+	newGameButton->setTexture("newGameButton.png");
+	exitButton->setTexture("exitButton.png");
+
+	
+	newGameButton->setPosition(150, 140);
+	exitButton->setPosition(242, 260);
+
+	listOfBackgroundItemsMainMenu.push_back(move(menuBackground));
+	listOfBackgroundItemsMainMenu.push_back(move(newGameButton));
+	listOfBackgroundItemsMainMenu.push_back(move(exitButton));
+
+}
 
 void Engine::launchMainMenu() {
+	TextureManager::loadAll();
+	
+	isGameLaunched = false;
 	ContextSettings settings;
 	settings.antialiasingLevel = 8;
 	
@@ -22,9 +51,10 @@ void Engine::launchMainMenu() {
 	Clock clock;
 	Event event;
 
-	bool isGameLaunched = false;
-
-	loadAll();
+	
+	init();
+	cout << "init finished" << endl;
+	
 
 	while (window.isOpen()) {
 		while (window.pollEvent(event))
@@ -35,17 +65,17 @@ void Engine::launchMainMenu() {
 				if (event.key.code == Keyboard::Escape) {
 					window.close();
 				}
+				
+				if (isGameLaunched) {
+					//tryimput
+				}
 			}
 
-			// When a game is already launched
-			if (isGameLaunched) {
-				//TODO update and draw to call whenever possible
-			}
+			
 			// In other cases
 			else {
 				if (event.type == Event::MouseButtonPressed) {
 					if (event.mouseButton.x > 150 && event.mouseButton.x < 716 && event.mouseButton.y > 140 && event.mouseButton.y < 220) {
-						isGameLaunched = true;
 						newGame();
 					}
 					if (event.mouseButton.x > 242 && event.mouseButton.x < 624 && event.mouseButton.y > 260 && event.mouseButton.y < 340) {
@@ -58,20 +88,21 @@ void Engine::launchMainMenu() {
 		
 		float time = clock.restart().asSeconds();
 		//TODO call update functions
-		drawMainMenu(window);
+		if (isGameLaunched) {
+			drawAllInGame(window);
+			//TODO update and draw to call whenever possibled
+		}
+		else {
+			drawMainMenu(window);
+		}
+		
 
 		window.display();
 	}
 }
 
 void Engine::drawMainMenu(RenderWindow &renderer) {
-	RectangleShape menuBackground(Vector2f(1200, 600));
-	RectangleShape newGameButton(Vector2f(566, 80));
-	RectangleShape exitButton(Vector2f(382, 80));
-
-	menuBackground.setTexture(getTexture("mainMenuBackground.jpeg"));
-	newGameButton.setTexture(getTexture("newGameButton.png"));
-	exitButton.setTexture(getTexture("exitButton.png"));
+	
 
 	Text menuTitle;
 	menuTitle.setString(L"Serial Sculptor");
@@ -81,17 +112,19 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 	menuTitle.setStyle(Text::Bold);
 
 	menuTitle.setPosition(210, 30);
-	newGameButton.setPosition(150, 140);
-	exitButton.setPosition(242, 260);
+	
+	
+	
+	for (int i = 0; i < ((int)listOfBackgroundItemsMainMenu.size()); i++) {
+		listOfBackgroundItemsMainMenu[i]->draw(renderer);
+	}
 
-	renderer.draw(menuBackground);
-	renderer.draw(newGameButton);
-	renderer.draw(exitButton);
 	renderer.draw(menuTitle);
 }
 
 
 void Engine::newGame() {
+	isGameLaunched = true;
 	bossPhase();
 }
 
@@ -104,92 +137,13 @@ void Engine::endGame() {
 }
 
 
-bool Engine::loadTexture(string pathToTexture, string nameToStore) {
-	Texture newTexture;
 
-	if (!newTexture.loadFromFile(pathToTexture)) {
-		return false;
-	}
-	else {
-		textureLoaded[nameToStore] = newTexture;
-		return true;
-	}
-}
 
-bool Engine::loadFont(string pathToFont) {
-	Font newFont;
 
-	if (!newFont.loadFromFile(pathToFont)) {
-		return false;
-	}
-	else {
-		fontLoaded = newFont;
-		return true;
-	}
-}
 
-void Engine::loadAll() {
-	if (!loadFont("font\\SilentReaction.ttf")) {
-		cout << "Impossible de charger la police SilentReaction.ttf" << endl;
-	}
 
-	Texture textureLoaded;
 
-	string pathToSprite = "sprite\\";
-	string nameForSprite;
-	string iteratorToString;
 
-	string variousImages[4] = { "chaton.png", "mainMenuBackground.jpeg", "exitButton.png", "newGameButton.png" };
-
-	for (int i = 0; i < 4; i++) {
-		if (!loadTexture(pathToSprite + variousImages[i], variousImages[i])) {
-			cout << "Impossible de charger la texture " << nameForSprite << endl;
-		}
-	}
-
-	for (int i = 1; i <= 6; i++) {
-		pathToSprite = "sprite\\";
-		nameForSprite = "CloudBoss";
-		iteratorToString = to_string(i);
-
-		nameForSprite = nameForSprite + iteratorToString + ".png";
-		pathToSprite = pathToSprite + nameForSprite;
-
-		if (!loadTexture(pathToSprite, nameForSprite)) {
-			cout << "Impossible de charger la texture " << nameForSprite << endl;
-		}
-	}
-
-	for (int i = 1; i <= 10; i++) {
-		pathToSprite = "sprite\\";
-		nameForSprite = "CloudEasy";
-		iteratorToString = to_string(i);
-
-		nameForSprite = nameForSprite + iteratorToString + ".png";
-		pathToSprite = pathToSprite + nameForSprite;
-
-		if (!loadTexture(pathToSprite, nameForSprite)) {
-			cout << "Impossible de charger la texture " << nameForSprite << endl;
-		}
-	}
-
-	for (char i = 'A'; i <= 'Z'; i++) {
-		pathToSprite = "sprite\\";
-		nameForSprite = "";
-
-		nameForSprite.push_back(i);
-		nameForSprite = nameForSprite + ".png";
-		pathToSprite = pathToSprite + nameForSprite;
-
-		if (!loadTexture(pathToSprite, nameForSprite)) {
-			cout << "Impossible de charger la texture " << nameForSprite << endl;
-		}
-	}
-}
-
-sf::Texture* Engine::getTexture(std::string texture) {
-	return &(textureLoaded[texture]);
-}
 
 
 void Engine::createNewCloud(int cloudToCreate, bool isRightCloud) {

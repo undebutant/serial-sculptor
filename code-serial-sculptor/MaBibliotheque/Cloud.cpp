@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <iostream>
 
+
 #include "SceneryRectangleBasic.h"
 #include "Cloud.h"
 

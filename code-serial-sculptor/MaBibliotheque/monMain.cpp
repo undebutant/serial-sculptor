@@ -20,112 +20,25 @@
 #include "monMain.h"
 #include "SceneryRectangleBasic.h"
 #include "SceneryItem.h"
-
+#include "TextureManager.h"
 #include "Engine.h"
+
 
 using namespace std;
 using namespace sf;
 
 
 
-
-map<string, sf::Texture> textureLoaded;
-
-
-
-sf::Texture *getTexture(std::string texture) {
-
-	return &(textureLoaded[texture]);
-}
-
-void loadTexture() {
-	sf::Texture mytexture;
-	if (!mytexture.loadFromFile("sprite\\chaton.png"))
-	{
-		cout << "bug texture" << endl;
-		// erreur...
-	}
-	else {
-		cout << "Texture charge : " << "chaton.png" << endl;
-		textureLoaded["chaton.png"] = mytexture;
-	}
-
-
-
-	for (int i = 1; i <= 6; i++) {
-		sf::Texture mytexture;
-		std::string path = "sprite\\";
-		std::string name;
-		name = "CloudBoss";
-		std::string str = std::to_string(i);
-		name = name + str;
-		name = name + ".png";
-		path = path + name;
-		cout << endl;
-		cout << path << endl;
-		if (!mytexture.loadFromFile(path))
-		{
-			cout << "bug texture" << endl;
-			// erreur...
-		}
-		else {
-			cout << "Texture charge : " << name << endl;
-			textureLoaded[name] = mytexture;
-		}
-	}
-
-	for (int i = 1; i <= 10; i++) {
-		sf::Texture mytexture;
-		std::string path = "sprite\\";
-		std::string name;
-		name = "CloudEasy";
-		std::string str = std::to_string(i);
-		name = name + str;
-		name = name + ".png";
-		path = path + name;
-		cout << endl;
-		cout << path << endl;
-		if (!mytexture.loadFromFile(path))
-		{
-			cout << "bug texture" << endl;
-			// erreur...
-		}
-		else {
-			cout << "Texture charge : " << name << endl;
-			textureLoaded[name] = mytexture;
-		}
-	}
-
-	for (char i = 'A'; i <= 'Z'; i++) {
-		sf::Texture mytexture;
-		std::string path = "sprite\\";
-		std::string name;
-		name.push_back(i);
-		name = name + ".png";
-		path = path + name;
-		cout << endl;
-		cout << path << endl;
-		if (!mytexture.loadFromFile(path))
-		{
-			cout << "bug texture" << endl;
-			// erreur...
-		}
-		else {
-			cout << "Texture charge : " << name << endl;
-			textureLoaded[name] = mytexture;
-		}
-	}
-}
-
-
 int monMain()
 {
+	
+	
 	Engine mainEngine = Engine();
 	mainEngine.launchMainMenu();
 
 
 
-
+	/*
 
 	loadTexture();
 	Cloud* cloud = new CloudBoss1;
@@ -248,5 +161,6 @@ int monMain()
 
 		window.display();
 	}
+	*/
 	return 0;
 }

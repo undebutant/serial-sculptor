@@ -34,6 +34,8 @@ public:
 	Engine();
 	~Engine();
 
+	void init();
+
 	void launchMainMenu();
 	void drawMainMenu(sf::RenderWindow &renderer);
 
@@ -41,10 +43,10 @@ public:
 	void bossPhase();
 	void endGame();
 
-	bool loadTexture(string pathToTexture, string nameToStore);
-	bool loadFont(string pathToFont);
-	void loadAll();
-	sf::Texture* getTexture(std::string texture);
+	
+	
+	
+	
 
 	void createNewCloud(int cloudToCreate, bool isRightCloud);
 	void deleteCloudsDone();
@@ -64,8 +66,9 @@ public:
 
 
 private:
-	map<string, sf::Texture> textureLoaded;
-	sf::Font fontLoaded;
+	bool isGameLaunched;
+	
+	
 
 	int numberOfSpawnedClouds;
 	float timeUntilWaveEnd;
@@ -74,4 +77,5 @@ private:
 	std::vector<std::unique_ptr<Cloud>> listOfOldClouds;
 	//std::vector<std::unique_ptr<HudItems>> listOfHUDItems;
 	std::vector<std::unique_ptr<SceneryItem>> listOfBackgroundItems;
+	std::vector<std::unique_ptr<SceneryItem>> listOfBackgroundItemsMainMenu;
 };
