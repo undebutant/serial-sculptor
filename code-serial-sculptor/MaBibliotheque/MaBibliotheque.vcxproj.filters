@@ -82,19 +82,19 @@
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
     <ClCompile Include="CloudBoss2.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
     <ClCompile Include="CloudBoss3.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
     <ClCompile Include="CloudBoss4.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
     <ClCompile Include="CloudBoss5.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
     <ClCompile Include="CloudBoss6.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

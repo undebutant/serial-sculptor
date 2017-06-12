@@ -22,11 +22,7 @@ sf::Texture *getTexture(std::string texture) {
 	return &(textureLoaded[texture]);
 }
 
-
-
-
-int monMain()
-{
+void loadTexture() {
 	sf::Texture mytexture;
 	if (!mytexture.loadFromFile("sprite\\chaton.png"))
 	{
@@ -34,7 +30,7 @@ int monMain()
 		// erreur...
 	}
 	else {
-		cout << "Texture charge : " << "chaton.png"<< endl;
+		cout << "Texture charge : " << "chaton.png" << endl;
 		textureLoaded["chaton.png"] = mytexture;
 	}
 
@@ -68,7 +64,14 @@ int monMain()
 			textureLoaded[name] = mytexture;
 		}
 	}
+}
+
+
+int monMain()
+{
 	
+	loadTexture();
+
 	CloudBoss1 cloud1;
 	cloud1.setIsRight(false);
 
