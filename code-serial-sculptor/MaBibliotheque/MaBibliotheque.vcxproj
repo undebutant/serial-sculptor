@@ -134,6 +134,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CloudBoss1.cpp" />
+    <ClCompile Include="CloudBoss2.cpp" />
+    <ClCompile Include="CloudBoss3.cpp" />
+    <ClCompile Include="CloudBoss4.cpp" />
+    <ClCompile Include="CloudBoss5.cpp" />
+    <ClCompile Include="CloudBoss6.cpp" />
     <ClCompile Include="CloudEasy10.cpp" />
     <ClCompile Include="CloudEasy2.cpp" />
     <ClCompile Include="CloudEasy3.cpp" />
@@ -155,6 +160,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CloudBoss1.h" />
+    <ClInclude Include="CloudBoss2.h" />
+    <ClInclude Include="CloudBoss3.h" />
+    <ClInclude Include="CloudBoss4.h" />
+    <ClInclude Include="CloudBoss5.h" />
+    <ClInclude Include="CloudBoss6.h" />
     <ClInclude Include="CloudEasy10.h" />
     <ClInclude Include="CloudEasy2.h" />
     <ClInclude Include="CloudEasy3.h" />
