@@ -1,8 +1,12 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #include "Item.h"
+#include "Cloud.h"
+#include "CloudEasy.h"
+#include "CloudBoss1.h"
 
 
 class Engine
@@ -11,23 +15,32 @@ public:
 	Engine();
 	~Engine();
 
-	void launchGame();
+	void launchMainMenu();
+	void newGame();
+	void endGame();
 
-	//void addActiveItem(Item activeToAdd);
-	//void removeActiveItem(Item activeToAdd);
+	bool loadTexture(string pathToTexture, string nameToStore);
 
-	//void addSceneryItem(Item sceneryToAdd);
-	//void removeSceneryItem(Item activeToAdd);
+	void createNewCloud(int cloudToCreate, bool isRightCloud);
+	void deleteCloudsDone();
 
-	bool isTimeUp();
-	void setTimer();
+	//std::unique_ptr<HudItems> createNewHudItem(int hudToCreate);
+	//void destroyHudItem(int indexOfHudItem);
+	//std::unique_ptr<HudItems> getHudItem(int indexOfHudItem);
 
-	void popupKeyAsked();
-	void generateCloud();
-	void destroyCloud();
+	std::unique_ptr<SceneryItem> createNewSceneryItem(int sceneryItemToCreate);
+	void destroySceneryItem(int indexOfSceneryItem);
+
+	void updateItems(float time);
+	void drawAll(sf::RenderWindow &renderer);
+	
+	void keyPressed(sf::Keyboard::Key);
 
 
 private:
-	std::vector<Item> listOfSceneryItems;
-	std::vector<Item> listOfActiveItems;
+	map<string, sf::Texture> textureLoaded;
+
+	std::vector<std::unique_ptr<Cloud>> listOfClouds;
+	//std::vector<std::unique_ptr<HudItems>> listOfHUDItems;
+	std::vector<std::unique_ptr<SceneryItem>> listOfBackgroundItems;
 };

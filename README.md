@@ -9,6 +9,7 @@ Short project on C++ for second year at Telecom Sudparis
 * Fonction createCloud renvoyant le unique_pointer, avec un int en paramètre pour sélectionner le nuage
 * Gestion propre de la destruction des items
 * Random pour la selection des nuages
+* Nuage focus fixé, ne change pas (mais est ralenti) tant que non fini
 
 * Fonction Update(float time) qui doit tout gerer, actualiser tous les nuages, le sculteur etc..
 * Fonction Draw(sf::RenderTarget &target) qui doit tout afficher se qu'il doit être afficher
