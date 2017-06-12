@@ -12,6 +12,8 @@ public:
 	User();
 	~User();
 
+	void init();
+
 	void draw(sf::RenderTarget &target);
 
 	void setPosition(float x, float y);

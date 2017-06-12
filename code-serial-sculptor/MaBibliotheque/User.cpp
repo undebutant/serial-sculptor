@@ -1,12 +1,19 @@
 #include "User.h"
+#include <iostream>
 
 
-User::User() : health(100) {
+User::User() : health(3) {
 
 }
 
 User::~User() {
 
+}
+
+void User::init() {
+	sprite.setTexture("sculptor_left.png");
+	sprite.setSize(150,200);
+	sprite.setPosition(550,400);
 }
 
 void User::update(float time) {
@@ -51,8 +58,8 @@ void User::setHealth(int a) {
 void User::incrHealth(int a) {
 	if (health != 0) {
 		int b = health + a;
-		if (b > 100) {
-			b = 100;
+		if (b > 3) {
+			b = 3;
 		}
 
 		health = b;

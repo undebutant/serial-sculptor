@@ -14,6 +14,7 @@ Engine::~Engine() {
 }
 
 void Engine::init() {
+	//Main Menu
 	std::unique_ptr<SceneryItem> menuBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
 	menuBackground->setSize(1200, 600);
 
@@ -37,6 +38,12 @@ void Engine::init() {
 	listOfBackgroundItemsMainMenu.push_back(move(newGameButton));
 	listOfBackgroundItemsMainMenu.push_back(move(exitButton));
 
+
+	//Game
+	std::unique_ptr<SceneryItem> gameBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
+	gameBackground->setSize(1200, 600);
+	gameBackground->setTexture("gameBackground.jpeg");
+	listOfBackgroundItems.push_back(move(gameBackground));
 }
 
 void Engine::launchMainMenu() {
@@ -87,10 +94,9 @@ void Engine::launchMainMenu() {
 		window.clear();
 		
 		float time = clock.restart().asSeconds();
-		//TODO call update functions
 		if (isGameLaunched) {
+			updateItems(time);
 			drawAllInGame(window);
-			//TODO update and draw to call whenever possibled
 		}
 		else {
 			drawMainMenu(window);
@@ -125,7 +131,11 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 
 void Engine::newGame() {
 	isGameLaunched = true;
-	bossPhase();
+
+	Sculptor newsculptor;
+	sculptor = newsculptor;
+	
+
 }
 
 void Engine::bossPhase() {
@@ -238,9 +248,14 @@ void Engine::updateItems(float time) {
 }
 
 void Engine::drawAllInGame(sf::RenderWindow &renderer) {
+	
+	for (int i = 0; i < ((int)listOfBackgroundItems.size()); i++) {
+		listOfBackgroundItems[i]->draw(renderer);
+	}
 	for (int i = 0; i < (int)listOfClouds.size(); i++) {
 		listOfClouds[i]->draw(renderer);
 	}
+	sculptor.draw(renderer);
 }
 
 void Engine::keyPressed(Keyboard::Key keyPressed) {

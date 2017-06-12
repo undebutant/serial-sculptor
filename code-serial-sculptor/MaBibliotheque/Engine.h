@@ -73,6 +73,8 @@ private:
 	int numberOfSpawnedClouds;
 	float timeUntilWaveEnd;
 
+	Sculptor sculptor;
+
 	std::vector<std::unique_ptr<Cloud>> listOfClouds;
 	std::vector<std::unique_ptr<Cloud>> listOfOldClouds;
 	//std::vector<std::unique_ptr<HudItems>> listOfHUDItems;

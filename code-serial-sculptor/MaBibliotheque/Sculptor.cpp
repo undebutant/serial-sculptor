@@ -2,7 +2,7 @@
 
 
 Sculptor::Sculptor() {
-
+	init();
 }
 
 Sculptor::~Sculptor() {

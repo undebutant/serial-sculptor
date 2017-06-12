@@ -20,7 +20,7 @@ Cloud::~Cloud() {
 void Cloud::init() {
 	currentKeyIndice = 0;
 	isBoss = false;
-	setPosition(10, 610);
+	setPosition(10, 450);
 	setSpeed(10.0);
 	isRight = false;
 }

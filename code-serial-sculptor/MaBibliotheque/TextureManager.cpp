@@ -43,9 +43,10 @@ namespace TextureManager {
 		std::string nameForSprite;
 		std::string iteratorToString;
 
-		std::string variousImages[4] = { "chaton.png", "mainMenuBackground.jpeg", "exitButton.png", "newGameButton.png" };
+		int const number = 9;
+		std::string variousImages[number] = { "chaton.png", "mainMenuBackground.jpeg", "exitButton.png", "newGameButton.png" ,"gameBackground.jpeg","heartEmpty.png","heartFull.png","sculptor_left.png","sculptor_right.png" };
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < number; i++) {
 			if (!loadTexture(pathToSprite + variousImages[i], variousImages[i])) {
 				std::cout << "Impossible de charger la texture " << nameForSprite << std::endl;
 			}
