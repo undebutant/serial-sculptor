@@ -28,6 +28,7 @@ public:
 
 	void createNewCloud(int cloudToCreate, bool isRightCloud);
 	void deleteCloudsDone();
+	void deleteCloudsOld();
 
 	//std::unique_ptr<HudItems> createNewHudItem(int hudToCreate);
 	//void destroyHudItem(int indexOfHudItem);
@@ -47,6 +48,7 @@ private:
 	sf::Font fontLoaded;
 
 	std::vector<std::unique_ptr<Cloud>> listOfClouds;
+	std::vector<std::unique_ptr<Cloud>> listOfOldClouds;
 	//std::vector<std::unique_ptr<HudItems>> listOfHUDItems;
 	std::vector<std::unique_ptr<SceneryItem>> listOfBackgroundItems;
 };

@@ -17,10 +17,12 @@ void Engine::launchMainMenu() {
 	ContextSettings settings;
 	settings.antialiasingLevel = 8;
 	
-	RenderWindow window(sf::VideoMode(1200, 600), "Serial sculptor", Style::Resize, settings);
+	RenderWindow window(sf::VideoMode(1200, 600), "Serial sculptor", Style::Titlebar | Style::Close, settings);
 
 	Clock clock;
 	Event event;
+
+	bool isGameLaunched = false;
 
 	loadAll();
 
@@ -32,6 +34,22 @@ void Engine::launchMainMenu() {
 			if (event.type == Event::KeyPressed) {
 				if (event.key.code == Keyboard::Escape) {
 					window.close();
+				}
+			}
+
+			// When a game is already launched
+			if (isGameLaunched) {
+				//TODO update and draw to call whenever possible
+			}
+			// In other cases
+			else {
+				if (event.type == Event::MouseButtonPressed) {
+					if (event.mouseButton.x > 150 && event.mouseButton.x < 716 && event.mouseButton.y > 140 && event.mouseButton.y < 220) {
+						//newGame();
+					}
+					if (event.mouseButton.x > 242 && event.mouseButton.x < 624 && event.mouseButton.y > 260 && event.mouseButton.y < 340) {
+						window.close();
+					}
 				}
 			}
 		}
@@ -61,9 +79,9 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 	menuTitle.setFont(fontLoaded);
 	menuTitle.setStyle(Text::Bold);
 
+	menuTitle.setPosition(210, 30);
 	newGameButton.setPosition(150, 140);
 	exitButton.setPosition(242, 260);
-	menuTitle.setPosition(210, 30);
 
 	renderer.draw(menuBackground);
 	renderer.draw(newGameButton);
@@ -171,6 +189,8 @@ sf::Texture* Engine::getTexture(std::string texture) {
 
 void Engine::createNewCloud(int cloudToCreate, bool isRightCloud) {
 	Cloud *cloudToAdd;
+	vector<unique_ptr<Cloud>> swapVector;
+
 	if (cloudToCreate == 0) {
 		cloudToAdd = new CloudEasy1();
 	}
@@ -181,10 +201,23 @@ void Engine::createNewCloud(int cloudToCreate, bool isRightCloud) {
 	unique_ptr<Cloud> ptrCloudToAdd(cloudToAdd);
 	ptrCloudToAdd->setIsRight(isRightCloud);
 
-	listOfClouds.push_back(move(ptrCloudToAdd));
+	swapVector.push_back(move(ptrCloudToAdd));
+
+	for (int i = 0; i < (int)listOfClouds.size(); i++) {
+		swapVector.push_back(move(listOfClouds[i]));
+	}
+
+	listOfClouds.swap(swapVector);
 }
 
 void Engine::deleteCloudsDone() {
+	if (!listOfClouds.empty()) {
+		if (listOfClouds[listOfClouds.size() - 1]->isDone()) {
+			listOfOldClouds.push_back(move(listOfClouds[listOfClouds.size() - 1]));
+			listOfClouds.pop_back();
+		}
+	}
+
 	vector<unique_ptr<Cloud>> swapVector;
 	for (int i = 0; i < (int)listOfClouds.size(); i++) {
 		if (!listOfClouds[i]->isDone()) {
@@ -195,6 +228,18 @@ void Engine::deleteCloudsDone() {
 	listOfClouds.swap(swapVector);
 }
 
+
+void Engine::deleteCloudsOld() {
+	vector<unique_ptr<Cloud>> swapVector;
+
+	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
+		if (!listOfOldClouds[i]->isTimeOut()) {
+			swapVector.push_back(move(listOfClouds[i]));
+		}
+	}
+
+	listOfOldClouds.swap(swapVector);
+}
 
 /*
 std::unique_ptr<HudItems> Engine::createNewHudItem(int hudToCreate) {
