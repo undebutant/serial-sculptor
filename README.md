@@ -1,26 +1,16 @@
 # Serial Sculptor
 Short project on C++ for second year at Telecom Sudparis
 
-
 ## ToDo List
 
-### Important et difficile
-* Random pour la selection des nuages
-* Nuage focus fixé, ne change pas (mais est ralenti) tant que non fini -> voir avec 
-* Fonction Update(float time) qui doit tout gerer, actualiser tous les nuages, le sculteur etc..
-* Fonction Draw(sf::RenderTarget &target) qui doit tout afficher se qu'il doit être afficher
-* Chargement d'un fichier XML avec la difficultée dedans (pugixml)
-* Homogénéiser la taille de la fenêtre
-
-### Secondaire intéressant
-* Variation vitesse mouvement 
-* HUD
-* Gestion des PV
-* Animations et coloration des touches à appuyer (next, erreur, valide)
-
-### Extra bonus
-* Multijoueur
-* Score et top score
+1. Afficher les lettres à entrer dans le bon sens
+2. Affichage du HUD (PV à gauche, numéro de vague à droite)
+3. Ajouter texte "vague suivante"
+4. Implémenter la perte de PV
+5. Faire un endgame
+6. Fonction reset après endgame
+7. Implémenter pugixml pour la difficulté
+8. Score et top score
 
 ## Crédits
 * La plupart des images de fond viennent de ["Pexels"](https://www.pexels.com/ "Aller vers le site pexels.com")
