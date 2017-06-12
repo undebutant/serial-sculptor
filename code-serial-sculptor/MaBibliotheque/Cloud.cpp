@@ -300,6 +300,7 @@ bool Cloud::tryKeyInput(sf::Keyboard::Key key) {
 			return true;
 		}
 		else {
+			timer = 1;
 			return false;
 		}
 	}
