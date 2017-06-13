@@ -2,11 +2,10 @@
 
 #include <vector>
 #include <memory>
-
+#include <SFML/Audio.hpp>
 #include "Item.h"
 #include "Cloud.h"
 #include "Sculptor.h"
-
 #include "SceneryRectangleBasic.h"
 #include "SceneryItem.h"
 
@@ -31,7 +30,7 @@
 class Engine
 {
 public:
-	Engine();
+	Engine(bool setHard);
 	~Engine();
 
 	void init();
@@ -68,6 +67,7 @@ private:
 	
 
 	std::vector<int> topScores;
+	sf::Music *musicBadPtr;
 
 	sf::Text menuTitle;
 	sf::Text vagueTitle;
@@ -77,6 +77,8 @@ private:
 	bool isGameLaunched;
 	bool isRight;
 	bool gameEnded;
+
+	bool hardMod;
 
 	int vague;
 	int phase; // 0 phase easy, 1 phase boss, 2 phase pause

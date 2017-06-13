@@ -10,7 +10,10 @@ using namespace sf;
 
 int monMain()
 {
-	Engine mainEngine = Engine();
+
+	bool hardMod = true;
+
+	Engine mainEngine = Engine(hardMod);
 	mainEngine.launchMainMenu();
 
 	return 0;

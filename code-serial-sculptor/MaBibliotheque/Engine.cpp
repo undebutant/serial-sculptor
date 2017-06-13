@@ -8,7 +8,7 @@ using namespace std;
 using namespace sf;
 
 
-Engine::Engine() {
+Engine::Engine(bool setHard) : hardMod(setHard){
 
 }
 
@@ -134,6 +134,13 @@ void Engine::setVagueTitleCorner() {
 void Engine::launchMainMenu() {
 	TextureManager::loadAll();
 	
+	sf::Music musicBad;
+
+	if (!musicBad.openFromFile("music\\bad.wav"))
+		assert(false); // erreur
+	musicBad.setLoop(false);
+	musicBadPtr = &musicBad;
+
 	sf::Music music;
 	if (!music.openFromFile("music\\mainmenu-loop.wav"))
 		assert(false); // erreur
@@ -358,6 +365,10 @@ void Engine::createNewCloud(int cloudToCreate) {
 	
 	unique_ptr<Cloud> ptrCloudToAdd(cloudToAdd);
 	ptrCloudToAdd->setIsRight(isRight);
+
+	if (hardMod) {
+		ptrCloudToAdd->setSpeed(20);
+	}
 	
 	if(listOfClouds.empty()) {
 		sculptor.updateTexture(isRight);
@@ -449,11 +460,11 @@ bool Engine::isHPLost(bool isCloudRight, bool isBoss, int posXcloud) {
 	if (isCloudRight) {
 		if (posXcloud <= posXlim) {
 			sculptor.decrHealth(1);
+			musicBadPtr->play();
 			if (sculptor.getHealth() == 0) {
-				gameEnded = false;
+				gameEnded = true;
 				timeUntilNextSpawn = 0;
 			}
-			cout << "HP : " << sculptor.getHealth() << endl;
 
 
 			return true;
@@ -462,11 +473,11 @@ bool Engine::isHPLost(bool isCloudRight, bool isBoss, int posXcloud) {
 	else {
 		if (posXcloud >= posXlim) {
 			sculptor.decrHealth(1);
+			musicBadPtr->play();
 			if (sculptor.getHealth() == 0) {
-				gameEnded = false;
+				gameEnded = true;
 				timeUntilNextSpawn = 0;
 			}
-			cout << "HP : " << sculptor.getHealth() << endl;
 
 			
 
@@ -497,7 +508,12 @@ void Engine::update(float time) {
 		if (spawnDelay < 1) {
 			spawnDelay = 1;
 		}
-		int maxSpawn = vague * 2;
+		int facteur = 2;
+		if (hardMod) {
+			facteur = 4;
+			spawnDelay = spawnDelay / 2.f;
+		}
+		int maxSpawn = vague * facteur;
 
 		if (phase == 0) {
 			if (numberOfSpawnedClouds >= maxSpawn) {
@@ -528,7 +544,14 @@ void Engine::update(float time) {
 			}
 			else {
 				if (timeUntilNextSpawn > spawnDelay) {
-					if (numberOfSpawnedBoss < (n + 1)) {
+					if (numberOfSpawnedClouds % 2 == 1) {
+						createNewRandomEasy();
+					}
+					int maxBoss = (n + 1);
+					if (hardMod) {
+						maxBoss = 2 * maxBoss;
+					}
+					if (numberOfSpawnedBoss < maxBoss) {
 						if (vague % 6 == 1) {
 							createNewCloud(14);
 							numberOfSpawnedBoss++;
@@ -554,7 +577,10 @@ void Engine::update(float time) {
 							numberOfSpawnedBoss++;
 						}
 					}
-					createNewRandomEasy();
+					if (numberOfSpawnedClouds%2 == 0) {
+						createNewRandomEasy();
+					}
+					
 					timeUntilNextSpawn = 0;
 					numberOfSpawnedClouds++;
 				}
@@ -648,6 +674,7 @@ void Engine::keyPressed(Keyboard::Key keyPressed) {
 			bool a = listOfClouds.back()->tryKeyInput(keyPressed);
 			if (!a) {
 				sculptor.decrHealth(1);
+				musicBadPtr->play();
 				if (sculptor.getHealth() == 0) {
 					gameEnded = true;
 					timeUntilNextSpawn = 0;
