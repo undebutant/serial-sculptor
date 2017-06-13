@@ -11,7 +11,7 @@ using namespace sf;
 int monMain()
 {
 
-	bool hardMod = true;
+	bool hardMod = false;
 
 	Engine mainEngine = Engine(hardMod);
 	mainEngine.launchMainMenu();
