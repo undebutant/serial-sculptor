@@ -181,11 +181,23 @@ bool Cloud::getIsRight() {
 	return isRight;
 }
 
+bool Cloud::getIsBoss() {
+	return isBoss;
+}
+
 void Cloud::setIsBoss(bool newBool) {
 	isBoss = newBool;
 	setSize(200, 200);
 	auto pos = getPosition();
 	setPosition(pos.x, pos.y - 100);
+}
+
+void Cloud::setCurrentKeyIndice(int newIndice) {
+	currentKeyIndice = newIndice;
+}
+
+void Cloud::setIsDone() {
+	setCurrentKeyIndice(getAlterKeyListSize());
 }
 
 

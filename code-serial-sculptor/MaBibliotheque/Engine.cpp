@@ -278,12 +278,68 @@ void Engine::destroySceneryItem(int indexOfSceneryItem) {
 }
 
 
+bool Engine::isHPLost(bool isCloudRight, bool isBoss, int posXcloud) {
+	int posXlim;
+	if (isCloudRight) {
+		posXlim = 660;
+	}
+	else {
+		posXlim = 436;
+		if (isBoss) {
+			posXlim -= 100;
+		}
+	}
+
+	if (isCloudRight) {
+		if (posXcloud <= posXlim) {
+			sculptor.decrHealth(1);
+			cout << "HP : " << sculptor.getHealth() << endl;
+
+			if (sculptor.getHealth() == 2) {
+				listOfHUDItems[2]->setTexture("heartEmpty.png");
+			}
+			else if (sculptor.getHealth() == 1) {
+				listOfHUDItems[1]->setTexture("heartEmpty.png");
+			}
+			else {
+				listOfHUDItems[0]->setTexture("heartEmpty.png");
+				//TODO endGame();
+			}
+
+			return true;
+		}
+	}
+	else {
+		if (posXcloud >= posXlim) {
+			sculptor.decrHealth(1);
+			cout << "HP : " << sculptor.getHealth() << endl;
+
+			if (sculptor.getHealth() == 2) {
+				listOfHUDItems[2]->setTexture("heartEmpty.png");
+			}
+			else if (sculptor.getHealth() == 1) {
+				listOfHUDItems[1]->setTexture("heartEmpty.png");
+			}
+			else {
+				listOfHUDItems[0]->setTexture("heartEmpty.png");
+				//TODO endGame();
+			}
+
+			return true;
+		}
+	}
+	return false;
+}
+
 void Engine::update(float time) {
-	deleteCloudsDone();
 	timeUntilNextSpawn += time;
 	for (int i = 0; i < (int) listOfClouds.size(); i++) {
 		listOfClouds[i]->update(time);
+		if (isHPLost(listOfClouds[i]->getIsRight(), listOfClouds[i]->getIsBoss(), listOfClouds[i]->getPosition().x)) {
+			listOfClouds[i]->setIsDone();
+		}
 	}
+	deleteCloudsDone();
 
 	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
 		listOfOldClouds[i]->update(time);

@@ -52,6 +52,7 @@ public:
 	std::unique_ptr<SceneryItem> createNewSceneryItem(int sceneryItemToCreate);
 	void destroySceneryItem(int indexOfSceneryItem);
 
+	bool isHPLost(bool isCloudRight, bool isBoss, int posXcloud);
 	void update(float time);
 	void drawAllInGame(sf::RenderWindow &renderer);
 	

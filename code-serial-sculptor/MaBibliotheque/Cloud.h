@@ -34,9 +34,12 @@ public:
 	void setTexture(std::string texture);
 	void setSpeed(float newSpeed);
 	void setIsRight(bool newBool);
-	bool getIsRight();
 	void setIsBoss(bool newBool);
+	void setCurrentKeyIndice(int newIndice);
+	void setIsDone();
 	
+	bool getIsRight();
+	bool getIsBoss();
 	int getCurrentKeyIndice();
 	
 	void addKey(enum sf::Keyboard::Key key);

@@ -14,7 +14,8 @@ Short project on C++ for second year at Telecom Sudparis done in one month.
 8. Ajouter des sons 
 9. Faire apparaître les nuages à l'exterieur 
 10. Score et top score 
-11. Easter eggs 
+11. Faire des tests unitaires 
+12. Easter eggs 
 
 ---
 ## Crédits
