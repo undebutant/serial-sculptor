@@ -691,3 +691,29 @@ void Engine::resetValue() {
 	timeUntilNextSpawn = 0;
 	numberOfSpawnedBoss = 0;
 }
+
+void Engine::setHighScore(int tab[4]) {
+	for (int i = 0; i < 4; i++) {
+		if (tab[i] > 0) {
+			topScores.push_back(tab[i]);
+		}
+
+	}
+	std::sort(topScores.begin(), topScores.begin() + topScores.size());
+}
+
+void Engine::getHighScore(int tab[4]) {
+	int i = 0;
+	while ((!topScores.empty()) && i < 4) {
+		tab[i]=topScores.back();
+		topScores.pop_back();
+		i++;
+	}
+	while (i < 4) {
+		tab[i] = 0;
+		i++;
+	}
+
+	
+
+}

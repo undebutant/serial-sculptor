@@ -62,11 +62,15 @@ public:
 
 	void resetValue();
 
+	void setHighScore(int tab[4]);
+
+	void getHighScore(int tab[4]);
 
 private:
 	
 
 	std::vector<int> topScores;
+
 	sf::Music *musicBadPtr;
 
 	sf::Text menuTitle;

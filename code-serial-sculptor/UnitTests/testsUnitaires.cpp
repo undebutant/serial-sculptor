@@ -9,23 +9,23 @@
 // Tests for the Sculptor class
 
 TEST_F(SculptorTest, initialize_sculptor) {
-	EXPECT_EQ(sculptorToTest.getHealth(), 100);
+	EXPECT_EQ(sculptorToTest.getHealth(), 3);
 }
 
 TEST_F(SculptorTest, managing_health) {
-	sculptorToTest.setHealth(80);
-	EXPECT_EQ(sculptorToTest.getHealth(), 80);
+	sculptorToTest.setHealth(3);
+	EXPECT_EQ(sculptorToTest.getHealth(), 3);
 
-	sculptorToTest.incrHealth(10);
-	EXPECT_EQ(sculptorToTest.getHealth(), 90);
+	sculptorToTest.incrHealth(1);
+	EXPECT_EQ(sculptorToTest.getHealth(), 3);
 
-	sculptorToTest.decrHealth(30);
-	EXPECT_EQ(sculptorToTest.getHealth(), 60);
+	sculptorToTest.decrHealth(2);
+	EXPECT_EQ(sculptorToTest.getHealth(), 1);
 }
 
 TEST_F(SculptorTest, over_providing_health) {
 	sculptorToTest.incrHealth(50);
-	EXPECT_EQ(sculptorToTest.getHealth(), 100);
+	EXPECT_EQ(sculptorToTest.getHealth(), 3);
 }
 
 TEST_F(SculptorTest, over_decreasing_health) {
