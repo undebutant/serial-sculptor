@@ -22,3 +22,4 @@ Short project on C++ for second year at Telecom Sudparis done in one month.
 * La plupart des images de fond viennent de [Pexels](https://www.pexels.com/ "Aller vers le site pexels.com")
 * La police d'écriture [Silent Reaction](http://www.1001freefonts.com/silent_reaction.font "Lien vers la page de téléchargement de la police")
 * Merci à notre coordinateur Michel Simatic d'avoir accepté d'apparaître dans le jeu !
+* Music Provided By NoCopyrightSounds : https://www.youtube.com/watch?v=FseAiTb8Se0
