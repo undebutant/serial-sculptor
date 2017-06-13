@@ -62,6 +62,7 @@ public:
 
 
 private:
+	
 	sf::Text menuTitle;
 	sf::Font fontLoaded;
 	

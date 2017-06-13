@@ -1,6 +1,8 @@
 #include "Engine.h"
 #include "TextureManager.h"
 #include <assert.h>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 using namespace std;
 using namespace sf;
@@ -81,6 +83,12 @@ void Engine::init() {
 void Engine::launchMainMenu() {
 	TextureManager::loadAll();
 	
+	sf::Music music;
+	if (!music.openFromFile("music\\mainmenu-loop.wav"))
+		assert(false); // erreur
+	music.play();
+	music.setLoop(true);
+
 	isGameLaunched = false;
 	ContextSettings settings;
 	settings.antialiasingLevel = 8;
@@ -91,6 +99,8 @@ void Engine::launchMainMenu() {
 	Event event;
 	
 	init();
+
+	int lastphase = 0;
 
 	while (window.isOpen()) {
 		while (window.pollEvent(event))
@@ -112,7 +122,12 @@ void Engine::launchMainMenu() {
 			else {
 				if (event.type == Event::MouseButtonPressed) {
 					if (event.mouseButton.x > 150 && event.mouseButton.x < 716 && event.mouseButton.y > 140 && event.mouseButton.y < 220) {
+						if (!music.openFromFile("music\\phase0-loop.wav"))
+							assert(false); // erreur
+						music.play();
+						music.setLoop(true);
 						newGame();
+
 					}
 					if (event.mouseButton.x > 242 && event.mouseButton.x < 624 && event.mouseButton.y > 260 && event.mouseButton.y < 340) {
 						window.close();
@@ -123,7 +138,40 @@ void Engine::launchMainMenu() {
 		window.clear();
 		
 		float time = clock.restart().asSeconds();
+
+		
 		if (isGameLaunched) {
+			if (lastphase != phase) {
+				lastphase = phase;
+				if (phase == 0) {
+					
+					if (!music.openFromFile("music\\phase0-loop.wav"))
+						assert(false); // erreur
+					music.play();
+					music.setLoop(true);
+					
+				}
+				else if (phase == 1) {
+					
+					if (!music.openFromFile("music\\phase1-loop.wav"))
+						assert(false); // erreur
+					music.play();
+					music.setLoop(true);
+					
+				} else if (phase == 2) {
+					
+					if (!music.openFromFile("music\\phase2.wav"))
+						assert(false); // erreur
+					music.play();
+					music.setLoop(false);
+					
+				}
+				
+
+
+			}
+			
+			
 			update(time);
 			drawAllInGame(window);
 		}
@@ -335,7 +383,7 @@ void Engine::update(float time) {
 	timeUntilNextSpawn += time;
 	for (int i = 0; i < (int) listOfClouds.size(); i++) {
 		listOfClouds[i]->update(time);
-		if (isHPLost(listOfClouds[i]->getIsRight(), listOfClouds[i]->getIsBoss(), listOfClouds[i]->getPosition().x)) {
+		if (isHPLost(listOfClouds[i]->getIsRight(), listOfClouds[i]->getIsBoss(), (int)listOfClouds[i]->getPosition().x)) {
 			listOfClouds[i]->setIsDone();
 		}
 	}
@@ -414,12 +462,12 @@ void Engine::update(float time) {
 	}
 	else if (phase == 2) {
 		
-		if (timeUntilNextSpawn>spawnDelay) {
-			if (listOfOldClouds.empty()) {
-				phase = 0;
-				vague++;
-				resetValue();
-			}
+		if (timeUntilNextSpawn>2) {
+			
+			phase = 0;
+			vague++;
+			resetValue();
+			
 		}
 	}
 	else {
