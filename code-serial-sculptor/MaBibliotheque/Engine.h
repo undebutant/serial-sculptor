@@ -68,10 +68,12 @@ private:
 	
 	sf::Text menuTitle;
 	sf::Text vagueTitle;
+	sf::Text failTitle;
 	sf::Font fontLoaded;
 	
 	bool isGameLaunched;
 	bool isRight;
+	bool gameEnded;
 
 	int vague;
 	int phase; // 0 phase easy, 1 phase boss, 2 phase pause

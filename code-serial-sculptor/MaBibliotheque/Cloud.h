@@ -50,7 +50,7 @@ public:
 	bool tryKeyInput(enum sf::Keyboard::Key key);
 
 	virtual bool isDone() = 0;
-	bool isTimeOut();
+	bool getIsTimeOut();
 	
 
 private:
@@ -63,6 +63,8 @@ private:
 	float timer = 1;
 	float speed;
 
+	bool isTimeOut;
+	bool isEntered;
 	bool isRight;
 	bool isBoss;
 

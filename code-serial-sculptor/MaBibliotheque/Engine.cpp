@@ -18,6 +18,7 @@ Engine::~Engine() {
 
 void Engine::init() {
 	srand((unsigned int)time(NULL));
+	
 
 	//Main Menu
 	std::unique_ptr<SceneryItem> menuBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
@@ -69,7 +70,15 @@ void Engine::init() {
 
 	vagueTitle.setPosition(800, 30);
 
+	
 
+	failTitle.setString(L"YOU LOST");
+	failTitle.setCharacterSize(200);
+	failTitle.setFillColor(Color(255, 0, 0));
+	failTitle.setFont(fontLoaded);
+	failTitle.setStyle(Text::Bold);
+
+	failTitle.setPosition(0, 200);
 
 	std::unique_ptr<SceneryItem> heartContainer1 = std::unique_ptr<SceneryItem>(new SceneryItem());
 	std::unique_ptr<SceneryItem> heartContainer2 = std::unique_ptr<SceneryItem>(new SceneryItem());
@@ -79,9 +88,9 @@ void Engine::init() {
 	heartContainer2->setSize(100, 100);
 	heartContainer3->setSize(100, 100);
 
-	heartContainer1->setTexture("heartFull.png");
-	heartContainer2->setTexture("heartFull.png");
-	heartContainer3->setTexture("heartFull.png");
+	heartContainer1->setTexture("heartEmpty.png");
+	heartContainer2->setTexture("heartEmpty.png");
+	heartContainer3->setTexture("heartEmpty.png");
 
 	heartContainer1->setPosition(20, 20);
 	heartContainer2->setPosition(140, 20);
@@ -90,6 +99,26 @@ void Engine::init() {
 	listOfHUDItems.push_back(move(heartContainer1));
 	listOfHUDItems.push_back(move(heartContainer2));
 	listOfHUDItems.push_back(move(heartContainer3));
+
+	std::unique_ptr<SceneryItem> heartContainerFull1 = std::unique_ptr<SceneryItem>(new SceneryItem());
+	std::unique_ptr<SceneryItem> heartContainerFull2 = std::unique_ptr<SceneryItem>(new SceneryItem());
+	std::unique_ptr<SceneryItem> heartContainerFull3 = std::unique_ptr<SceneryItem>(new SceneryItem());
+
+	heartContainerFull1->setSize(100, 100);
+	heartContainerFull2->setSize(100, 100);
+	heartContainerFull3->setSize(100, 100);
+
+	heartContainerFull1->setTexture("heartFull.png");
+	heartContainerFull2->setTexture("heartFull.png");
+	heartContainerFull3->setTexture("heartFull.png");
+
+	heartContainerFull1->setPosition(20, 20);
+	heartContainerFull2->setPosition(140, 20);
+	heartContainerFull3->setPosition(260, 20);
+
+	listOfHUDItems.push_back(move(heartContainerFull1));
+	listOfHUDItems.push_back(move(heartContainerFull2));
+	listOfHUDItems.push_back(move(heartContainerFull3));
 }
 
 void Engine::setVagueTitleFullScreen() {
@@ -123,6 +152,8 @@ void Engine::launchMainMenu() {
 	init();
 
 	int lastphase = 0;
+	bool lastisGameLaunched = false;
+	bool lastGameEnded = false;
 
 	while (window.isOpen()) {
 		while (window.pollEvent(event))
@@ -143,16 +174,18 @@ void Engine::launchMainMenu() {
 			// In other cases
 			else {
 				if (event.type == Event::MouseButtonPressed) {
-					if (event.mouseButton.x > 150 && event.mouseButton.x < 716 && event.mouseButton.y > 140 && event.mouseButton.y < 220) {
-						if (!music.openFromFile("music\\phase0-loop.wav"))
-							assert(false); // erreur
-						music.play();
-						music.setLoop(true);
-						newGame();
+					if (!isGameLaunched) {
+						if (event.mouseButton.x > 150 && event.mouseButton.x < 716 && event.mouseButton.y > 140 && event.mouseButton.y < 220) {
+							if (!music.openFromFile("music\\phase0-loop.wav"))
+								assert(false); // erreur
+							music.play();
+							music.setLoop(true);
+							newGame();
 
-					}
-					if (event.mouseButton.x > 242 && event.mouseButton.x < 624 && event.mouseButton.y > 260 && event.mouseButton.y < 340) {
-						window.close();
+						}
+						if (event.mouseButton.x > 242 && event.mouseButton.x < 624 && event.mouseButton.y > 260 && event.mouseButton.y < 340) {
+							window.close();
+						}
 					}
 				}
 			}
@@ -163,34 +196,47 @@ void Engine::launchMainMenu() {
 
 		
 		if (isGameLaunched) {
-			if (lastphase != phase) {
-				lastphase = phase;
-				if (phase == 0) {
-					
-					if (!music.openFromFile("music\\phase0-loop.wav"))
-						assert(false); // erreur
-					music.play();
-					music.setLoop(true);
-					
-				}
-				else if (phase == 1) {
-					
-					if (!music.openFromFile("music\\phase1-loop.wav"))
-						assert(false); // erreur
-					music.play();
-					music.setLoop(true);
-					
-				} else if (phase == 2) {
-					
-					if (!music.openFromFile("music\\phase2.wav"))
+			lastisGameLaunched = isGameLaunched;
+			if (gameEnded) {
+				if (lastGameEnded != gameEnded) {
+					lastGameEnded = gameEnded;
+					if (!music.openFromFile("music\\fail.wav"))
 						assert(false); // erreur
 					music.play();
 					music.setLoop(false);
-					
 				}
-				
+			}
+			else {
+				if (lastphase != phase) {
+					lastphase = phase;
+					if (phase == 0) {
+
+						if (!music.openFromFile("music\\phase0-loop.wav"))
+							assert(false); // erreur
+						music.play();
+						music.setLoop(true);
+
+					}
+					else if (phase == 1) {
+
+						if (!music.openFromFile("music\\phase1-loop.wav"))
+							assert(false); // erreur
+						music.play();
+						music.setLoop(true);
+
+					}
+					else if (phase == 2) {
+
+						if (!music.openFromFile("music\\phase2.wav"))
+							assert(false); // erreur
+						music.play();
+						music.setLoop(false);
+
+					}
 
 
+
+				}
 			}
 			
 			
@@ -198,6 +244,14 @@ void Engine::launchMainMenu() {
 			drawAllInGame(window);
 		}
 		else {
+			if (lastisGameLaunched != isGameLaunched) {
+				if (!music.openFromFile("music\\mainmenu-loop.wav"))
+					assert(false); // erreur
+				music.play();
+				music.setLoop(true);
+				lastisGameLaunched = isGameLaunched;
+				lastGameEnded = false;
+			}
 			drawMainMenu(window);
 		}
 		
@@ -218,7 +272,10 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 void Engine::newGame() {
 	isRight = false;
 	isGameLaunched = true;
+	gameEnded = false;
 	vague = 1;
+	string newstr = "Vague : " + std::to_string(vague);
+	vagueTitle.setString(newstr);
 	timeUntilNextSpawn = 0;
 	phase = 0;
 	numberOfSpawnedClouds = 0;
@@ -307,7 +364,7 @@ void Engine::deleteCloudsDone() {
 
 	vector<unique_ptr<Cloud>> swapVector;
 	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
-		if (!listOfOldClouds[i]->isTimeOut()) {
+		if (!listOfOldClouds[i]->getIsTimeOut()) {
 			swapVector.push_back(move(listOfOldClouds[i]));
 		}
 	}
@@ -320,7 +377,7 @@ void Engine::deleteCloudsOld() {
 	vector<unique_ptr<Cloud>> swapVector;
 
 	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
-		if (!listOfOldClouds[i]->isTimeOut()) {
+		if (!listOfOldClouds[i]->getIsTimeOut()) {
 			swapVector.push_back(move(listOfClouds[i]));
 		}
 	}
@@ -363,18 +420,12 @@ bool Engine::isHPLost(bool isCloudRight, bool isBoss, int posXcloud) {
 	if (isCloudRight) {
 		if (posXcloud <= posXlim) {
 			sculptor.decrHealth(1);
+			if (sculptor.getHealth() == 0) {
+				gameEnded = false;
+				timeUntilNextSpawn = 0;
+			}
 			cout << "HP : " << sculptor.getHealth() << endl;
 
-			if (sculptor.getHealth() == 2) {
-				listOfHUDItems[2]->setTexture("heartEmpty.png");
-			}
-			else if (sculptor.getHealth() == 1) {
-				listOfHUDItems[1]->setTexture("heartEmpty.png");
-			}
-			else {
-				listOfHUDItems[0]->setTexture("heartEmpty.png");
-				//TODO endGame();
-			}
 
 			return true;
 		}
@@ -382,18 +433,13 @@ bool Engine::isHPLost(bool isCloudRight, bool isBoss, int posXcloud) {
 	else {
 		if (posXcloud >= posXlim) {
 			sculptor.decrHealth(1);
+			if (sculptor.getHealth() == 0) {
+				gameEnded = false;
+				timeUntilNextSpawn = 0;
+			}
 			cout << "HP : " << sculptor.getHealth() << endl;
 
-			if (sculptor.getHealth() == 2) {
-				listOfHUDItems[2]->setTexture("heartEmpty.png");
-			}
-			else if (sculptor.getHealth() == 1) {
-				listOfHUDItems[1]->setTexture("heartEmpty.png");
-			}
-			else {
-				listOfHUDItems[0]->setTexture("heartEmpty.png");
-				//TODO endGame();
-			}
+			
 
 			return true;
 		}
@@ -402,109 +448,123 @@ bool Engine::isHPLost(bool isCloudRight, bool isBoss, int posXcloud) {
 }
 
 void Engine::update(float time) {
-	timeUntilNextSpawn += time;
-	for (int i = 0; i < (int) listOfClouds.size(); i++) {
-		listOfClouds[i]->update(time);
-		if (isHPLost(listOfClouds[i]->getIsRight(), listOfClouds[i]->getIsBoss(), (int)listOfClouds[i]->getPosition().x)) {
-			listOfClouds[i]->setIsDone();
-		}
-	}
-	deleteCloudsDone();
-
-	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
-		listOfOldClouds[i]->update(time);
-	}
-
-	int n = vague / 6;
-
-	float spawnDelay = 2.f-(n*0.1f);
-	if (spawnDelay < 1) {
-		spawnDelay = 1;
-	}
-	int maxSpawn = vague * 2;
-
-	if (phase == 0) {
-		if (numberOfSpawnedClouds >= maxSpawn) {
-			if (listOfClouds.empty()) {
-				phase = 1;
-				resetValue();
-				if (vague % 6 == 0) {
-					numberOfSpawnedBoss++;
-				}
+	if (!gameEnded) {
+		timeUntilNextSpawn += time;
+		for (int i = 0; i < (int)listOfClouds.size(); i++) {
+			listOfClouds[i]->update(time);
+			if (isHPLost(listOfClouds[i]->getIsRight(), listOfClouds[i]->getIsBoss(), (int)listOfClouds[i]->getPosition().x)) {
+				listOfClouds[i]->setIsDone();
 			}
 		}
-		else {
-			if (timeUntilNextSpawn>spawnDelay) {
-				createNewRandomEasy();
-				timeUntilNextSpawn = 0;
-				numberOfSpawnedClouds++;
-			}
+		deleteCloudsDone();
+
+		for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
+			listOfOldClouds[i]->update(time);
 		}
-	}
-	else if (phase == 1) {
-		if (numberOfSpawnedClouds >= maxSpawn) {
-			if (listOfClouds.empty()) {
-				phase = 2;
-				vague++;
-				resetValue();
-			}
+
+		int n = vague / 6;
+
+		float spawnDelay = 2.f - (n*0.1f);
+		if (spawnDelay < 1) {
+			spawnDelay = 1;
 		}
-		else {
-			if (timeUntilNextSpawn>spawnDelay) {
-				if (numberOfSpawnedBoss < (n+1)) {
-					if (vague % 6 == 1) {
-						createNewCloud(14);
-						numberOfSpawnedBoss++;
-					}
-					else if (vague % 6 == 2) {
-						createNewCloud(12);
-						numberOfSpawnedBoss++;
-					}
-					else if (vague % 6 == 3) {
-						createNewCloud(13);
-						numberOfSpawnedBoss++;
-					}
-					else if (vague % 6 == 4) {
-						createNewCloud(11);
-						numberOfSpawnedBoss++;
-					}
-					else if (vague % 6 == 5) {
-						createNewCloud(16);
-						numberOfSpawnedBoss++;
-					}
-					else if (vague % 6 == 0) {
-						createNewCloud(15);
+		int maxSpawn = vague * 2;
+
+		if (phase == 0) {
+			if (numberOfSpawnedClouds >= maxSpawn) {
+				if (listOfClouds.empty()) {
+					phase = 1;
+					resetValue();
+					if (vague % 6 == 0) {
 						numberOfSpawnedBoss++;
 					}
 				}
-				createNewRandomEasy();
-				timeUntilNextSpawn = 0;
-				numberOfSpawnedClouds++;
+			}
+			else {
+				if (timeUntilNextSpawn > spawnDelay) {
+					createNewRandomEasy();
+					timeUntilNextSpawn = 0;
+					numberOfSpawnedClouds++;
+				}
 			}
 		}
-	}
-	else if (phase == 2) {
-		
-		
+		else if (phase == 1) {
+			if (numberOfSpawnedClouds >= maxSpawn) {
+				if (listOfClouds.empty()) {
+					phase = 2;
+					vague++;
+					sculptor.incrHealth(1);
+					resetValue();
+				}
+			}
+			else {
+				if (timeUntilNextSpawn > spawnDelay) {
+					if (numberOfSpawnedBoss < (n + 1)) {
+						if (vague % 6 == 1) {
+							createNewCloud(14);
+							numberOfSpawnedBoss++;
+						}
+						else if (vague % 6 == 2) {
+							createNewCloud(12);
+							numberOfSpawnedBoss++;
+						}
+						else if (vague % 6 == 3) {
+							createNewCloud(13);
+							numberOfSpawnedBoss++;
+						}
+						else if (vague % 6 == 4) {
+							createNewCloud(11);
+							numberOfSpawnedBoss++;
+						}
+						else if (vague % 6 == 5) {
+							createNewCloud(16);
+							numberOfSpawnedBoss++;
+						}
+						else if (vague % 6 == 0) {
+							createNewCloud(15);
+							numberOfSpawnedBoss++;
+						}
+					}
+					createNewRandomEasy();
+					timeUntilNextSpawn = 0;
+					numberOfSpawnedClouds++;
+				}
+			}
+		}
+		else if (phase == 2) {
 
 
-		if (timeUntilNextSpawn>2) {
-			
-			phase = 0;
-			
-			setVagueTitleCorner();
-			
-			resetValue();
-			
+
+
+			if (timeUntilNextSpawn > 2) {
+
+				phase = 0;
+
+				setVagueTitleCorner();
+
+				resetValue();
+
+			}
+			else {
+				string newstr = "Vague : " + std::to_string(vague);
+				vagueTitle.setString(newstr);
+				setVagueTitleFullScreen();
+			}
 		}
 		else {
-			string newstr = "Vague : " + std::to_string(vague);
-			vagueTitle.setString(newstr);
-			setVagueTitleFullScreen();
+			assert(false);
 		}
 	}
 	else {
-		assert(false);
+		timeUntilNextSpawn += time;
+		if (timeUntilNextSpawn > 5) {
+			isGameLaunched = false;
+			listOfClouds.clear();
+			listOfOldClouds.clear();
+			setVagueTitleCorner();
+			
+
+		}
 	}
 }
 
@@ -513,25 +573,55 @@ void Engine::drawAllInGame(sf::RenderWindow &renderer) {
 	for (int i = 0; i < ((int)listOfBackgroundItems.size()); i++) {
 		listOfBackgroundItems[i]->draw(renderer);
 	}
-	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
-		listOfOldClouds[i]->draw(renderer);
-	}
 	for (int i = 0; i < (int)listOfClouds.size(); i++) {
 		listOfClouds[i]->draw(renderer);
+	}
+
+	for (int i = 0; i < (int)listOfOldClouds.size(); i++) {
+		listOfOldClouds[i]->draw(renderer);
 	}
 	if (!listOfClouds.empty()) {
 		listOfClouds.back()->drawLetter(renderer);
 	}
 	for (int i = 0; i < ((int)listOfHUDItems.size()); i++) {
-		listOfHUDItems[i]->draw(renderer);
+		if (i >= 3 && i < 6) {
+			if (i == 3 && sculptor.getHealth() >= 1) {
+				listOfHUDItems[i]->draw(renderer);
+			}
+			else if (i == 4 && sculptor.getHealth() >= 2) {
+				listOfHUDItems[i]->draw(renderer);
+			}
+			else if (i == 5 && sculptor.getHealth() >= 3) {
+				listOfHUDItems[i]->draw(renderer);
+			}
+
+
+		}
+		else {
+			listOfHUDItems[i]->draw(renderer);
+		}
+		
 	}
 	renderer.draw(vagueTitle);
+	if (gameEnded) {
+		renderer.draw(failTitle);
+	}
+	
 	sculptor.draw(renderer);
 }
 
 void Engine::keyPressed(Keyboard::Key keyPressed) {
-	if (!listOfClouds.empty()) {
-		listOfClouds.back()->tryKeyInput(keyPressed);
+	if (!gameEnded) {
+		if (!listOfClouds.empty()) {
+			bool a = listOfClouds.back()->tryKeyInput(keyPressed);
+			if (!a) {
+				sculptor.decrHealth(1);
+				if (sculptor.getHealth() == 0) {
+					gameEnded = true;
+					timeUntilNextSpawn = 0;
+				}
+			}
+		}
 	}
 }
 

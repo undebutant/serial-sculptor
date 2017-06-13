@@ -20,9 +20,11 @@ Cloud::~Cloud() {
 void Cloud::init() {
 	currentKeyIndice = 0;
 	isBoss = false;
-	setPosition(10, 450);
+	isEntered = false;
+	setPosition(10, 600);
 	setSpeed(10.0);
 	isRight = false;
+	isTimeOut = false;
 }
 
 
@@ -68,7 +70,21 @@ void Cloud::update() {
 }
 
 void Cloud::update(float time) {
-	if (!isDone()) {
+	if (!isEntered) {
+		auto pos = spriteImage.getPosition();
+		float y = pos.y;
+		y -= time*(150);
+		float yValue = 450;
+		if (isBoss) {
+			yValue -= 100;
+		}
+		if (y <= yValue) {
+			y = yValue;
+			isEntered = true;
+		}
+		spriteImage.setPosition(pos.x, y);
+		update();
+	} else 	if (!isDone()) {
 		auto pos = spriteImage.getPosition();
 		float x = pos.x;
 		float factSlow = 1;
@@ -90,8 +106,13 @@ void Cloud::update(float time) {
 		update();
 	}
 	else {
-		if (timer < 1) {
-			timer += time;
+		auto pos = spriteImage.getPosition();
+		float y = pos.y;
+		y -= time*(150);
+		
+		spriteImage.setPosition(pos.x, y);
+		if (y <= -200) {
+			isTimeOut = true;
 		}
 	}
 }
@@ -105,15 +126,17 @@ void Cloud::draw(sf::RenderTarget &target) {
 	
 }
 void Cloud::drawLetter(sf::RenderTarget &target) {
-	int n = (int)keyItemList.size();
-	int number = 4;
-	if (isBoss) {
-		number = 8;
-	}
+	if (isEntered) {
+		int n = (int)keyItemList.size();
+		int number = 4;
+		if (isBoss) {
+			number = 8;
+		}
 
-	n = min(number + currentKeyIndice, n);
-	for (int i = currentKeyIndice; i < (n); i++) {
-		keyItemList[i].draw(target);
+		n = min(number + currentKeyIndice, n);
+		for (int i = currentKeyIndice; i < (n); i++) {
+			keyItemList[i].draw(target);
+		}
 	}
 }
 
@@ -328,8 +351,8 @@ bool Cloud::tryKeyInput(sf::Keyboard::Key key) {
 }
 
 
-bool Cloud::isTimeOut() {
-	return (timer >= 1);
+bool Cloud::getIsTimeOut() {
+	return isTimeOut;
 }
 
 

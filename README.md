@@ -4,12 +4,7 @@ Short project on C++ for second year at Telecom Sudparis done in one month.
 ---
 ## ToDo List
 
-4. Implémenter la perte de PV 
-5. Faire un endgame 
-6. Fonction reset après endgame 
 7. Implémenter pugixml pour la difficulté 
-8. Ajouter des sons 
-9. Faire apparaître les nuages à l'exterieur 
 10. Score et top score 
 11. Faire des tests unitaires 
 12. Easter eggs 
