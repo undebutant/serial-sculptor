@@ -5,7 +5,6 @@ Short project on C++ for second year at Telecom Sudparis done in one month.
 ## ToDo List
 
 7. Implémenter pugixml pour la difficulté 
-10. Score et top score 
 11. Faire des tests unitaires 
 12. Easter eggs 
 
