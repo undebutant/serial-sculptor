@@ -66,6 +66,9 @@ public:
 
 private:
 	
+
+	std::vector<int> topScores;
+
 	sf::Text menuTitle;
 	sf::Text vagueTitle;
 	sf::Text failTitle;

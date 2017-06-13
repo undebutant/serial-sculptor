@@ -11,7 +11,6 @@ User::~User() {
 }
 
 void User::updateTexture(bool isRight) {
-	cout << "isRight : " << isRight << endl;
 	if (isRight) {
 		sprite.setTexture("sculptor_right.png");
 	}

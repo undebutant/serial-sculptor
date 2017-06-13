@@ -266,6 +266,35 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 	}
 
 	renderer.draw(menuTitle);
+
+	if (!topScores.empty()) {
+		sf::Text topScoreTitle;
+		topScoreTitle.setString(L"Top Score");
+		topScoreTitle.setCharacterSize(70);
+		topScoreTitle.setFillColor(Color(255, 0, 0));
+		topScoreTitle.setFont(fontLoaded);
+		topScoreTitle.setStyle(Text::Bold);
+		topScoreTitle.setPosition(800, 30);
+		renderer.draw(topScoreTitle);
+
+		int i = 0;
+
+		while (i < ((int)topScores.size()) && i < 4) {
+
+			sf::Text topScore1Title;
+			topScore1Title.setString(L"Top Score");
+			std::string score = "Vague : ";
+			score = score + std::to_string(topScores[topScores.size() - 1 - i]);
+			topScore1Title.setString(score);
+			topScore1Title.setCharacterSize(70);
+			topScore1Title.setFillColor(Color(255, 0, 0));
+			topScore1Title.setFont(fontLoaded);
+			topScore1Title.setStyle(Text::Bold);
+			topScore1Title.setPosition(800, 30.f + (100.f*i) + 100.f);
+			renderer.draw(topScore1Title);
+			i++;
+		}
+	}
 }
 
 
@@ -557,11 +586,14 @@ void Engine::update(float time) {
 	}
 	else {
 		timeUntilNextSpawn += time;
+		setVagueTitleCorner();
 		if (timeUntilNextSpawn > 5) {
 			isGameLaunched = false;
 			listOfClouds.clear();
 			listOfOldClouds.clear();
-			setVagueTitleCorner();
+			topScores.push_back(vague);
+			std::sort(topScores.begin(), topScores.begin() + topScores.size());
+			
 			
 
 		}
