@@ -53,12 +53,24 @@ void Engine::init() {
 	menuTitle.setPosition(210, 30);
 
 	//Game layout
+
 	std::unique_ptr<SceneryItem> gameBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
 	gameBackground->setSize(1200, 600);
 	gameBackground->setTexture("gameBackground.jpeg");
 	listOfBackgroundItems.push_back(move(gameBackground));
 
 	//HUD layout
+
+	vagueTitle.setString(L"Vague : 1");
+	vagueTitle.setCharacterSize(70);
+	vagueTitle.setFillColor(Color(255, 0, 0));
+	vagueTitle.setFont(fontLoaded);
+	vagueTitle.setStyle(Text::Bold);
+
+	vagueTitle.setPosition(800, 30);
+
+
+
 	std::unique_ptr<SceneryItem> heartContainer1 = std::unique_ptr<SceneryItem>(new SceneryItem());
 	std::unique_ptr<SceneryItem> heartContainer2 = std::unique_ptr<SceneryItem>(new SceneryItem());
 	std::unique_ptr<SceneryItem> heartContainer3 = std::unique_ptr<SceneryItem>(new SceneryItem());
@@ -78,6 +90,16 @@ void Engine::init() {
 	listOfHUDItems.push_back(move(heartContainer1));
 	listOfHUDItems.push_back(move(heartContainer2));
 	listOfHUDItems.push_back(move(heartContainer3));
+}
+
+void Engine::setVagueTitleFullScreen() {
+	vagueTitle.setCharacterSize(200);
+	vagueTitle.setPosition(200, 200);
+}
+
+void Engine::setVagueTitleCorner() {
+	vagueTitle.setCharacterSize(70);
+	vagueTitle.setPosition(800, 30);
 }
 
 void Engine::launchMainMenu() {
@@ -423,6 +445,7 @@ void Engine::update(float time) {
 		if (numberOfSpawnedClouds >= maxSpawn) {
 			if (listOfClouds.empty()) {
 				phase = 2;
+				vague++;
 				resetValue();
 			}
 		}
@@ -462,12 +485,22 @@ void Engine::update(float time) {
 	}
 	else if (phase == 2) {
 		
+		
+
+
 		if (timeUntilNextSpawn>2) {
 			
 			phase = 0;
-			vague++;
+			
+			setVagueTitleCorner();
+			
 			resetValue();
 			
+		}
+		else {
+			string newstr = "Vague : " + std::to_string(vague);
+			vagueTitle.setString(newstr);
+			setVagueTitleFullScreen();
 		}
 	}
 	else {
@@ -492,6 +525,7 @@ void Engine::drawAllInGame(sf::RenderWindow &renderer) {
 	for (int i = 0; i < ((int)listOfHUDItems.size()); i++) {
 		listOfHUDItems[i]->draw(renderer);
 	}
+	renderer.draw(vagueTitle);
 	sculptor.draw(renderer);
 }
 

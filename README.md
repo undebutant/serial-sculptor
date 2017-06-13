@@ -4,9 +4,6 @@ Short project on C++ for second year at Telecom Sudparis done in one month.
 ---
 ## ToDo List
 
-1. ~~Afficher les lettres à entrer dans le bon sens~~ 
-2. Affichage du HUD (PV à gauche, numéro de vague à droite) 
-3. Ajouter texte "vague suivante" 
 4. Implémenter la perte de PV 
 5. Faire un endgame 
 6. Fonction reset après endgame 

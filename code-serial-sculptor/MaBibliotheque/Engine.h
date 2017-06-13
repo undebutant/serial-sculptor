@@ -36,6 +36,9 @@ public:
 
 	void init();
 
+	void setVagueTitleFullScreen();
+	void setVagueTitleCorner();
+
 	void launchMainMenu();
 	void drawMainMenu(sf::RenderWindow &renderer);
 
@@ -64,6 +67,7 @@ public:
 private:
 	
 	sf::Text menuTitle;
+	sf::Text vagueTitle;
 	sf::Font fontLoaded;
 	
 	bool isGameLaunched;
