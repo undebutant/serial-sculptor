@@ -2,7 +2,8 @@
 
 #include "TextureManager.h"
 #include "Engine.h"
-#include </Software/pugixml-1.8/src/pugixml.hpp>
+#include <c:/Software/pugixml-1.8/src/pugixml.hpp>
+
 
 using namespace std;
 using namespace sf;

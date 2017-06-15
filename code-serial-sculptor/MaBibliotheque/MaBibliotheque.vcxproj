@@ -133,7 +133,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\..\Software\pugixml-1.8\src\pugixml.cpp" />
+    <ClCompile Include="C:\Software\pugixml-1.8\src\pugixml.cpp" />
     <ClCompile Include="CloudBoss1.cpp" />
     <ClCompile Include="CloudBoss2.cpp" />
     <ClCompile Include="CloudBoss3.cpp" />

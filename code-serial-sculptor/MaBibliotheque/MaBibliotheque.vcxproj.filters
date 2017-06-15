@@ -99,7 +99,7 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\Software\pugixml-1.8\src\pugixml.cpp">
+    <ClCompile Include="C:\Software\pugixml-1.8\src\pugixml.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
   </ItemGroup>
