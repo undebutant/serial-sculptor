@@ -4,12 +4,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>610</x>
-      <y>790</y>
+      <x>830</x>
+      <y>820</y>
       <w>200</w>
       <h>100</h>
     </coordinates>
-    <panel_attributes>CloudEasy
+    <panel_attributes>CloudEasyN
 --
 
 
@@ -20,51 +20,65 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>680</x>
-      <y>370</y>
-      <w>350</w>
-      <h>290</h>
+      <x>880</x>
+      <y>210</y>
+      <w>360</w>
+      <h>530</h>
     </coordinates>
     <panel_attributes>&lt;Abstract&gt; Cloud
 --
-+sprite : SceneryItem
-+color : Color
-+currentKeyIndice : int
-+alterKeyList : vector&lt;enum Keyboard::Key&gt;
++SceneryItem spriteImage;
++vector&lt;SceneryItem&gt; spriteList;
++vector&lt;SceneryItem&gt; keyItemList;
++float timer = 1;
++float speed;
++bool isTimeOut;
++bool isEntered;
++bool isRight;
++bool isBoss;
++Color color;
++int currentKeyIndice;
++vector&lt;enum sf::Keyboard::Key&gt; alterKeyList;
 
 --
--setColor(Color)
--getColor()
+-void update();
 
--getCurrentKeyIndice()
--setAlterKeyList(vector&lt;enum Keyboard::Key&gt; keyList)
--getAlterKeyList()
--addKey(Keyboard::Key key)
+-void drawLetter(sf::RenderTarget &amp;target);
 
--tryKeyInput(enum Keyboard::Key key)
--isDone()
-</panel_attributes>
+-void setPosition(float x, float y);
+-void setSize(float x, float y);
+-void setColor(sf::Color newcolor);
+-void setTexture(std::string texture);
+-void setSpeed(float newSpeed);
+
+-void addKey(enum sf::Keyboard::Key key);
+-void addSprite(SceneryItem newSprite);
+
+-bool tryKeyInput(enum sf::Keyboard::Key key);
+
+-bool isDone();
+-bool getIsTimeOut();</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
-      <y>650</y>
-      <w>170</w>
-      <h>160</h>
+      <x>920</x>
+      <y>730</y>
+      <w>130</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>130.0;10.0;10.0;140.0</additional_attributes>
+    <additional_attributes>110.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>370</x>
-      <y>260</y>
-      <w>240</w>
-      <h>200</h>
+      <x>530</x>
+      <y>110</y>
+      <w>270</w>
+      <h>350</h>
     </coordinates>
     <panel_attributes>&lt;Abstract&gt; User
 --
@@ -72,79 +86,43 @@
 +health : int
 
 --
--setHealth(int a)
--getHealth()
--incrHealth(int a)
--decrHealth(int a)
+-void updateTexture(bool isRight);
 
--isGameOver()
+-void init();
+
+-void setPosition(float x, float y);
+-sf::Vector2f getPosition();
+-void setSize(float x, float y);
+-sf::Vector2f getSize();
+-void setSprite(std::string pathToSprite);
+-void setHealth(int a);
+-int getHealth();
+
+-void incrHealth(int a);
+-void decrHealth(int a);
+
+-bool isGameOver();
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>630</x>
       <y>450</y>
       <w>110</w>
-      <h>160</h>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>30</x>
-      <y>440</y>
-      <w>310</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>Graphic
---
-
-
---
--initWindow(RenderTarget &amp;target)
-
--updateWindow(RenderTarget &amp;target)
--updateForInteruption(RenderTarget &amp;target)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>30</x>
-      <y>690</y>
-      <w>310</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>Drawing
---
-+RenderTarget
-
---
--drawList(&amp;listOfItem, RenderTarget &amp;target)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>170</x>
-      <y>580</y>
-      <w>30</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>770</x>
-      <y>70</y>
-      <w>230</w>
+      <x>880</x>
+      <y>10</y>
+      <w>320</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>&lt;Abstract&gt; Item
@@ -152,188 +130,167 @@
 
 
 --
--draw(RenderTarget &amp;target)</panel_attributes>
+-void draw(sf::RenderTarget &amp;target);
+-void update(float time);</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1240</x>
-      <y>290</y>
-      <w>210</w>
-      <h>230</h>
-    </coordinates>
-    <panel_attributes>&lt;Abstract&gt; SceneryItem
---
-+shape : RectangleShape
-+pathToSprite : string
-
---
--draw(RenderTarget &amp;target)
-
--setPosition(float x, float y)
--getPosition()
--setSize(float x, float y)
--getSize()
-
--setSprite(string pathToSprite)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1190</x>
-      <y>510</y>
-      <w>150</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>90.0;10.0;10.0;100.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>80</x>
-      <y>40</y>
-      <w>210</w>
+      <x>1290</x>
+      <y>150</y>
+      <w>260</w>
       <h>320</h>
+    </coordinates>
+    <panel_attributes>SceneryItem
+--
++RectangleShape shape;
++string pathToSprite;
+
+--
+-void setTexture(std::string texture);
+-void setPath(std::string newPath);
+-void setPosition(float x, float y);
+-void setColor(sf::Color newColor);
+-void setSize(float x, float y);
+-void setSprite(std::string pathToSprite);
+
+-sf::Vector2f getPosition();
+-sf::Vector2f getSize();
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>70</y>
+      <w>440</w>
+      <h>740</h>
     </coordinates>
     <panel_attributes>Engine
 --
-+sceneryItems : vector&lt;Item&gt;
-+activeItems : vector&lt;Item&gt;
++std::vector&lt;int&gt; topScores;
++sf::Text menuTitle;
++sf::Text vagueTitle;
++sf::Text failTitle;
++sf::Font fontLoaded;
++bool isGameLaunched;
++bool isRight;
++bool gameEnded;
++bool hardMod;
++int vague;
++int phase;
++int numberOfSpawnedClouds;
++int numberOfSpawnedBoss;
++float timeUntilNextSpawn;
++Sculptor sculptor;
++vector&lt;unique_ptr&lt;Cloud&gt;&gt; listOfClouds;
++vector&lt;unique_ptr&lt;Cloud&gt;&gt; listOfOldClouds;
++vector&lt;unique_ptr&lt;SceneryItem&gt;&gt; listOfHUDItems;
++vector&lt;unique_ptr&lt;SceneryItem&gt;&gt; listOfBackgroundItems;
++vector&lt;unique_ptr&lt;SceneryItem&gt;&gt; listOfBackgroundItemsMainMenu;
 
 --
--launchGame()
+-void init();
 
--addActiveItem(Item)
--removeActiveItem(Item)
+-void launchMainMenu();
+-void drawMainMenu(sf::RenderWindow &amp;renderer);
 
--addSceneryItem(Item)
--removeSceneryItem(Item)
+-void newGame();
+-void endGame();
 
--isTimeUp()
--setTimer()
+-void createNewCloud(int cloudToCreate);
+-void createNewRandomEasy();
+-void deleteCloudsDone();
+-void deleteCloudsOld();
 
--popupKeyAsked()
--generateCloud()
--destroyCloud()</panel_attributes>
+-bool isHPLost(bool isCloudRight, bool isBoss, int posXcloud);
+-void update(float time);
+-void drawAllInGame(sf::RenderWindow &amp;renderer);
+
+-void keyPressed(sf::Keyboard::Key);
+
+-void setHighScore(int tab[4]);
+
+-void getHighScore(int tab[4]);</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>170</x>
-      <y>350</y>
-      <w>30</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>390</x>
-      <y>590</y>
-      <w>200</w>
-      <h>100</h>
+      <x>530</x>
+      <y>600</y>
+      <w>270</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Sculptor
 --
-+ int health = 100
+
 
 --
-</panel_attributes>
+-bool isGameOver</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1100</x>
-      <y>610</y>
-      <w>200</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>SceneryBackground
---
-
-
---
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>460</x>
-      <y>90</y>
-      <w>330</w>
-      <h>190</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>310.0;10.0;10.0;170.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>860</x>
-      <y>170</y>
-      <w>30</w>
-      <h>220</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>990</x>
-      <y>90</y>
-      <w>370</w>
-      <h>220</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;350.0;200.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>900</x>
-      <y>790</y>
-      <w>200</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>CloudBoss
---
-
-
---
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>880</x>
-      <y>650</y>
-      <w>170</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;130.0;140.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1330</x>
-      <y>610</y>
+      <y>660</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>SceneryRectangleBasic
+--
+
+
+--
+-void setNewColor
+         (sf::Color newcolor);</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>30</y>
+      <w>250</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1030</x>
+      <y>110</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1190</x>
+      <y>30</y>
+      <w>270</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>820</y>
       <w>200</w>
       <h>100</h>
     </coordinates>
-    <panel_attributes>SceneryLaneRight
+    <panel_attributes>CloudBossN
 --
 
 
@@ -344,35 +301,46 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1350</x>
-      <y>510</y>
-      <w>150</w>
-      <h>120</h>
+      <x>1080</x>
+      <y>730</y>
+      <w>130</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;90.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;110.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1020</x>
-      <y>390</y>
-      <w>240</w>
-      <h>100</h>
+      <x>1230</x>
+      <y>460</y>
+      <w>140</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>220.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;170.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>300</y>
-      <w>660</w>
-      <h>70</h>
+      <x>790</x>
+      <y>160</y>
+      <w>520</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>640.0;50.0;10.0;10.0</additional_attributes>
+    <additional_attributes>500.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1420</x>
+      <y>460</y>
+      <w>40</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>20.0;10.0;10.0;200.0</additional_attributes>
   </element>
 </diagram>
