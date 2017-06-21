@@ -20,6 +20,9 @@ pugi::xml_document doc;
 
 pugi::xml_node arrayLoad;
 
+pugi::xml_node hardLoad;
+
+
 char source[] = "init.xml";
 
 
@@ -910,7 +913,7 @@ void readInit() {
 	TextureManager::setHeight(height);
 	TextureManager::setWidth(width);
 
-	auto hardLoad = rootLoad.child("HardMode");
+	hardLoad = rootLoad.child("HardMode");
 
 	hardMode = hardLoad.attribute("isHardMode").as_bool();
 }
@@ -920,6 +923,8 @@ void saveInit() {
 	arrayLoad.attribute("hs1") = tab[1];
 	arrayLoad.attribute("hs2") = tab[2];
 	arrayLoad.attribute("hs3") = tab[3];
+	
+	hardLoad.attribute("isHardMode") = hardMode;
 
 	doc.save_file(source);
 }
@@ -943,6 +948,9 @@ int monMain()
 	mainEngine.launchMainMenu();
 
 	mainEngine.getHighScore(tab);
+	hardMode=mainEngine.getIsHard();
+
+	
 
 	saveInit();
 

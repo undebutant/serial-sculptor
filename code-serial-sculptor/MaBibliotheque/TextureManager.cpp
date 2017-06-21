@@ -47,8 +47,8 @@ namespace TextureManager {
 		std::string nameForSprite;
 		std::string iteratorToString;
 
-		int const number = 9;
-		std::string variousImages[number] = { "chaton.png", "mainMenuBackground.jpeg", "exitButton.png", "newGameButton.png" ,"gameBackground.jpeg","heartEmpty.png","heartFull.png","sculptor_left.png","sculptor_right.png" };
+		int const number = 11;
+		std::string variousImages[number] = { "chaton.png", "mainMenuBackground.jpeg", "exitButton.png","hardButton.png","hardOnButton.png", "newGameButton.png" ,"gameBackground.jpeg","heartEmpty.png","heartFull.png","sculptor_left.png","sculptor_right.png" };
 
 		for (int i = 0; i < number; i++) {
 			if (!loadTexture(pathToSprite + variousImages[i], variousImages[i])) {

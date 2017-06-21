@@ -33,19 +33,26 @@ void Engine::init() {
 	std::unique_ptr<SceneryItem> exitButton = std::unique_ptr<SceneryItem>(new SceneryItem());
 	exitButton->setSize((float)TextureManager::getHeight()*382/1200, (float)TextureManager::getWidth()*80/600);
 
+	std::unique_ptr<SceneryItem> hardButton = std::unique_ptr<SceneryItem>(new SceneryItem());
+	hardButton->setSize((float)TextureManager::getHeight() * 382 / 1200, (float)TextureManager::getWidth() * 80 / 600);
 	
 	menuBackground->setTexture("mainMenuBackground.jpeg");
 	newGameButton->setTexture("newGameButton.png");
 	exitButton->setTexture("exitButton.png");
-
+	hardButton->setTexture("hardButton.png");
+	if (hardMod) {
+		hardButton->setTexture("hardOnButton.png");
+	}
 	
 	newGameButton->setPosition((float)TextureManager::getHeight()*150/1200, (float)TextureManager::getWidth()*140/600);
-	exitButton->setPosition((float)TextureManager::getHeight()*242/1200, (float)TextureManager::getWidth()*260/600);
+	exitButton->setPosition((float)TextureManager::getHeight()*242/1200, (float)TextureManager::getWidth()*380/600);
+	hardButton->setPosition((float)TextureManager::getHeight() * 242 / 1200, (float)TextureManager::getWidth() * 260 / 600);
+
 
 	listOfBackgroundItemsMainMenu.push_back(move(menuBackground));
 	listOfBackgroundItemsMainMenu.push_back(move(newGameButton));
 	listOfBackgroundItemsMainMenu.push_back(move(exitButton));
-
+	listOfBackgroundItemsMainMenu.push_back(move(hardButton));
 
 	menuTitle.setString(L"Serial Sculptor");
 	menuTitle.setCharacterSize(TextureManager::getHeight()*70/1200);
@@ -194,6 +201,9 @@ void Engine::launchMainMenu() {
 
 						}
 						if (event.mouseButton.x > ((float)TextureManager::getHeight()*242/1200) && event.mouseButton.x < ((float)TextureManager::getHeight()*624/1200) && event.mouseButton.y > ((float)TextureManager::getWidth()*260/600) && event.mouseButton.y < ((float)TextureManager::getWidth()*340/600)) {
+							setIsHard();
+						}
+						if (event.mouseButton.x >((float)TextureManager::getHeight() * 242 / 1200) && event.mouseButton.x < ((float)TextureManager::getHeight() * 624 / 1200) && event.mouseButton.y >((float)TextureManager::getWidth() * 380 / 600) && event.mouseButton.y < ((float)TextureManager::getWidth() * 460 / 600)) {
 							window.close();
 						}
 					}
@@ -321,6 +331,7 @@ void Engine::newGame() {
 	numberOfSpawnedBoss = 0;
 	Sculptor newsculptor;
 	sculptor = newsculptor;
+	invulnerable = 1;
 }
 
 void Engine::endGame() {
@@ -732,4 +743,19 @@ void Engine::setVectorOfConfigBoss(std::vector<Config> newvectorOfConfigBoss) {
 		vectorOfConfigBoss.push_back(newvectorOfConfigBoss[i]);
 	}
 
+}
+
+bool Engine::getIsHard() {
+	return hardMod;
+}
+
+void Engine::setIsHard() {
+	hardMod = !hardMod;
+	
+	if (hardMod) {
+		listOfBackgroundItemsMainMenu[3]->setTexture("hardOnButton.png");
+	}
+	else {
+		listOfBackgroundItemsMainMenu[3]->setTexture("hardButton.png");
+	}
 }

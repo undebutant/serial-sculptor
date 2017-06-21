@@ -54,6 +54,10 @@ public:
 
 	void setVectorOfConfigBoss(std::vector<Config> newvectorOfConfigBoss);
 
+	bool getIsHard();
+
+	void setIsHard();
+
 private:
 	
 	bool drawSculptor;
