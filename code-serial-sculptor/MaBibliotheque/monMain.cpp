@@ -9,16 +9,25 @@
 using namespace std;
 using namespace sf;
 
+std::vector<Config> vectorOfConfig;
 
-int monMain()
-{
-	
+bool hardMode;
+
+int tab[4];
+
+pugi::xml_document doc;
+
+pugi::xml_node arrayLoad;
+
+char source[] = "init.xml";
+
+void createConfig() {
 	// Creation of the config.xml for the first time
-	/*
+	
 	char config[] = "config.xml";
 	pugi::xml_document docConfig;
-	
-	
+
+
 
 
 
@@ -54,7 +63,7 @@ int monMain()
 	pugi::xml_node node4 = nodeImputArray.append_child("Imput");
 	node4.text().set("G");
 
-	
+
 
 	nodeCloud = root.append_child("Cloud");
 
@@ -229,7 +238,7 @@ int monMain()
 	node3 = nodeImputArray.append_child("Imput");
 	node3.text().set("L");
 
-	
+
 
 	nodeCloud = root.append_child("Cloud");
 
@@ -336,7 +345,7 @@ int monMain()
 	node4 = nodeImputArray.append_child("Imput");
 	node4.text().set("E");
 
-		
+
 	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
@@ -758,11 +767,13 @@ int monMain()
 	node4.text().set("E");
 
 	docConfig.save_file(config);
-	*/
+	
+}
 
+int readConfig() {
 	//reading the config.xml
 	char sourceConfig[] = "config.xml";
-	std::vector<Config> vectorOfConfig;
+	
 	pugi::xml_document docConfig;
 	pugi::xml_parse_result resultConfig = docConfig.load_file(sourceConfig);
 	if (resultConfig)
@@ -770,41 +781,37 @@ int monMain()
 		std::cout << "XML [" << sourceConfig << "] parsed without errors, attr value: [" << docConfig.child("node").attribute("attr").value() << "]\n\n";
 		auto root = docConfig.child("Root");
 		auto nodes = root.select_nodes("Cloud");
-		cout << "size = " << nodes.size() << endl;
 		for (auto it = nodes.begin(); it != nodes.end(); it++)
 		{
-			std::cout << "New Config" << std::endl;
 
 			Config newConfig;
 			newConfig.setSprite(it->node().child("Sprite").text().as_string());
-			std::cout << "Sprite : " << newConfig.getSprite() << std::endl;
+			
 
 			newConfig.setIsBoss(it->node().child("IsBoss").text().as_bool());
-			std::cout << "IsBoss : " << newConfig.getIsBoss() << std::endl;
+			
 
 			newConfig.setRed(it->node().child("Red").text().as_int());
-			std::cout << "Red : " << newConfig.getRed() << std::endl;
+			
 
 			newConfig.setGreen(it->node().child("Green").text().as_int());
-			std::cout << "Green : " << newConfig.getGreen() << std::endl;
+			
 
 			newConfig.setBlue(it->node().child("Blue").text().as_int());
-			std::cout << "Blue : " << newConfig.getBlue() << std::endl;
+			
 
 			auto nodesKey = it->node().child("ImputArray").select_nodes("Imput");
 
-			std::cout << "Size : " << nodesKey.size() << std::endl;
+			
 
 			for (auto key = nodesKey.begin(); key != nodesKey.end(); key++)
 			{
 				std::string value = key->node().text().as_string();
 				newConfig.addKeyChar(value[0]);
 			}
-			auto vect = newConfig.getVectorOfKeyChar();
-			std::cout << "KeyCharVect : " << std::endl;
-			for (int i = 0; i < (int)vect.size(); i++) {
-				std::cout << "Value ["<< i <<"] : " << vect[i] << std::endl;
-			}
+			
+		
+			
 			vectorOfConfig.push_back(newConfig);
 		}
 
@@ -813,11 +820,14 @@ int monMain()
 	else
 	{
 		std::cout << "Parse Failled For Config.xml" << endl;
-		return 0;
+		return -1;
 	}
+	return 0;
+}
+
+void readInit() {
 	
-	char source[] = "init.xml";
-	pugi::xml_document doc;
+	
 	pugi::xml_parse_result result = doc.load_file(source);
 	if (result)
 	{
@@ -845,11 +855,11 @@ int monMain()
 	}
 
 
-	int tab[4];
+	
 
 	auto rootLoad = doc.child("Root");
-	auto arrayLoad = rootLoad.child("Array");
-	
+	arrayLoad = rootLoad.child("Array");
+
 	tab[0] = arrayLoad.attribute("hs0").as_int();
 	tab[1] = arrayLoad.attribute("hs1").as_int();
 	tab[2] = arrayLoad.attribute("hs2").as_int();
@@ -857,9 +867,28 @@ int monMain()
 
 	auto hardLoad = rootLoad.child("HardMode");
 
-	bool hardMode = hardLoad.attribute("isHardMode").as_bool();
+	hardMode = hardLoad.attribute("isHardMode").as_bool();
+}
 
+void saveInit() {
+	arrayLoad.attribute("hs0") = tab[0];
+	arrayLoad.attribute("hs1") = tab[1];
+	arrayLoad.attribute("hs2") = tab[2];
+	arrayLoad.attribute("hs3") = tab[3];
+
+	doc.save_file(source);
+}
+
+int monMain()
+{
+	int ret = 0;
+	ret = readConfig();
+	if (ret == -1) {
+		return -1;
+	}
 	
+	readInit();
+
 
 	Engine mainEngine = Engine(hardMode);
 	mainEngine.setHighScore(tab);
@@ -868,14 +897,9 @@ int monMain()
 
 	mainEngine.getHighScore(tab);
 
-	
+	saveInit();
 
-	arrayLoad.attribute("hs0") = tab[0];
-	arrayLoad.attribute("hs1") = tab[1];
-	arrayLoad.attribute("hs2") = tab[2];
-	arrayLoad.attribute("hs3") = tab[3];
 	
-	doc.save_file(source);
 
 	return 0;
 }

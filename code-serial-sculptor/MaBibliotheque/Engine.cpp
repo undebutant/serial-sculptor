@@ -328,7 +328,7 @@ void Engine::endGame() {
 
 void Engine::createNewCloud(int cloudToCreate) {
 
-	cout << "cloud needed : " << cloudToCreate << endl;
+	
 
 	Cloud *cloudToAdd;
 
@@ -342,8 +342,7 @@ void Engine::createNewCloud(int cloudToCreate) {
 	cloudToAdd->setTexture(vectorOfConfig[cloudToCreate].getSprite());
 	cloudToAdd->setIsBoss(vectorOfConfig[cloudToCreate].getIsBoss());
 	
-	cout << vectorOfConfig[cloudToCreate].getSprite() << endl;
-	cout << cloudToAdd->getIsBoss() << endl;
+	
 	
 	auto vect = vectorOfConfig[cloudToCreate].getVectorOfKeyChar();
 
