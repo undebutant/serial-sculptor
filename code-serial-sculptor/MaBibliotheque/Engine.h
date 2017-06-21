@@ -29,7 +29,7 @@ public:
 	void newGame();
 	void endGame();
 
-	void createNewCloud(int cloudToCreate);
+	void createNewCloud(int cloudToCreate, bool isBoss);
 	void createNewRandomEasy();
 	void deleteCloudsDone();
 	void deleteCloudsOld();
@@ -50,7 +50,9 @@ public:
 
 	void getHighScore(int tab[4]);
 
-	void setVectorOfConfig(std::vector<Config> newvectorOfConfig);
+	void setVectorOfConfigEasy(std::vector<Config> newvectorOfConfigEasy);
+
+	void setVectorOfConfigBoss(std::vector<Config> newvectorOfConfigBoss);
 
 private:
 	
@@ -58,7 +60,8 @@ private:
 
 	float invulnerable;
 
-	std::vector<Config> vectorOfConfig;
+	std::vector<Config> vectorOfConfigEasy;
+	std::vector<Config> vectorOfConfigBoss;
 
 	std::vector<int> topScores;
 

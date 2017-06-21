@@ -9,7 +9,8 @@
 using namespace std;
 using namespace sf;
 
-std::vector<Config> vectorOfConfig;
+std::vector<Config> vectorOfConfigEasy;
+std::vector<Config> vectorOfConfigBoss;
 
 bool hardMode;
 
@@ -28,40 +29,49 @@ void createConfig() {
 	char config[] = "config.xml";
 	pugi::xml_document docConfig;
 
-
-
+	pugi::xml_node nodeCloud;
+	pugi::xml_node nodeImage;
+	pugi::xml_node nodeBoss;
+	pugi::xml_node nodeRed;
+	pugi::xml_node nodeGreen;
+	pugi::xml_node nodeBlue;
+	pugi::xml_node nodeImputArray;
+	pugi::xml_node node1;
+	pugi::xml_node node2;
+	pugi::xml_node node3;
+	pugi::xml_node node4;
 
 
 	auto root = docConfig.append_child("Root");
-	pugi::xml_node nodeCloud = root.append_child("Cloud");
+	nodeCloud = root.append_child("Cloud");
 
-	pugi::xml_node nodeImage = nodeCloud.append_child("Sprite");
+	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy1.png");
 
-	pugi::xml_node nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss = nodeCloud.append_child("IsBoss");
 	nodeBoss.text().set(false);
 
-	pugi::xml_node nodeRed = nodeCloud.append_child("Red");
+	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(0);
 
-	pugi::xml_node nodeGreen = nodeCloud.append_child("Green");
+	nodeGreen = nodeCloud.append_child("Green");
 	nodeGreen.text().set(255);
 
-	pugi::xml_node nodeBlue = nodeCloud.append_child("Blue");
+	nodeBlue = nodeCloud.append_child("Blue");
 	nodeBlue.text().set(0);
 
-	pugi::xml_node nodeImputArray = nodeCloud.append_child("ImputArray");
+	nodeImputArray = nodeCloud.append_child("ImputArray");
 
-	pugi::xml_node node1 = nodeImputArray.append_child("Imput");
+	node1 = nodeImputArray.append_child("Imput");
 	node1.text().set("B");
 
-	pugi::xml_node node2 = nodeImputArray.append_child("Imput");
+	node2 = nodeImputArray.append_child("Imput");
 	node2.text().set("O");
 
-	pugi::xml_node node3 = nodeImputArray.append_child("Imput");
+	node3 = nodeImputArray.append_child("Imput");
 	node3.text().set("M");
 
-	pugi::xml_node node4 = nodeImputArray.append_child("Imput");
+	node4 = nodeImputArray.append_child("Imput");
 	node4.text().set("G");
 
 
@@ -346,28 +356,29 @@ void createConfig() {
 	node4 = nodeImputArray.append_child("Imput");
 	node4.text().set("E");
 
+	//Cloud Boss
 
 	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
-	nodeImage.text().set("CloudBoss1.png");
+	nodeImage.text().set("CloudBoss5.png");
 
 	nodeBoss = nodeCloud.append_child("IsBoss");
 	nodeBoss.text().set(true);
 
 	nodeRed = nodeCloud.append_child("Red");
-	nodeRed.text().set(255);
+	nodeRed.text().set(155);
 
 	nodeGreen = nodeCloud.append_child("Green");
 	nodeGreen.text().set(0);
 
 	nodeBlue = nodeCloud.append_child("Blue");
-	nodeBlue.text().set(0);
+	nodeBlue.text().set(100);
 
 	nodeImputArray = nodeCloud.append_child("ImputArray");
 
 	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("P");
+	node1.text().set("K");
 
 	node2 = nodeImputArray.append_child("Imput");
 	node2.text().set("S");
@@ -376,37 +387,118 @@ void createConfig() {
 	node3.text().set("M");
 
 	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("C");
+	node4.text().set("P");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("I");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("B");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("H");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("C");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("W");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("U");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("T");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("D");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("A");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("G");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("Y");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("E");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("L");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("O");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("Z");
 
 	node4 = nodeImputArray.append_child("Imput");
 	node4.text().set("R");
 
+	nodeCloud = root.append_child("Cloud");
+
+	nodeImage = nodeCloud.append_child("Sprite");
+	nodeImage.text().set("CloudBoss4.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(true);
+
+	nodeRed = nodeCloud.append_child("Red");
+	nodeRed.text().set(155);
+
+	nodeGreen = nodeCloud.append_child("Green");
+	nodeGreen.text().set(100);
+
+	nodeBlue = nodeCloud.append_child("Blue");
+	nodeBlue.text().set(0);
+
+	nodeImputArray = nodeCloud.append_child("ImputArray");
+
 	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("P");
+	node1.text().set("M");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("I");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("C");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("H");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("E");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("L");
 
 	node2 = nodeImputArray.append_child("Imput");
 	node2.text().set("S");
 
 	node3 = nodeImputArray.append_child("Imput");
-	node3.text().set("V");
+	node3.text().set("I");
 
 	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("C");
+	node4.text().set("M");
 
 	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("R");
+	node4.text().set("A");
 
 	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("P");
+	node1.text().set("T");
 
 	node2 = nodeImputArray.append_child("Imput");
-	node2.text().set("S");
+	node2.text().set("I");
 
 	node4 = nodeImputArray.append_child("Imput");
 	node4.text().set("C");
 
-	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("R");
+
+
+
+	
 
 	nodeCloud = root.append_child("Cloud");
 
@@ -560,16 +652,16 @@ void createConfig() {
 	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
-	nodeImage.text().set("CloudBoss4.png");
+	nodeImage.text().set("CloudBoss1.png");
 
 	nodeBoss = nodeCloud.append_child("IsBoss");
 	nodeBoss.text().set(true);
 
 	nodeRed = nodeCloud.append_child("Red");
-	nodeRed.text().set(155);
+	nodeRed.text().set(255);
 
 	nodeGreen = nodeCloud.append_child("Green");
-	nodeGreen.text().set(100);
+	nodeGreen.text().set(0);
 
 	nodeBlue = nodeCloud.append_child("Blue");
 	nodeBlue.text().set(0);
@@ -577,65 +669,7 @@ void createConfig() {
 	nodeImputArray = nodeCloud.append_child("ImputArray");
 
 	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("M");
-
-	node2 = nodeImputArray.append_child("Imput");
-	node2.text().set("I");
-
-	node3 = nodeImputArray.append_child("Imput");
-	node3.text().set("C");
-
-	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("H");
-
-	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("E");
-
-	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("L");
-
-	node2 = nodeImputArray.append_child("Imput");
-	node2.text().set("S");
-
-	node3 = nodeImputArray.append_child("Imput");
-	node3.text().set("I");
-
-	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("M");
-
-	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("A");
-
-	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("T");
-
-	node2 = nodeImputArray.append_child("Imput");
-	node2.text().set("I");
-
-	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("C");
-
-	nodeCloud = root.append_child("Cloud");
-
-	nodeImage = nodeCloud.append_child("Sprite");
-	nodeImage.text().set("CloudBoss5.png");
-
-	nodeBoss = nodeCloud.append_child("IsBoss");
-	nodeBoss.text().set(true);
-
-	nodeRed = nodeCloud.append_child("Red");
-	nodeRed.text().set(155);
-
-	nodeGreen = nodeCloud.append_child("Green");
-	nodeGreen.text().set(0);
-
-	nodeBlue = nodeCloud.append_child("Blue");
-	nodeBlue.text().set(100);
-
-	nodeImputArray = nodeCloud.append_child("ImputArray");
-
-	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("K");
+	node1.text().set("P");
 
 	node2 = nodeImputArray.append_child("Imput");
 	node2.text().set("S");
@@ -644,52 +678,34 @@ void createConfig() {
 	node3.text().set("M");
 
 	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("P");
+	node4.text().set("C");
 
 	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("I");
+	node4.text().set("R");
 
 	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("B");
+	node1.text().set("P");
 
 	node2 = nodeImputArray.append_child("Imput");
-	node2.text().set("H");
+	node2.text().set("S");
 
 	node3 = nodeImputArray.append_child("Imput");
-	node3.text().set("C");
+	node3.text().set("V");
 
 	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("W");
+	node4.text().set("C");
 
 	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("U");
+	node4.text().set("R");
 
 	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("T");
+	node1.text().set("P");
 
 	node2 = nodeImputArray.append_child("Imput");
-	node2.text().set("D");
+	node2.text().set("S");
 
 	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("A");
-
-	node2 = nodeImputArray.append_child("Imput");
-	node2.text().set("G");
-
-	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("Y");
-
-	node1 = nodeImputArray.append_child("Imput");
-	node1.text().set("E");
-
-	node2 = nodeImputArray.append_child("Imput");
-	node2.text().set("L");
-
-	node4 = nodeImputArray.append_child("Imput");
-	node4.text().set("O");
-
-	node2 = nodeImputArray.append_child("Imput");
-	node2.text().set("Z");
+	node4.text().set("C");
 
 	node4 = nodeImputArray.append_child("Imput");
 	node4.text().set("R");
@@ -783,7 +799,7 @@ int readConfig() {
 		auto root = docConfig.child("Root");
 		auto nodes = root.select_nodes("Cloud");
 		
-		vectorOfConfig.reserve(nodes.size());
+		
 		for (auto it = nodes.begin(); it != nodes.end(); it++)
 		{
 
@@ -815,8 +831,12 @@ int readConfig() {
 			}
 			
 		
+			if (newConfig.getIsBoss()) {
+				vectorOfConfigBoss.push_back(newConfig);
+			} else {
+				vectorOfConfigEasy.push_back(newConfig);
+			}
 			
-			vectorOfConfig.push_back(newConfig);
 		}
 
 
@@ -885,6 +905,7 @@ void saveInit() {
 
 int monMain()
 {
+	
 	int ret = 0;
 	ret = readConfig();
 	if (ret == -1) {
@@ -896,7 +917,8 @@ int monMain()
 
 	Engine mainEngine = Engine(hardMode);
 	mainEngine.setHighScore(tab);
-	mainEngine.setVectorOfConfig(vectorOfConfig);
+	mainEngine.setVectorOfConfigEasy(vectorOfConfigEasy);
+	mainEngine.setVectorOfConfigBoss(vectorOfConfigBoss);
 	mainEngine.launchMainMenu();
 
 	mainEngine.getHighScore(tab);

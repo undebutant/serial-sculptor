@@ -328,7 +328,7 @@ void Engine::endGame() {
 }
 
 
-void Engine::createNewCloud(int cloudToCreate) {
+void Engine::createNewCloud(int cloudToCreate,bool isBoss) {
 
 	
 
@@ -339,17 +339,31 @@ void Engine::createNewCloud(int cloudToCreate) {
 	cloudToAdd = new Cloud();
 	cloudToAdd->init();
 	
-	cloudToAdd->setColor(sf::Color(vectorOfConfig[cloudToCreate].getRed(),
-		vectorOfConfig[cloudToCreate].getGreen(), vectorOfConfig[cloudToCreate].getBlue()));
-	cloudToAdd->setTexture(vectorOfConfig[cloudToCreate].getSprite());
-	cloudToAdd->setIsBoss(vectorOfConfig[cloudToCreate].getIsBoss());
-	
-	
-	
-	auto vect = vectorOfConfig[cloudToCreate].getVectorOfKeyChar();
+	if (isBoss) {
+		cloudToAdd->setColor(sf::Color(vectorOfConfigBoss[cloudToCreate].getRed(),
+			vectorOfConfigBoss[cloudToCreate].getGreen(), vectorOfConfigBoss[cloudToCreate].getBlue()));
+		cloudToAdd->setTexture(vectorOfConfigBoss[cloudToCreate].getSprite());
+		cloudToAdd->setIsBoss(vectorOfConfigBoss[cloudToCreate].getIsBoss());
+		auto vect = vectorOfConfigBoss[cloudToCreate].getVectorOfKeyChar();
 
-	for (int i = 0; i < (int)vect.size(); i++) {
-		cloudToAdd->addKey(vect[i]);
+		for (int i = 0; i < (int)vect.size(); i++) {
+			cloudToAdd->addKey(vect[i]);
+		}
+
+	}
+	else {
+		cloudToAdd->setColor(sf::Color(vectorOfConfigEasy[cloudToCreate].getRed(),
+			vectorOfConfigEasy[cloudToCreate].getGreen(), vectorOfConfigEasy[cloudToCreate].getBlue()));
+		cloudToAdd->setTexture(vectorOfConfigEasy[cloudToCreate].getSprite());
+		cloudToAdd->setIsBoss(vectorOfConfigEasy[cloudToCreate].getIsBoss());
+
+
+
+		auto vect = vectorOfConfigEasy[cloudToCreate].getVectorOfKeyChar();
+
+		for (int i = 0; i < (int)vect.size(); i++) {
+			cloudToAdd->addKey(vect[i]);
+		}
 	}
 	
 	cloudToAdd->update();
@@ -373,8 +387,8 @@ void Engine::createNewCloud(int cloudToCreate) {
 
 void Engine::createNewRandomEasy() {
 
-	int i = rand() % 10;
-	createNewCloud(i);
+	int i = rand() % ((int)vectorOfConfigEasy.size());
+	createNewCloud(i,false);
 
 }
 
@@ -492,7 +506,7 @@ void Engine::update(float time) {
 			listOfOldClouds[i]->update(time);
 		}
 
-		int n = vague / 6;
+		int n = vague / ((int)vectorOfConfigBoss.size());
 
 		float spawnDelay = 2.f - (n*0.1f);
 		if (spawnDelay < 1) {
@@ -510,7 +524,7 @@ void Engine::update(float time) {
 				if (listOfClouds.empty()) {
 					phase = 1;
 					resetValue();
-					if (vague % 6 == 0) {
+					if (vague % ((int)vectorOfConfigBoss.size()) == 0) {
 						numberOfSpawnedBoss++;
 						if (hardMod) {
 							numberOfSpawnedBoss++;
@@ -545,30 +559,10 @@ void Engine::update(float time) {
 						maxBoss = 2 * maxBoss;
 					}
 					if (numberOfSpawnedBoss < maxBoss) {
-						if (vague % 6 == 1) {
-							createNewCloud(13);
-							numberOfSpawnedBoss++;
-						}
-						else if (vague % 6 == 2) {
-							createNewCloud(11);
-							numberOfSpawnedBoss++;
-						}
-						else if (vague % 6 == 3) {
-							createNewCloud(12);
-							numberOfSpawnedBoss++;
-						}
-						else if (vague % 6 == 4) {
-							createNewCloud(10);
-							numberOfSpawnedBoss++;
-						}
-						else if (vague % 6 == 5) {
-							createNewCloud(15);
-							numberOfSpawnedBoss++;
-						}
-						else if (vague % 6 == 0) {
-							createNewCloud(14);
-							numberOfSpawnedBoss++;
-						}
+						
+						createNewCloud(vague % ((int)vectorOfConfigBoss.size()),true);
+						numberOfSpawnedBoss++;
+						
 					}
 					if (numberOfSpawnedClouds%2 == 0) {
 						createNewRandomEasy();
@@ -722,11 +716,20 @@ void Engine::getHighScore(int tab[4]) {
 
 }
 
-void Engine::setVectorOfConfig(std::vector<Config> newvectorOfConfig) {
-	vectorOfConfig.clear();
+void Engine::setVectorOfConfigEasy(std::vector<Config> newvectorOfConfigEasy) {
+	vectorOfConfigEasy.clear();
 
-	for (int i = 0; i < (int)newvectorOfConfig.size(); i++) {
-		vectorOfConfig.push_back(newvectorOfConfig[i]);
+	for (int i = 0; i < (int)newvectorOfConfigEasy.size(); i++) {
+		vectorOfConfigEasy.push_back(newvectorOfConfigEasy[i]);
+	}
+
+}
+
+void Engine::setVectorOfConfigBoss(std::vector<Config> newvectorOfConfigBoss) {
+	vectorOfConfigBoss.clear();
+
+	for (int i = 0; i < (int)newvectorOfConfigBoss.size(); i++) {
+		vectorOfConfigBoss.push_back(newvectorOfConfigBoss[i]);
 	}
 
 }

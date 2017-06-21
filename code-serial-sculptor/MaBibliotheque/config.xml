@@ -130,26 +130,54 @@
 		</ImputArray>
 	</Cloud>
 	<Cloud>
-		<Sprite>CloudBoss1.png</Sprite>
+		<Sprite>CloudBoss5.png</Sprite>
 		<IsBoss>true</IsBoss>
-		<Red>255</Red>
+		<Red>155</Red>
 		<Green>0</Green>
-		<Blue>0</Blue>
+		<Blue>100</Blue>
 		<ImputArray>
-			<Imput>P</Imput>
+			<Imput>K</Imput>
 			<Imput>S</Imput>
 			<Imput>M</Imput>
-			<Imput>C</Imput>
-			<Imput>R</Imput>
 			<Imput>P</Imput>
-			<Imput>S</Imput>
-			<Imput>V</Imput>
+			<Imput>I</Imput>
+			<Imput>B</Imput>
+			<Imput>H</Imput>
 			<Imput>C</Imput>
+			<Imput>W</Imput>
+			<Imput>U</Imput>
+			<Imput>T</Imput>
+			<Imput>D</Imput>
+			<Imput>A</Imput>
+			<Imput>G</Imput>
+			<Imput>Y</Imput>
+			<Imput>E</Imput>
+			<Imput>L</Imput>
+			<Imput>O</Imput>
+			<Imput>Z</Imput>
 			<Imput>R</Imput>
-			<Imput>P</Imput>
-			<Imput>S</Imput>
+		</ImputArray>
+	</Cloud>
+	<Cloud>
+		<Sprite>CloudBoss4.png</Sprite>
+		<IsBoss>true</IsBoss>
+		<Red>155</Red>
+		<Green>100</Green>
+		<Blue>0</Blue>
+		<ImputArray>
+			<Imput>M</Imput>
+			<Imput>I</Imput>
 			<Imput>C</Imput>
-			<Imput>R</Imput>
+			<Imput>H</Imput>
+			<Imput>E</Imput>
+			<Imput>L</Imput>
+			<Imput>S</Imput>
+			<Imput>I</Imput>
+			<Imput>M</Imput>
+			<Imput>A</Imput>
+			<Imput>T</Imput>
+			<Imput>I</Imput>
+			<Imput>C</Imput>
 		</ImputArray>
 	</Cloud>
 	<Cloud>
@@ -208,53 +236,25 @@
 		</ImputArray>
 	</Cloud>
 	<Cloud>
-		<Sprite>CloudBoss4.png</Sprite>
+		<Sprite>CloudBoss1.png</Sprite>
 		<IsBoss>true</IsBoss>
-		<Red>155</Red>
-		<Green>100</Green>
+		<Red>255</Red>
+		<Green>0</Green>
 		<Blue>0</Blue>
 		<ImputArray>
-			<Imput>M</Imput>
-			<Imput>I</Imput>
-			<Imput>C</Imput>
-			<Imput>H</Imput>
-			<Imput>E</Imput>
-			<Imput>L</Imput>
-			<Imput>S</Imput>
-			<Imput>I</Imput>
-			<Imput>M</Imput>
-			<Imput>A</Imput>
-			<Imput>T</Imput>
-			<Imput>I</Imput>
-			<Imput>C</Imput>
-		</ImputArray>
-	</Cloud>
-	<Cloud>
-		<Sprite>CloudBoss5.png</Sprite>
-		<IsBoss>true</IsBoss>
-		<Red>155</Red>
-		<Green>0</Green>
-		<Blue>100</Blue>
-		<ImputArray>
-			<Imput>K</Imput>
-			<Imput>S</Imput>
-			<Imput>M</Imput>
 			<Imput>P</Imput>
-			<Imput>I</Imput>
-			<Imput>B</Imput>
-			<Imput>H</Imput>
+			<Imput>S</Imput>
+			<Imput>M</Imput>
 			<Imput>C</Imput>
-			<Imput>W</Imput>
-			<Imput>U</Imput>
-			<Imput>T</Imput>
-			<Imput>D</Imput>
-			<Imput>A</Imput>
-			<Imput>G</Imput>
-			<Imput>Y</Imput>
-			<Imput>E</Imput>
-			<Imput>L</Imput>
-			<Imput>O</Imput>
-			<Imput>Z</Imput>
+			<Imput>R</Imput>
+			<Imput>P</Imput>
+			<Imput>S</Imput>
+			<Imput>V</Imput>
+			<Imput>C</Imput>
+			<Imput>R</Imput>
+			<Imput>P</Imput>
+			<Imput>S</Imput>
+			<Imput>C</Imput>
 			<Imput>R</Imput>
 		</ImputArray>
 	</Cloud>
