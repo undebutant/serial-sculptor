@@ -43,6 +43,7 @@ public:
 	int getCurrentKeyIndice();
 	
 	void addKey(enum sf::Keyboard::Key key);
+	void addKey(char car);
 	void addSprite(SceneryItem newSprite);
 
 	int getAlterKeyListSize();

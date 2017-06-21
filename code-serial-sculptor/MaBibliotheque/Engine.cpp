@@ -348,67 +348,7 @@ void Engine::createNewCloud(int cloudToCreate) {
 	auto vect = vectorOfConfig[cloudToCreate].getVectorOfKeyChar();
 
 	for (int i = 0; i < (int)vect.size(); i++) {
-		char value = vect[i];
-		if (value == 'A') {
-			cloudToAdd->addKey(sf::Keyboard::A);
-		} else if (value == 'B') {
-			cloudToAdd->addKey(sf::Keyboard::B);
-		} else if (value == 'C') {
-			cloudToAdd->addKey(sf::Keyboard::C);
-		} else if (value == 'D') {
-			cloudToAdd->addKey(sf::Keyboard::D);
-		} else if (value == 'E') {
-			cloudToAdd->addKey(sf::Keyboard::E);
-		} else if (value == 'F') {
-			cloudToAdd->addKey(sf::Keyboard::F);
-		} else if (value == 'G') {
-			cloudToAdd->addKey(sf::Keyboard::G);
-		} else if (value == 'H') {
-			cloudToAdd->addKey(sf::Keyboard::H);
-		} else if (value == 'I') {
-			cloudToAdd->addKey(sf::Keyboard::I);
-		} else if (value == 'J') {
-			cloudToAdd->addKey(sf::Keyboard::J);
-		} else if (value == 'K') {
-			cloudToAdd->addKey(sf::Keyboard::K);
-		} else if (value == 'L') {
-			cloudToAdd->addKey(sf::Keyboard::L);
-		} else if (value == 'M') {
-			cloudToAdd->addKey(sf::Keyboard::M);
-		} else if (value == 'N') {
-			cloudToAdd->addKey(sf::Keyboard::N);
-		} else if (value == 'O') {
-			cloudToAdd->addKey(sf::Keyboard::O);
-		} else if (value == 'P') {
-			cloudToAdd->addKey(sf::Keyboard::P);
-		} else if (value == 'Q') {
-			cloudToAdd->addKey(sf::Keyboard::Q);
-		} else if (value == 'R') {
-			cloudToAdd->addKey(sf::Keyboard::R);
-		} else if (value == 'S') {
-			cloudToAdd->addKey(sf::Keyboard::S);
-		} else if (value == 'T') {
-			cloudToAdd->addKey(sf::Keyboard::T);
-		} else if (value == 'U') {
-			cloudToAdd->addKey(sf::Keyboard::U);
-		} else if (value == 'V') {
-			cloudToAdd->addKey(sf::Keyboard::V);
-		} else if (value == 'W') {
-			cloudToAdd->addKey(sf::Keyboard::W);
-		} else if (value == 'X') {
-			cloudToAdd->addKey(sf::Keyboard::X);
-		} else if (value == 'Y') {
-			cloudToAdd->addKey(sf::Keyboard::Y);
-		} else if (value == 'Z') {
-			cloudToAdd->addKey(sf::Keyboard::Z);
-		}
-		else {
-			assert(false);
-		}
-		
-		
-
-
+		cloudToAdd->addKey(vect[i]);
 	}
 	
 	cloudToAdd->update();

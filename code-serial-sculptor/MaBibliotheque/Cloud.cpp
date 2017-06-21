@@ -231,6 +231,90 @@ int Cloud::getCurrentKeyIndice() {
 }
 
 
+void Cloud::addKey(char car) {
+	if (car == 'A') {
+		addKey(sf::Keyboard::A);
+	}
+	else if (car == 'B') {
+		addKey(sf::Keyboard::B);
+	}
+	else if (car == 'C') {
+		addKey(sf::Keyboard::C);
+	}
+	else if (car == 'D') {
+		addKey(sf::Keyboard::D);
+	}
+	else if (car == 'E') {
+		addKey(sf::Keyboard::E);
+	}
+	else if (car == 'F') {
+		addKey(sf::Keyboard::F);
+	}
+	else if (car == 'G') {
+		addKey(sf::Keyboard::G);
+	}
+	else if (car == 'H') {
+		addKey(sf::Keyboard::H);
+	}
+	else if (car == 'I') {
+		addKey(sf::Keyboard::I);
+	}
+	else if (car == 'J') {
+		addKey(sf::Keyboard::J);
+	}
+	else if (car == 'K') {
+		addKey(sf::Keyboard::K);
+	}
+	else if (car == 'L') {
+		addKey(sf::Keyboard::L);
+	}
+	else if (car == 'M') {
+		addKey(sf::Keyboard::M);
+	}
+	else if (car == 'N') {
+		addKey(sf::Keyboard::N);
+	}
+	else if (car == 'O') {
+		addKey(sf::Keyboard::O);
+	}
+	else if (car == 'P') {
+		addKey(sf::Keyboard::P);
+	}
+	else if (car == 'Q') {
+		addKey(sf::Keyboard::Q);
+	}
+	else if (car == 'R') {
+		addKey(sf::Keyboard::R);
+	}
+	else if (car == 'S') {
+		addKey(sf::Keyboard::S);
+	}
+	else if (car == 'T') {
+		addKey(sf::Keyboard::T);
+	}
+	else if (car == 'U') {
+		addKey(sf::Keyboard::U);
+	}
+	else if (car == 'V') {
+		addKey(sf::Keyboard::V);
+	}
+	else if (car == 'W') {
+		addKey(sf::Keyboard::W);
+	}
+	else if (car == 'X') {
+		addKey(sf::Keyboard::X);
+	}
+	else if (car == 'Y') {
+		addKey(sf::Keyboard::Y);
+	}
+	else if (car == 'Z') {
+		addKey(sf::Keyboard::Z);
+	}
+	else {
+		assert(false);
+	}
+}
+
 void Cloud::addKey(sf::Keyboard::Key key) {
 	alterKeyList.push_back(key);
 
