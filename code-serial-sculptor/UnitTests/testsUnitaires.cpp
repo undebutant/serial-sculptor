@@ -68,6 +68,7 @@ TEST_F(CloudEasyTest, right_key_list_entered) {
 }
 
 TEST_F(CloudEasyTest, wrong_key_list_entered) {
+	EXPECT_EQ(CloudEasyToTest.getAlterKeyListSize(), 4);
 	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[0]), 1);
 	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[2]), 0);
 	EXPECT_EQ(CloudEasyToTest.tryKeyInput(CloudEasyToTest.getAlterKeyList()[1]), 1);

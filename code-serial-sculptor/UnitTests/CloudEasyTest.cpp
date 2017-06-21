@@ -1,10 +1,11 @@
-#include "../MaBibliotheque/CloudEasy1.h"
+#include "../MaBibliotheque/Cloud.h"
 #include "gtest/gtest.h"
 
 
 class CloudEasyTest : public::testing::Test {
 protected:
 	// All functions can be removed if its body is empty
+	Cloud CloudEasyToTest = Cloud();
 
 	CloudEasyTest() {
 		// You can do set-up work for each test here
@@ -20,7 +21,13 @@ protected:
 	virtual void SetUp() {
 		// Code here will be called immediately after the constructor (right
 		// before each test)
+		CloudEasyToTest = Cloud();
+		CloudEasyToTest.setColor(sf::Color(0, 255, 0));
 
+		CloudEasyToTest.addKey('A');
+		CloudEasyToTest.addKey('B');
+		CloudEasyToTest.addKey('C');
+		CloudEasyToTest.addKey('D');
 
 	}
 
@@ -32,5 +39,6 @@ protected:
 
 	// Objects declared here can be used by all tests in the test case for Foo
 
-	CloudEasy1 CloudEasyToTest = CloudEasy1();
+	
+	
 };

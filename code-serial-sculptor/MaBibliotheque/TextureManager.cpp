@@ -3,6 +3,12 @@
 #include <SFML/Graphics.hpp>
 
 
+static std::map<std::string, sf::Texture> textureLoaded;
+static sf::Font fontLoaded;
+
+static int height;
+static int width;
+
 bool loadTexture(std::string pathToTexture, std::string nameToStore) {
 	sf::Texture newTexture;
 
@@ -96,4 +102,19 @@ namespace TextureManager {
 	sf::Font getFont() {
 		return fontLoaded;
 	}
+
+
+	int getHeight() {
+		return height;
+	}
+	int getWidth() {
+		return width;
+	}
+	void setHeight(int newHeight) {
+		height = newHeight;
+	}
+	void setWidth(int newWidth) {
+		width = newWidth;
+	}
+
 }

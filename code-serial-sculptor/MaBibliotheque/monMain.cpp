@@ -22,6 +22,8 @@ pugi::xml_node arrayLoad;
 
 char source[] = "init.xml";
 
+
+
 void createConfig() {
 	// Creation of the config.xml for the first time to make sure we have a good xml file to work with
 	// Not use anymore
@@ -875,6 +877,12 @@ void readInit() {
 		pugi::xml_node nodeHard = root.append_child("HardMode");
 		nodeHard.append_attribute("isHardMode") = false;
 
+		pugi::xml_node node = root.append_child("Height");
+		node.text().set(1200);
+		
+		node = root.append_child("Width");
+		node.text().set(600);
+
 		doc.save_file(source);
 	}
 
@@ -888,6 +896,19 @@ void readInit() {
 	tab[1] = arrayLoad.attribute("hs1").as_int();
 	tab[2] = arrayLoad.attribute("hs2").as_int();
 	tab[3] = arrayLoad.attribute("hs3").as_int();
+
+	int height;
+
+	int width;
+
+	auto node = rootLoad.child("Height");
+	height = node.text().as_int();
+
+	node = rootLoad.child("Width");
+	width = node.text().as_int();
+
+	TextureManager::setHeight(height);
+	TextureManager::setWidth(width);
 
 	auto hardLoad = rootLoad.child("HardMode");
 

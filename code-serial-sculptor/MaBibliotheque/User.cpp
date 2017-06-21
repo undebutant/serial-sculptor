@@ -1,5 +1,6 @@
 #include "User.h"
 #include <iostream>
+#include "TextureManager.h"
 
 
 User::User() : health(3) {
@@ -22,8 +23,8 @@ void User::updateTexture(bool isRight) {
 
 void User::init() {
 	sprite.setTexture("sculptor_right.png");
-	sprite.setSize(150,200);
-	sprite.setPosition(525,400);
+	sprite.setSize((float)TextureManager::getHeight()*150/1200, (float)TextureManager::getWidth()*200/600);
+	sprite.setPosition((float)TextureManager::getHeight()*525/1200, (float)TextureManager::getWidth()*400/600);
 }
 
 void User::update(float time) {

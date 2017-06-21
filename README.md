@@ -21,6 +21,5 @@ Short project on C++ for second year at Telecom Sudparis done in one month.
 
 ## TODO
 
-1. Make some global variable 
-2. Adapte Engine,Item
-3. Make Texture Loader Great Again
+
+1. Make Texture Loader Great Again

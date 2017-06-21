@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <Root>
-	<Array hs0="1" hs1="1" hs2="0" hs3="0" />
+	<Array hs0="4" hs1="3" hs2="2" hs3="1" />
 	<HardMode isHardMode="false" />
+	<Height>1900</Height>
+	<Width>1000</Width>
 </Root>

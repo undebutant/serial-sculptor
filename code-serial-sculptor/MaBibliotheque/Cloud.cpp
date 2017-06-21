@@ -6,6 +6,7 @@
 
 #include "SceneryRectangleBasic.h"
 #include "Cloud.h"
+#include "TextureManager.h"
 
 
 Cloud::Cloud(){
@@ -21,8 +22,8 @@ void Cloud::init() {
 	currentKeyIndice = 0;
 	isBoss = false;
 	isEntered = false;
-	setPosition(10, 600);
-	setSpeed(10.0);
+	setPosition((float)TextureManager::getHeight()*10/1200, (float)TextureManager::getWidth());
+	setSpeed((float)TextureManager::getHeight()*10.0f/1200);
 	isRight = false;
 	isTimeOut = false;
 }
@@ -32,15 +33,18 @@ void Cloud::update() {
 	int n = alterKeyList.size();
 	auto pos = spriteImage.getPosition();
 
+	int centint = 100 * TextureManager::getHeight() / 1200;
+	float centfloatx = 100.0f * ((float)TextureManager::getHeight()) / 1200;
+	float centfloaty = 100.0f * ((float)TextureManager::getWidth()) / 600;
 
 	for (int i = 0; i < n; i++) {
-		float temp = (float)(100.0 / n);
+		float temp = (float)(centfloatx / n);
 
 		if (isBoss) {
-			spriteRectangle.setSize(2*(100-temp*currentKeyIndice), 2 * 100);
+			spriteRectangle.setSize(2*(centfloatx -temp*currentKeyIndice), 2 * centfloaty);
 		}
 		else {
-			spriteRectangle.setSize(100 - temp*currentKeyIndice, 100);
+			spriteRectangle.setSize(centfloatx - temp*currentKeyIndice, centfloaty);
 		}
 		if (isRight) {
 			if (isBoss) {
@@ -57,10 +61,10 @@ void Cloud::update() {
 
 	for (int i = currentKeyIndice; i < n; i++) {
 		if (isBoss) {
-			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(25), pos.y - 50);
+			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(centfloatx/4), pos.y - centfloaty/2);
 		}
 		else {
-			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(25), pos.y - 50);
+			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(centfloatx/4), pos.y - centfloaty/2);
 		}
 	}
 }
@@ -69,10 +73,12 @@ void Cloud::update(float time) {
 	if (!isEntered) {
 		auto pos = spriteImage.getPosition();
 		float y = pos.y;
-		y -= time*(150);
-		float yValue = 450;
+		y -= time*((float)TextureManager::getWidth()*150/600);
+
+		float yValue = (float)TextureManager::getWidth()*450/600;
 		if (isBoss) {
-			yValue -= 100;
+			yValue -= (float)TextureManager::getWidth()*100/600;
+			y -= time*((float)TextureManager::getWidth() * 150 / 600);
 		}
 		if (y <= yValue) {
 			y = yValue;
@@ -104,10 +110,10 @@ void Cloud::update(float time) {
 	else {
 		auto pos = spriteImage.getPosition();
 		float y = pos.y;
-		y -= time*(150);
+		y -= time*((float)TextureManager::getWidth()*150/600);
 		
 		spriteImage.setPosition(pos.x, y);
-		if (y <= -200) {
+		if (y <= -((float)TextureManager::getWidth()*200/600)) {
 			isTimeOut = true;
 		}
 	}
@@ -178,7 +184,7 @@ void Cloud::setSprite(std::string newSpritePath) {
 }
 
 void Cloud::setTexture(std::string texture) {
-	spriteImage.setSize(100, 100);
+	spriteImage.setSize((float)TextureManager::getHeight()*100/1200, (float)TextureManager::getWidth()*100/600);
 	spriteImage.setTexture(texture);
 
 	
@@ -194,7 +200,7 @@ void Cloud::setIsRight(bool newBool) {
 
 	if (newBool) {
 		auto pos = getPosition();
-		setPosition(1200 - pos.x - spriteImage.getSize().x, pos.y);
+		setPosition((float)TextureManager::getHeight() - pos.x - spriteImage.getSize().x, pos.y);
 	}
 	update();
 }
@@ -209,9 +215,8 @@ bool Cloud::getIsBoss() {
 void Cloud::setIsBoss(bool newBool) {
 	isBoss = newBool;
 	if (isBoss) {
-		setSize(200, 200);
-		auto pos = getPosition();
-		setPosition(pos.x, pos.y - 100);
+		setSize((float)TextureManager::getHeight()*200/1200, (float)TextureManager::getWidth()*200/600);
+		
 	}
 }
 
@@ -221,6 +226,7 @@ void Cloud::setCurrentKeyIndice(int newIndice) {
 
 void Cloud::setIsDone() {
 	setCurrentKeyIndice(getAlterKeyListSize());
+	update();
 }
 
 
@@ -317,7 +323,7 @@ void Cloud::addKey(sf::Keyboard::Key key) {
 	alterKeyList.push_back(key);
 
 	SceneryItem newKeySprite;
-	newKeySprite.setSize(25, 25);
+	newKeySprite.setSize((float)TextureManager::getHeight()*25/1200, (float)TextureManager::getWidth()*25/600);
 	newKeySprite.setPosition(0, 0);
 
 	if (key == sf::Keyboard::A) {
