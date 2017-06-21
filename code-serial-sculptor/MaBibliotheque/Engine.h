@@ -54,6 +54,7 @@ public:
 
 private:
 	
+	bool drawSculptor;
 
 	float invulnerable;
 

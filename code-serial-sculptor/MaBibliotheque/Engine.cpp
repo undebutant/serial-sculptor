@@ -19,7 +19,7 @@ Engine::~Engine() {
 
 void Engine::init() {
 	invulnerable = 1;
-
+	drawSculptor = true;
 	srand((unsigned int)time(NULL));
 	
 
@@ -657,8 +657,15 @@ void Engine::drawAllInGame(sf::RenderWindow &renderer) {
 	if (gameEnded) {
 		renderer.draw(failTitle);
 	}
-	
-	sculptor.draw(renderer);
+	if (invulnerable>=1) {
+		sculptor.draw(renderer);
+	}
+	else {
+		if (drawSculptor) {
+			sculptor.draw(renderer);
+		}
+		drawSculptor = !drawSculptor;
+	}
 }
 
 void Engine::keyPressed(Keyboard::Key keyPressed) {
