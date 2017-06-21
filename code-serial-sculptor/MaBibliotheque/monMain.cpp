@@ -2,6 +2,7 @@
 
 #include "TextureManager.h"
 #include "Engine.h"
+#include "Config.h"
 #include <c:/Software/pugixml-1.8/src/pugixml.hpp>
 
 
@@ -12,6 +13,8 @@ using namespace sf;
 int monMain()
 {
 	
+	// Creation of the config.xml for the first time
+	/*
 	char config[] = "config.xml";
 	pugi::xml_document docConfig;
 	
@@ -755,10 +758,63 @@ int monMain()
 	node4.text().set("E");
 
 	docConfig.save_file(config);
-	
+	*/
+
+	//reading the config.xml
+	char sourceConfig[] = "config.xml";
+	std::vector<Config> vectorOfConfig;
+	pugi::xml_document docConfig;
+	pugi::xml_parse_result resultConfig = docConfig.load_file(sourceConfig);
+	if (resultConfig)
+	{
+		std::cout << "XML [" << sourceConfig << "] parsed without errors, attr value: [" << docConfig.child("node").attribute("attr").value() << "]\n\n";
+		auto root = docConfig.child("Root");
+		auto nodes = root.select_nodes("Cloud");
+		cout << "size = " << nodes.size() << endl;
+		for (auto it = nodes.begin(); it != nodes.end(); it++)
+		{
+			std::cout << "New Config" << std::endl;
+
+			Config newConfig;
+			newConfig.setSprite(it->node().child("Sprite").text().as_string());
+			std::cout << "Sprite : " << newConfig.getSprite() << std::endl;
+
+			newConfig.setIsBoss(it->node().child("IsBoss").text().as_bool());
+			std::cout << "IsBoss : " << newConfig.getIsBoss() << std::endl;
+
+			newConfig.setRed(it->node().child("Red").text().as_int());
+			std::cout << "Red : " << newConfig.getRed() << std::endl;
+
+			newConfig.setGreen(it->node().child("Green").text().as_int());
+			std::cout << "Green : " << newConfig.getGreen() << std::endl;
+
+			newConfig.setBlue(it->node().child("Blue").text().as_int());
+			std::cout << "Blue : " << newConfig.getBlue() << std::endl;
+
+			auto nodesKey = it->node().child("ImputArray").select_nodes("Imput");
+
+			std::cout << "Size : " << nodesKey.size() << std::endl;
+
+			for (auto key = nodesKey.begin(); key != nodesKey.end(); key++)
+			{
+				std::string value = key->node().text().as_string();
+				newConfig.addKeyChar(value[0]);
+			}
+			auto vect = newConfig.getVectorOfKeyChar();
+			std::cout << "KeyCharVect : " << std::endl;
+			for (int i = 0; i < (int)vect.size(); i++) {
+				std::cout << "Value ["<< i <<"] : " << vect[i] << std::endl;
+			}
+			vectorOfConfig.push_back(newConfig);
+		}
 
 
-	
+	}
+	else
+	{
+		std::cout << "Parse Failled For Config.xml" << endl;
+		return 0;
+	}
 	
 	char source[] = "init.xml";
 	pugi::xml_document doc;
@@ -807,6 +863,7 @@ int monMain()
 
 	Engine mainEngine = Engine(hardMode);
 	mainEngine.setHighScore(tab);
+	mainEngine.setVectorOfConfig(vectorOfConfig);
 	mainEngine.launchMainMenu();
 
 	mainEngine.getHighScore(tab);

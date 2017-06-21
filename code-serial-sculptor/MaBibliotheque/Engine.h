@@ -8,6 +8,7 @@
 #include "Sculptor.h"
 #include "SceneryRectangleBasic.h"
 #include "SceneryItem.h"
+#include "Config.h"
 
 #include "CloudBoss1.h"
 #include "CloudBoss2.h"
@@ -66,8 +67,11 @@ public:
 
 	void getHighScore(int tab[4]);
 
+	void setVectorOfConfig(std::vector<Config> newvectorOfConfig);
+
 private:
 	
+	std::vector<Config> vectorOfConfig;
 
 	std::vector<int> topScores;
 

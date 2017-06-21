@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Config.h"
 
 using namespace std;
 using namespace sf;
@@ -713,5 +714,14 @@ void Engine::getHighScore(int tab[4]) {
 	}
 
 	
+
+}
+
+void Engine::setVectorOfConfig(std::vector<Config> newvectorOfConfig) {
+	vectorOfConfig.clear();
+
+	for (int i = 0; i < (int)newvectorOfConfig.size(); i++) {
+		vectorOfConfig.push_back(newvectorOfConfig[i]);
+	}
 
 }

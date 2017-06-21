@@ -149,6 +149,7 @@
     <ClCompile Include="CloudEasy7.cpp" />
     <ClCompile Include="CloudEasy8.cpp" />
     <ClCompile Include="CloudEasy9.cpp" />
+    <ClCompile Include="Config.cpp" />
     <ClCompile Include="SceneryRectangleBasic.cpp" />
     <ClCompile Include="SceneryItem.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="CloudEasy7.h" />
     <ClInclude Include="CloudEasy8.h" />
     <ClInclude Include="CloudEasy9.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="SceneryRectangleBasic.h" />
     <ClInclude Include="SceneryItem.h" />
     <ClInclude Include="Engine.h" />
