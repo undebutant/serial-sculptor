@@ -18,6 +18,8 @@ Engine::~Engine() {
 }
 
 void Engine::init() {
+	invulnerable = 1;
+
 	srand((unsigned int)time(NULL));
 	
 
@@ -474,6 +476,9 @@ bool Engine::isHPLost(bool isCloudRight, bool isBoss, int posXcloud) {
 
 void Engine::update(float time) {
 	if (!gameEnded) {
+		if (invulnerable < 1) {
+			invulnerable += time;
+		}
 		timeUntilNextSpawn += time;
 		for (int i = 0; i < (int)listOfClouds.size(); i++) {
 			listOfClouds[i]->update(time);
@@ -661,12 +666,18 @@ void Engine::keyPressed(Keyboard::Key keyPressed) {
 		if (!listOfClouds.empty()) {
 			bool a = listOfClouds.back()->tryKeyInput(keyPressed);
 			if (!a) {
-				sculptor.decrHealth(1);
-				musicBadPtr->play();
-				if (sculptor.getHealth() == 0) {
-					gameEnded = true;
-					timeUntilNextSpawn = 0;
+				if (invulnerable >= 1) {
+					invulnerable = 0;
+					sculptor.decrHealth(1);
+					musicBadPtr->play();
+					if (sculptor.getHealth() == 0) {
+						gameEnded = true;
+						timeUntilNextSpawn = 0;
+					}
 				}
+			}
+			else {
+				invulnerable = 1;
 			}
 		}
 	}

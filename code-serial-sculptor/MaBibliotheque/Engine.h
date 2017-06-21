@@ -54,6 +54,9 @@ public:
 
 private:
 	
+
+	float invulnerable;
+
 	std::vector<Config> vectorOfConfig;
 
 	std::vector<int> topScores;
