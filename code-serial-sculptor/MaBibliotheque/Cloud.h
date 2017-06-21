@@ -4,6 +4,7 @@
 
 #include "Item.h"
 #include "SceneryItem.h"
+#include "SceneryRectangleBasic.h"
 
 
 
@@ -44,7 +45,7 @@ public:
 	
 	void addKey(enum sf::Keyboard::Key key);
 	void addKey(char car);
-	void addSprite(SceneryItem newSprite);
+	
 
 	int getAlterKeyListSize();
 
@@ -58,7 +59,7 @@ private:
 	friend std::ostream& operator<<(std::ostream&, const Cloud&);
 
 	SceneryItem spriteImage;
-	std::vector<SceneryItem> spriteList;
+	SceneryRectangleBasic spriteRectangle;
 	std::vector<SceneryItem> keyItemList;
 
 	float timer = 1;

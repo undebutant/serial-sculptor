@@ -32,30 +32,26 @@ void Cloud::update() {
 	int n = alterKeyList.size();
 	auto pos = spriteImage.getPosition();
 
+
 	for (int i = 0; i < n; i++) {
 		float temp = (float)(100.0 / n);
 
 		if (isBoss) {
-			spriteList[i].setSize(2 * temp, 2 * 100);
+			spriteRectangle.setSize(2*(100-temp*currentKeyIndice), 2 * 100);
 		}
 		else {
-			spriteList[i].setSize(temp, 100);
+			spriteRectangle.setSize(100 - temp*currentKeyIndice, 100);
 		}
 		if (isRight) {
 			if (isBoss) {
-				spriteList[i].setPosition(pos.x + (temp)*(2 * i), pos.y);
+				spriteRectangle.setPosition(pos.x + 2*temp*currentKeyIndice, pos.y);
 			}
 			else {
-				spriteList[i].setPosition(pos.x + (temp)*(i), pos.y);
+				spriteRectangle.setPosition(pos.x+temp*currentKeyIndice, pos.y);
 			}
 		}
 		else {
-			if (isBoss) {
-				spriteList[i].setPosition(pos.x + (temp)*(2 * n - 2 * i - 2), pos.y);
-			}
-			else {
-				spriteList[i].setPosition(pos.x + (temp)*(n - i - 1), pos.y);
-			}
+			spriteRectangle.setPosition(pos.x, pos.y);
 		}
 	}
 
@@ -119,9 +115,8 @@ void Cloud::update(float time) {
 
 void Cloud::draw(sf::RenderTarget &target) {
 	spriteImage.draw(target);
-	for (int i = currentKeyIndice; i < ((int)alterKeyList.size()); i++) {
-		spriteList[i].draw(target);
-	}
+	spriteRectangle.draw(target);
+	
 
 	
 }
@@ -185,6 +180,9 @@ void Cloud::setSprite(std::string newSpritePath) {
 void Cloud::setTexture(std::string texture) {
 	spriteImage.setSize(100, 100);
 	spriteImage.setTexture(texture);
+
+	
+	spriteRectangle.setColor(color);
 }
 
 void Cloud::setSpeed(float newSpeed) {
@@ -318,10 +316,6 @@ void Cloud::addKey(char car) {
 void Cloud::addKey(sf::Keyboard::Key key) {
 	alterKeyList.push_back(key);
 
-	SceneryRectangleBasic newSprite;
-	newSprite.setColor(color);
-	addSprite(newSprite);
-
 	SceneryItem newKeySprite;
 	newKeySprite.setSize(25, 25);
 	newKeySprite.setPosition(0, 0);
@@ -411,9 +405,7 @@ void Cloud::addKey(sf::Keyboard::Key key) {
 	keyItemList.push_back(newKeySprite);
 }
 
-void Cloud::addSprite(SceneryItem newSprite) {
-	spriteList.push_back(newSprite);
-}
+
 
 
 int Cloud::getAlterKeyListSize() {
@@ -426,6 +418,7 @@ bool Cloud::tryKeyInput(sf::Keyboard::Key key) {
 		if (key == alterKeyList[currentKeyIndice]) {
 			currentKeyIndice++;
 			timer = 0;
+			update();
 			return true;
 		}
 		else {
