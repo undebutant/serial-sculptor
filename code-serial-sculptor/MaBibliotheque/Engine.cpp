@@ -327,7 +327,6 @@ void Engine::endGame() {
 
 void Engine::createNewCloud(int cloudToCreate) {
 	Cloud *cloudToAdd;
-	vector<unique_ptr<Cloud>> swapVector;
 
 	if (cloudToCreate == 1) {
 		cloudToAdd = new CloudEasy1();
@@ -375,13 +374,9 @@ void Engine::createNewCloud(int cloudToCreate) {
 	}
 
 	isRight = !isRight;
-	swapVector.push_back(move(ptrCloudToAdd));
 
-	for (int i = 0; i < (int)listOfClouds.size(); i++) {
-		swapVector.push_back(move(listOfClouds[i]));
-	}
+	listOfClouds.insert(listOfClouds.begin(), move(ptrCloudToAdd));
 
-	listOfClouds.swap(swapVector);
 }
 
 void Engine::createNewRandomEasy() {
@@ -522,6 +517,9 @@ void Engine::update(float time) {
 					resetValue();
 					if (vague % 6 == 0) {
 						numberOfSpawnedBoss++;
+						if (hardMod) {
+							numberOfSpawnedBoss++;
+						}
 					}
 				}
 			}
