@@ -18,3 +18,9 @@ Short project on C++ for second year at Telecom Sudparis done in one month.
 * Special thanks to Michel Simatic for accepting to appear in the game!
 * Music Provided By NoCopyrightSounds : https://www.youtube.com/watch?v=FseAiTb8Se0
 * All sound effects come from http://www.freesound.org
+
+## TODO
+
+1. Make some global variable 
+2. Adapte Engine,Item
+3. Make Texture Loader Great Again
