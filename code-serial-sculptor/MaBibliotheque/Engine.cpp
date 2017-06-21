@@ -676,9 +676,7 @@ void Engine::keyPressed(Keyboard::Key keyPressed) {
 					}
 				}
 			}
-			else {
-				invulnerable = 1;
-			}
+			
 		}
 	}
 }
