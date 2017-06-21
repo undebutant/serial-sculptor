@@ -43,6 +43,10 @@ std::vector<char> Config::getVectorOfKeyChar() {
 	return vectorOfKeyChar;
 }
 
+void Config::reserveVectorOfKeyChar(int n) {
+	vectorOfKeyChar.reserve(n);
+}
+
 
 Config::Config()
 {

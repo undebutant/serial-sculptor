@@ -24,6 +24,8 @@ public:
 	void setSprite(std::string newString);
 	std::string getSprite();
 
+	void reserveVectorOfKeyChar(int n);
+
 	void addKeyChar(char newKeyChar);
 	std::vector<char> getVectorOfKeyChar();
 

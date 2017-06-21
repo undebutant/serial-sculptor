@@ -22,7 +22,8 @@ pugi::xml_node arrayLoad;
 char source[] = "init.xml";
 
 void createConfig() {
-	// Creation of the config.xml for the first time
+	// Creation of the config.xml for the first time to make sure we have a good xml file to work with
+	// Not use anymore
 	
 	char config[] = "config.xml";
 	pugi::xml_document docConfig;
@@ -781,6 +782,8 @@ int readConfig() {
 		std::cout << "XML [" << sourceConfig << "] parsed without errors, attr value: [" << docConfig.child("node").attribute("attr").value() << "]\n\n";
 		auto root = docConfig.child("Root");
 		auto nodes = root.select_nodes("Cloud");
+		
+		vectorOfConfig.reserve(nodes.size());
 		for (auto it = nodes.begin(); it != nodes.end(); it++)
 		{
 
@@ -803,6 +806,7 @@ int readConfig() {
 			auto nodesKey = it->node().child("ImputArray").select_nodes("Imput");
 
 			
+			newConfig.reserveVectorOfKeyChar(nodesKey.size());
 
 			for (auto key = nodesKey.begin(); key != nodesKey.end(); key++)
 			{
