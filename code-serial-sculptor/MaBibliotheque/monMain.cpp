@@ -20,10 +20,13 @@ int monMain()
 
 
 	auto root = docConfig.append_child("Root");
-	pugi::xml_node nodeCloud = root.append_child("CloudEasy");
+	pugi::xml_node nodeCloud = root.append_child("Cloud");
 
 	pugi::xml_node nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy1.png");
+
+	pugi::xml_node nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	pugi::xml_node nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(0);
@@ -50,10 +53,13 @@ int monMain()
 
 	
 
-	nodeCloud = root.append_child("CloudEasy");
+	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy2.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(0);
@@ -78,10 +84,13 @@ int monMain()
 	node4 = nodeImputArray.append_child("Imput");
 	node4.text().set("O");
 
-	nodeCloud = root.append_child("CloudEasy");
+	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy3.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(100);
@@ -103,10 +112,13 @@ int monMain()
 	node3 = nodeImputArray.append_child("Imput");
 	node3.text().set("N");
 
-	nodeCloud = root.append_child("CloudEasy");
+	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy4.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(100);
@@ -129,10 +141,13 @@ int monMain()
 	node3.text().set("P");
 
 
-	nodeCloud = root.append_child("CloudEasy");
+	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy5.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(200);
@@ -155,10 +170,13 @@ int monMain()
 	node3.text().set("M");
 
 
-	nodeCloud = root.append_child("CloudEasy");
+	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy6.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(0);
@@ -180,10 +198,13 @@ int monMain()
 	node3 = nodeImputArray.append_child("Imput");
 	node3.text().set("T");
 
-	nodeCloud = root.append_child("CloudEasy");
+	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy7.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(200);
@@ -205,10 +226,15 @@ int monMain()
 	node3 = nodeImputArray.append_child("Imput");
 	node3.text().set("L");
 
-	nodeCloud = root.append_child("CloudEasy");
+	
+
+	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy8.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(0);
@@ -239,10 +265,13 @@ int monMain()
 	node4 = nodeImputArray.append_child("Imput");
 	node4.text().set("N");
 
-	nodeCloud = root.append_child("CloudEasy");
+	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy9.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(255);
@@ -264,10 +293,13 @@ int monMain()
 	node3 = nodeImputArray.append_child("Imput");
 	node3.text().set("C");
 
-	nodeCloud = root.append_child("CloudEasy");
+	nodeCloud = root.append_child("Cloud");
 
 	nodeImage = nodeCloud.append_child("Sprite");
 	nodeImage.text().set("CloudEasy10.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(false);
 
 	nodeRed = nodeCloud.append_child("Red");
 	nodeRed.text().set(20);
@@ -302,6 +334,426 @@ int monMain()
 	node4.text().set("E");
 
 		
+	nodeCloud = root.append_child("Cloud");
+
+	nodeImage = nodeCloud.append_child("Sprite");
+	nodeImage.text().set("CloudBoss1.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(true);
+
+	nodeRed = nodeCloud.append_child("Red");
+	nodeRed.text().set(255);
+
+	nodeGreen = nodeCloud.append_child("Green");
+	nodeGreen.text().set(0);
+
+	nodeBlue = nodeCloud.append_child("Blue");
+	nodeBlue.text().set(0);
+
+	nodeImputArray = nodeCloud.append_child("ImputArray");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("P");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("S");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("M");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("C");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("R");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("P");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("S");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("V");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("C");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("R");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("P");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("S");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("C");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("R");
+
+	nodeCloud = root.append_child("Cloud");
+
+	nodeImage = nodeCloud.append_child("Sprite");
+	nodeImage.text().set("CloudBoss2.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(true);
+
+	nodeRed = nodeCloud.append_child("Red");
+	nodeRed.text().set(0);
+
+	nodeGreen = nodeCloud.append_child("Green");
+	nodeGreen.text().set(255);
+
+	nodeBlue = nodeCloud.append_child("Blue");
+	nodeBlue.text().set(0);
+
+	nodeImputArray = nodeCloud.append_child("ImputArray");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("L");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("O");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("U");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("I");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("S");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("B");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("A");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("P");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("T");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("I");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("S");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("T");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("E");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("T");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("R");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("A");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("I");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("L");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("I");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("N");
+
+	nodeCloud = root.append_child("Cloud");
+
+	nodeImage = nodeCloud.append_child("Sprite");
+	nodeImage.text().set("CloudBoss3.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(true);
+
+	nodeRed = nodeCloud.append_child("Red");
+	nodeRed.text().set(0);
+
+	nodeGreen = nodeCloud.append_child("Green");
+	nodeGreen.text().set(0);
+
+	nodeBlue = nodeCloud.append_child("Blue");
+	nodeBlue.text().set(255);
+
+	nodeImputArray = nodeCloud.append_child("ImputArray");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("G");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("U");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("I");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("L");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("L");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("A");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("U");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("M");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("E");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("G");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("O");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("N");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("T");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("H");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("I");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("E");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("R");
+
+	nodeCloud = root.append_child("Cloud");
+
+	nodeImage = nodeCloud.append_child("Sprite");
+	nodeImage.text().set("CloudBoss4.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(true);
+
+	nodeRed = nodeCloud.append_child("Red");
+	nodeRed.text().set(155);
+
+	nodeGreen = nodeCloud.append_child("Green");
+	nodeGreen.text().set(100);
+
+	nodeBlue = nodeCloud.append_child("Blue");
+	nodeBlue.text().set(0);
+
+	nodeImputArray = nodeCloud.append_child("ImputArray");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("M");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("I");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("C");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("H");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("E");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("L");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("S");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("I");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("M");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("A");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("T");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("I");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("C");
+
+	nodeCloud = root.append_child("Cloud");
+
+	nodeImage = nodeCloud.append_child("Sprite");
+	nodeImage.text().set("CloudBoss5.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(true);
+
+	nodeRed = nodeCloud.append_child("Red");
+	nodeRed.text().set(155);
+
+	nodeGreen = nodeCloud.append_child("Green");
+	nodeGreen.text().set(0);
+
+	nodeBlue = nodeCloud.append_child("Blue");
+	nodeBlue.text().set(100);
+
+	nodeImputArray = nodeCloud.append_child("ImputArray");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("K");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("S");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("M");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("P");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("I");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("B");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("H");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("C");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("W");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("U");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("T");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("D");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("A");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("G");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("Y");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("E");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("L");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("O");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("Z");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("R");
+
+	nodeCloud = root.append_child("Cloud");
+
+	nodeImage = nodeCloud.append_child("Sprite");
+	nodeImage.text().set("CloudBoss6.png");
+
+	nodeBoss = nodeCloud.append_child("IsBoss");
+	nodeBoss.text().set(true);
+
+	nodeRed = nodeCloud.append_child("Red");
+	nodeRed.text().set(0);
+
+	nodeGreen = nodeCloud.append_child("Green");
+	nodeGreen.text().set(155);
+
+	nodeBlue = nodeCloud.append_child("Blue");
+	nodeBlue.text().set(100);
+
+	nodeImputArray = nodeCloud.append_child("ImputArray");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("T");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("E");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("L");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("E");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("C");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("O");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("M");
+
+	node3 = nodeImputArray.append_child("Imput");
+	node3.text().set("S");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("U");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("D");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("G");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("R");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("E");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("N");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("O");
+
+	node1 = nodeImputArray.append_child("Imput");
+	node1.text().set("B");
+
+	node2 = nodeImputArray.append_child("Imput");
+	node2.text().set("L");
+
+	node4 = nodeImputArray.append_child("Imput");
+	node4.text().set("E");
+
 	docConfig.save_file(config);
 	
 
