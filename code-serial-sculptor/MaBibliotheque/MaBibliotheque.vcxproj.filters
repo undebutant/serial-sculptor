@@ -48,54 +48,6 @@
     <ClCompile Include="SceneryRectangleBasic.cpp">
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
-    <ClCompile Include="CloudEasy1.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudBoss1.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudEasy2.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudEasy3.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudEasy4.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudEasy5.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudEasy6.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudEasy7.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudEasy8.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudEasy9.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudEasy10.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudBoss6.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudBoss5.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudBoss4.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudBoss3.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="CloudBoss2.cpp">
-      <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
@@ -129,54 +81,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="SceneryRectangleBasic.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudBoss1.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy1.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy2.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy3.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy4.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy5.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy6.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy7.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy8.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy9.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudEasy10.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudBoss2.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudBoss3.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudBoss4.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudBoss5.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CloudBoss6.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
