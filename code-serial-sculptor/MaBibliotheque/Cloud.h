@@ -49,7 +49,7 @@ public:
 
 	bool tryKeyInput(enum sf::Keyboard::Key key);
 
-	virtual bool isDone() = 0;
+	virtual bool isDone();
 	bool getIsTimeOut();
 	
 

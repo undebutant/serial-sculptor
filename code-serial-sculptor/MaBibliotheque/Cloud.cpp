@@ -210,9 +210,11 @@ bool Cloud::getIsBoss() {
 
 void Cloud::setIsBoss(bool newBool) {
 	isBoss = newBool;
-	setSize(200, 200);
-	auto pos = getPosition();
-	setPosition(pos.x, pos.y - 100);
+	if (isBoss) {
+		setSize(200, 200);
+		auto pos = getPosition();
+		setPosition(pos.x, pos.y - 100);
+	}
 }
 
 void Cloud::setCurrentKeyIndice(int newIndice) {
@@ -368,4 +370,8 @@ std::ostream& operator<<(std::ostream &strm, const Cloud &a) {
 	}
 
 	return strm << "Nuage (keyVector.size = " << a.alterKeyList.size()<< ", " << keys.str() << ")";
+}
+
+bool Cloud::isDone() {
+	return (getCurrentKeyIndice() == getAlterKeyListSize());
 }

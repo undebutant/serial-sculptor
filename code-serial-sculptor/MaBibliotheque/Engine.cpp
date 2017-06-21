@@ -327,42 +327,92 @@ void Engine::endGame() {
 
 
 void Engine::createNewCloud(int cloudToCreate) {
+
+	cout << "cloud needed : " << cloudToCreate << endl;
+
 	Cloud *cloudToAdd;
 
-	if (cloudToCreate == 1) {
-		cloudToAdd = new CloudEasy1();
-	}	else if (cloudToCreate == 2) {
-		cloudToAdd = new CloudEasy2();
-	}	else if (cloudToCreate == 3) {
-		cloudToAdd = new CloudEasy3();
-	}	else if (cloudToCreate == 4) {
-		cloudToAdd = new CloudEasy4();
-	}	else if (cloudToCreate == 5) {
-		cloudToAdd = new CloudEasy5();
-	}	else if (cloudToCreate == 6) {
-		cloudToAdd = new CloudEasy6();
-	}	else if (cloudToCreate == 7) {
-		cloudToAdd = new CloudEasy7();
-	}   else if (cloudToCreate == 8) {
-		cloudToAdd = new CloudEasy8();
-	}	else if (cloudToCreate == 9) {
-		cloudToAdd = new CloudEasy9();
-	}	else if (cloudToCreate == 10) {
-		cloudToAdd = new CloudEasy10();
-	}   else if (cloudToCreate == 11) {
-		cloudToAdd = new CloudBoss1();
-	}	else if (cloudToCreate == 12) {
-		cloudToAdd = new CloudBoss2();
-	}	else if (cloudToCreate == 13) {
-		cloudToAdd = new CloudBoss3();
-	}	else if (cloudToCreate == 14) {
-		cloudToAdd = new CloudBoss4();
-	}	else if (cloudToCreate == 15) {
-		cloudToAdd = new CloudBoss5();
-	}	else if (cloudToCreate == 16) {
-		cloudToAdd = new CloudBoss6();
+
+	
+	cloudToAdd = new Cloud();
+	cloudToAdd->init();
+	
+	cloudToAdd->setColor(sf::Color(vectorOfConfig[cloudToCreate].getRed(),
+		vectorOfConfig[cloudToCreate].getGreen(), vectorOfConfig[cloudToCreate].getBlue()));
+	cloudToAdd->setTexture(vectorOfConfig[cloudToCreate].getSprite());
+	cloudToAdd->setIsBoss(vectorOfConfig[cloudToCreate].getIsBoss());
+	
+	cout << vectorOfConfig[cloudToCreate].getSprite() << endl;
+	cout << cloudToAdd->getIsBoss() << endl;
+	
+	auto vect = vectorOfConfig[cloudToCreate].getVectorOfKeyChar();
+
+	for (int i = 0; i < (int)vect.size(); i++) {
+		char value = vect[i];
+		if (value == 'A') {
+			cloudToAdd->addKey(sf::Keyboard::A);
+		} else if (value == 'B') {
+			cloudToAdd->addKey(sf::Keyboard::B);
+		} else if (value == 'C') {
+			cloudToAdd->addKey(sf::Keyboard::C);
+		} else if (value == 'D') {
+			cloudToAdd->addKey(sf::Keyboard::D);
+		} else if (value == 'E') {
+			cloudToAdd->addKey(sf::Keyboard::E);
+		} else if (value == 'F') {
+			cloudToAdd->addKey(sf::Keyboard::F);
+		} else if (value == 'G') {
+			cloudToAdd->addKey(sf::Keyboard::G);
+		} else if (value == 'H') {
+			cloudToAdd->addKey(sf::Keyboard::H);
+		} else if (value == 'I') {
+			cloudToAdd->addKey(sf::Keyboard::I);
+		} else if (value == 'J') {
+			cloudToAdd->addKey(sf::Keyboard::J);
+		} else if (value == 'K') {
+			cloudToAdd->addKey(sf::Keyboard::K);
+		} else if (value == 'L') {
+			cloudToAdd->addKey(sf::Keyboard::L);
+		} else if (value == 'M') {
+			cloudToAdd->addKey(sf::Keyboard::M);
+		} else if (value == 'N') {
+			cloudToAdd->addKey(sf::Keyboard::N);
+		} else if (value == 'O') {
+			cloudToAdd->addKey(sf::Keyboard::O);
+		} else if (value == 'P') {
+			cloudToAdd->addKey(sf::Keyboard::P);
+		} else if (value == 'Q') {
+			cloudToAdd->addKey(sf::Keyboard::Q);
+		} else if (value == 'R') {
+			cloudToAdd->addKey(sf::Keyboard::R);
+		} else if (value == 'S') {
+			cloudToAdd->addKey(sf::Keyboard::S);
+		} else if (value == 'T') {
+			cloudToAdd->addKey(sf::Keyboard::T);
+		} else if (value == 'U') {
+			cloudToAdd->addKey(sf::Keyboard::U);
+		} else if (value == 'V') {
+			cloudToAdd->addKey(sf::Keyboard::V);
+		} else if (value == 'W') {
+			cloudToAdd->addKey(sf::Keyboard::W);
+		} else if (value == 'X') {
+			cloudToAdd->addKey(sf::Keyboard::X);
+		} else if (value == 'Y') {
+			cloudToAdd->addKey(sf::Keyboard::Y);
+		} else if (value == 'Z') {
+			cloudToAdd->addKey(sf::Keyboard::Z);
+		}
+		else {
+			assert(false);
+		}
+		
+		
+
+
 	}
 	
+	cloudToAdd->update();
+
 	unique_ptr<Cloud> ptrCloudToAdd(cloudToAdd);
 	ptrCloudToAdd->setIsRight(isRight);
 
@@ -382,7 +432,7 @@ void Engine::createNewCloud(int cloudToCreate) {
 
 void Engine::createNewRandomEasy() {
 
-	int i = rand() % 10 + 1;
+	int i = rand() % 10;
 	createNewCloud(i);
 
 }
@@ -552,27 +602,27 @@ void Engine::update(float time) {
 					}
 					if (numberOfSpawnedBoss < maxBoss) {
 						if (vague % 6 == 1) {
-							createNewCloud(14);
-							numberOfSpawnedBoss++;
-						}
-						else if (vague % 6 == 2) {
-							createNewCloud(12);
-							numberOfSpawnedBoss++;
-						}
-						else if (vague % 6 == 3) {
 							createNewCloud(13);
 							numberOfSpawnedBoss++;
 						}
-						else if (vague % 6 == 4) {
+						else if (vague % 6 == 2) {
 							createNewCloud(11);
 							numberOfSpawnedBoss++;
 						}
+						else if (vague % 6 == 3) {
+							createNewCloud(12);
+							numberOfSpawnedBoss++;
+						}
+						else if (vague % 6 == 4) {
+							createNewCloud(10);
+							numberOfSpawnedBoss++;
+						}
 						else if (vague % 6 == 5) {
-							createNewCloud(16);
+							createNewCloud(15);
 							numberOfSpawnedBoss++;
 						}
 						else if (vague % 6 == 0) {
-							createNewCloud(15);
+							createNewCloud(14);
 							numberOfSpawnedBoss++;
 						}
 					}
