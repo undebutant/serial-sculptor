@@ -35,16 +35,17 @@ void Cloud::update() {
 
 	int centint = 100 * TextureManager::getHeight() / 1200;
 	float centfloatx = 100.0f * ((float)TextureManager::getHeight()) / 1200;
+	float centfloatysize = 100.0f * ((float)TextureManager::getWidth()) / 675;
 	float centfloaty = 100.0f * ((float)TextureManager::getWidth()) / 600;
 
 	for (int i = 0; i < n; i++) {
 		float temp = (float)(centfloatx / n);
 
 		if (isBoss) {
-			spriteRectangle.setSize(2*(centfloatx -temp*currentKeyIndice), 2 * centfloaty);
+			spriteRectangle.setSize(2*(centfloatx -temp*currentKeyIndice), 2 * centfloatysize);
 		}
 		else {
-			spriteRectangle.setSize(centfloatx - temp*currentKeyIndice, centfloaty);
+			spriteRectangle.setSize(centfloatx - temp*currentKeyIndice, centfloatysize);
 		}
 		if (isRight) {
 			if (isBoss) {
@@ -61,10 +62,10 @@ void Cloud::update() {
 
 	for (int i = currentKeyIndice; i < n; i++) {
 		if (isBoss) {
-			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(centfloatx/4), pos.y - centfloaty/2);
+			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(centfloatx/4), pos.y - centfloaty/4);
 		}
 		else {
-			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(centfloatx/4), pos.y - centfloaty/2);
+			keyItemList[i].setPosition(pos.x + (i - currentKeyIndice)*(centfloatx/4), pos.y - centfloaty/4);
 		}
 	}
 }
@@ -184,7 +185,7 @@ void Cloud::setSprite(std::string newSpritePath) {
 }
 
 void Cloud::setTexture(std::string texture) {
-	spriteImage.setSize((float)TextureManager::getHeight()*100/1200, (float)TextureManager::getWidth()*100/600);
+	spriteImage.setSize((float)TextureManager::getHeight()*100/1200, (float)TextureManager::getWidth()*100/675);
 	spriteImage.setTexture(texture);
 
 	
@@ -215,7 +216,7 @@ bool Cloud::getIsBoss() {
 void Cloud::setIsBoss(bool newBool) {
 	isBoss = newBool;
 	if (isBoss) {
-		setSize((float)TextureManager::getHeight()*200/1200, (float)TextureManager::getWidth()*200/600);
+		setSize((float)TextureManager::getHeight()*200/1200, (float)TextureManager::getWidth()*200/675);
 		
 	}
 }
@@ -323,7 +324,7 @@ void Cloud::addKey(sf::Keyboard::Key key) {
 	alterKeyList.push_back(key);
 
 	SceneryItem newKeySprite;
-	newKeySprite.setSize((float)TextureManager::getHeight()*25/1200, (float)TextureManager::getWidth()*25/600);
+	newKeySprite.setSize((float)TextureManager::getHeight()*25/1200, (float)TextureManager::getWidth()*25/675);
 	newKeySprite.setPosition(0, 0);
 
 	if (key == sf::Keyboard::A) {

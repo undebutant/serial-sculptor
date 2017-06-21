@@ -802,6 +802,9 @@ int readConfig() {
 	{
 		std::cout << "XML [" << sourceConfig << "] parsed without errors, attr value: [" << docConfig.child("node").attribute("attr").value() << "]\n\n";
 		auto root = docConfig.child("Root");
+
+		
+
 		auto nodes = root.select_nodes("Cloud");
 		
 		
@@ -875,10 +878,13 @@ void readInit() {
 		nodeArray.append_attribute("hs2") = tab[2];
 		nodeArray.append_attribute("hs3") = tab[3];
 
-
+		
 
 		pugi::xml_node nodeHard = root.append_child("HardMode");
 		nodeHard.append_attribute("isHardMode") = false;
+
+		auto infoNode = root.append_child("info");
+		infoNode.text().set("The game is make to work well on a 16/9 resolution, if you put a non 16/9 resolution deformation will occure");
 
 		pugi::xml_node node = root.append_child("Height");
 		node.text().set(1200);
