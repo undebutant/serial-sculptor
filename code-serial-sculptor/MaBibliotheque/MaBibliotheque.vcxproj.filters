@@ -48,17 +48,14 @@
     <ClCompile Include="SceneryRectangleBasic.cpp">
       <Filter>Fichiers sources\Item</Filter>
     </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
+    <ClCompile Include="C:\Software\pugixml-1.8\src\pugixml.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Software\pugixml-1.8\src\pugixml.cpp">
+    <ClCompile Include="TextureManagerSingleton.cpp">
       <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Config.cpp">
       <Filter>Fichiers sources\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManagerSingleton.cpp">
-      <Filter>Fichiers sources\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,13 +83,10 @@
     <ClInclude Include="SceneryRectangleBasic.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
+    <ClInclude Include="TextureManagerSingleton.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Config.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManagerSingleton.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

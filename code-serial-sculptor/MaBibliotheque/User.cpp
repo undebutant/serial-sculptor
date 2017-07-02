@@ -24,7 +24,7 @@ void User::updateTexture(bool isRight) {
 void User::init() {
 	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
 	sprite.setTexture("sculptor_right.png");
-	sprite.setSize((float)manager.getHeight()*150/1200, (float)manager.getWidth()*200/600);
+	sprite.setSize((float)manager.getHeight()*150/1200, (float)manager.getWidth()*200/675);
 	sprite.setPosition((float)manager.getHeight()*525/1200, (float)manager.getWidth()*400/600);
 }
 

@@ -142,7 +142,6 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="monMain.cpp" />
     <ClCompile Include="Sculptor.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TextureManagerSingleton.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
@@ -155,7 +154,6 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="monMain.h" />
     <ClInclude Include="Sculptor.h" />
-    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TextureManagerSingleton.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>

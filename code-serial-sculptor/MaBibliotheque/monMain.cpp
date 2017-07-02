@@ -891,7 +891,7 @@ void readInit() {
 		node.text().set(1200);
 		
 		node = root.append_child("Width");
-		node.text().set(600);
+		node.text().set(675);
 
 		doc.save_file(source);
 	}
@@ -941,14 +941,7 @@ void saveInit() {
 int monMain()
 {
 	
-	TextureManagerSingleton& ptr1 = TextureManagerSingleton::Instance();
-
-	TextureManagerSingleton& ptr2 = TextureManagerSingleton::Instance();
-
-	ptr1.setHeight(100);
-
-	cout << "1 : " << ptr1.getHeight() << endl;
-	cout << "2 : " << ptr2.getHeight() << endl;
+	
 
 	int ret = 0;
 	ret = readConfig();
@@ -958,8 +951,7 @@ int monMain()
 	
 	readInit();
 
-	cout << "1 : " << ptr1.getHeight() << endl;
-	cout << "2 : " << ptr2.getHeight() << endl;
+	
 
 	Engine mainEngine = Engine(hardMode);
 	mainEngine.setHighScore(tab);
