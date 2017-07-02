@@ -6,7 +6,7 @@
 
 #include "SceneryRectangleBasic.h"
 #include "Cloud.h"
-#include "TextureManager.h"
+#include "TextureManagerSingleton.h"
 
 
 Cloud::Cloud(){
@@ -22,8 +22,9 @@ void Cloud::init() {
 	currentKeyIndice = 0;
 	isBoss = false;
 	isEntered = false;
-	setPosition((float)TextureManager::getHeight()*10/1200, (float)TextureManager::getWidth());
-	setSpeed((float)TextureManager::getHeight()*10.0f/1200);
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
+	setPosition((float)manager.getHeight()*10/1200, (float)manager.getWidth());
+	setSpeed((float)manager.getHeight()*10.0f/1200);
 	isRight = false;
 	isTimeOut = false;
 }
@@ -32,11 +33,11 @@ void Cloud::init() {
 void Cloud::update() {
 	int n = alterKeyList.size();
 	auto pos = spriteImage.getPosition();
-
-	int centint = 100 * TextureManager::getHeight() / 1200;
-	float centfloatx = 100.0f * ((float)TextureManager::getHeight()) / 1200;
-	float centfloatysize = 100.0f * ((float)TextureManager::getWidth()) / 675;
-	float centfloaty = 100.0f * ((float)TextureManager::getWidth()) / 600;
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
+	int centint = 100 * manager.getHeight() / 1200;
+	float centfloatx = 100.0f * ((float)manager.getHeight()) / 1200;
+	float centfloatysize = 100.0f * ((float)manager.getWidth()) / 675;
+	float centfloaty = 100.0f * ((float)manager.getWidth()) / 600;
 
 	for (int i = 0; i < n; i++) {
 		float temp = (float)(centfloatx / n);
@@ -71,15 +72,16 @@ void Cloud::update() {
 }
 
 void Cloud::update(float time) {
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
 	if (!isEntered) {
 		auto pos = spriteImage.getPosition();
 		float y = pos.y;
-		y -= time*((float)TextureManager::getWidth()*150/600);
+		y -= time*((float)manager.getWidth()*150/600);
 
-		float yValue = (float)TextureManager::getWidth()*450/600;
+		float yValue = (float)manager.getWidth()*450/600;
 		if (isBoss) {
-			yValue -= (float)TextureManager::getWidth()*100/600;
-			y -= time*((float)TextureManager::getWidth() * 150 / 600);
+			yValue -= (float)manager.getWidth()*100/600;
+			y -= time*((float)manager.getWidth() * 150 / 600);
 		}
 		if (y <= yValue) {
 			y = yValue;
@@ -111,10 +113,10 @@ void Cloud::update(float time) {
 	else {
 		auto pos = spriteImage.getPosition();
 		float y = pos.y;
-		y -= time*((float)TextureManager::getWidth()*150/600);
+		y -= time*((float)manager.getWidth()*150/600);
 		
 		spriteImage.setPosition(pos.x, y);
-		if (y <= -((float)TextureManager::getWidth()*200/600)) {
+		if (y <= -((float)manager.getWidth()*200/600)) {
 			isTimeOut = true;
 		}
 	}
@@ -185,7 +187,8 @@ void Cloud::setSprite(std::string newSpritePath) {
 }
 
 void Cloud::setTexture(std::string texture) {
-	spriteImage.setSize((float)TextureManager::getHeight()*100/1200, (float)TextureManager::getWidth()*100/675);
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
+	spriteImage.setSize((float)manager.getHeight()*100/1200, (float)manager.getWidth()*100/675);
 	spriteImage.setTexture(texture);
 
 	
@@ -198,10 +201,10 @@ void Cloud::setSpeed(float newSpeed) {
 
 void Cloud::setIsRight(bool newBool) {
 	isRight = newBool;
-
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
 	if (newBool) {
 		auto pos = getPosition();
-		setPosition((float)TextureManager::getHeight() - pos.x - spriteImage.getSize().x, pos.y);
+		setPosition((float)manager.getHeight() - pos.x - spriteImage.getSize().x, pos.y);
 	}
 	update();
 }
@@ -215,8 +218,9 @@ bool Cloud::getIsBoss() {
 
 void Cloud::setIsBoss(bool newBool) {
 	isBoss = newBool;
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
 	if (isBoss) {
-		setSize((float)TextureManager::getHeight()*200/1200, (float)TextureManager::getWidth()*200/675);
+		setSize((float)manager.getHeight()*200/1200, (float)manager.getWidth()*200/675);
 		
 	}
 }
@@ -322,9 +326,9 @@ void Cloud::addKey(char car) {
 
 void Cloud::addKey(sf::Keyboard::Key key) {
 	alterKeyList.push_back(key);
-
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
 	SceneryItem newKeySprite;
-	newKeySprite.setSize((float)TextureManager::getHeight()*25/1200, (float)TextureManager::getWidth()*25/675);
+	newKeySprite.setSize((float)manager.getHeight()*25/1200, (float)manager.getWidth()*25/675);
 	newKeySprite.setPosition(0, 0);
 
 	if (key == sf::Keyboard::A) {

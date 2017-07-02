@@ -1,6 +1,7 @@
 #include <iostream>
 
-#include "TextureManager.h"
+
+#include "TextureManagerSingleton.h"
 #include "Engine.h"
 #include "Config.h"
 #include <c:/Software/pugixml-1.8/src/pugixml.hpp>
@@ -916,8 +917,10 @@ void readInit() {
 	node = rootLoad.child("Width");
 	width = node.text().as_int();
 
-	TextureManager::setHeight(height);
-	TextureManager::setWidth(width);
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
+
+	manager.setHeight(height);
+	manager.setWidth(width);
 
 	hardLoad = rootLoad.child("HardMode");
 
@@ -938,6 +941,15 @@ void saveInit() {
 int monMain()
 {
 	
+	TextureManagerSingleton& ptr1 = TextureManagerSingleton::Instance();
+
+	TextureManagerSingleton& ptr2 = TextureManagerSingleton::Instance();
+
+	ptr1.setHeight(100);
+
+	cout << "1 : " << ptr1.getHeight() << endl;
+	cout << "2 : " << ptr2.getHeight() << endl;
+
 	int ret = 0;
 	ret = readConfig();
 	if (ret == -1) {
@@ -946,6 +958,8 @@ int monMain()
 	
 	readInit();
 
+	cout << "1 : " << ptr1.getHeight() << endl;
+	cout << "2 : " << ptr2.getHeight() << endl;
 
 	Engine mainEngine = Engine(hardMode);
 	mainEngine.setHighScore(tab);

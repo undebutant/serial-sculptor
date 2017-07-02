@@ -1,6 +1,6 @@
 #include "User.h"
 #include <iostream>
-#include "TextureManager.h"
+#include "TextureManagerSingleton.h"
 
 
 User::User() : health(3) {
@@ -22,9 +22,10 @@ void User::updateTexture(bool isRight) {
 }
 
 void User::init() {
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
 	sprite.setTexture("sculptor_right.png");
-	sprite.setSize((float)TextureManager::getHeight()*150/1200, (float)TextureManager::getWidth()*200/600);
-	sprite.setPosition((float)TextureManager::getHeight()*525/1200, (float)TextureManager::getWidth()*400/600);
+	sprite.setSize((float)manager.getHeight()*150/1200, (float)manager.getWidth()*200/600);
+	sprite.setPosition((float)manager.getHeight()*525/1200, (float)manager.getWidth()*400/600);
 }
 
 void User::update(float time) {

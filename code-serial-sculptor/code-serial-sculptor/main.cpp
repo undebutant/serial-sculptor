@@ -1,4 +1,4 @@
-#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+//#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 
 #include "../MaBibliotheque/monMain.h"
 

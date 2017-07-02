@@ -1,6 +1,6 @@
 #include "SceneryItem.h"
 #include <iostream>
-#include "TextureManager.h"
+#include "TextureManagerSingleton.h"
 
 
 
@@ -25,8 +25,8 @@ void SceneryItem::setTexture(std::string texture) {
 	
 	
 	
-	
-	shape.setTexture(TextureManager::getTexture(texture));
+	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
+	shape.setTexture(manager.getTexture(texture));
 		
 	
 }
