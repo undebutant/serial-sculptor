@@ -19,6 +19,7 @@ public:
 	~Engine();
 
 	void init();
+	void updateMenu();
 
 	void setVagueTitleFullScreen();
 	void setVagueTitleCorner();

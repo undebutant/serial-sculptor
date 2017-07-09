@@ -9,6 +9,7 @@ TextureManagerSingleton TextureManagerSingleton::m_instance = TextureManagerSing
 
 TextureManagerSingleton::TextureManagerSingleton()
 {
+	isFullscreen = false;
 	loadAll();
 	cout << "Texture Loaded" << endl;
 }
@@ -23,6 +24,23 @@ TextureManagerSingleton& TextureManagerSingleton::Instance()
 {
 	return m_instance;
 }
+
+bool TextureManagerSingleton::getFullscreen() {
+	return isFullscreen;
+}
+
+void TextureManagerSingleton::setFullscreen(int newHeight, int newWidth) {
+	height = newHeight;
+	width = newWidth;
+	isFullscreen = true;
+
+}
+void TextureManagerSingleton::setFullscreen(bool isFull) {
+	height = heightsaved;
+	width = widthsaved;
+	isFullscreen = false;
+}
+
 
 bool TextureManagerSingleton::loadTexture(std::string pathToTexture, std::string nameToStore) {
 	sf::Texture newTexture;
@@ -117,9 +135,11 @@ int TextureManagerSingleton::getWidth() {
 }
 void TextureManagerSingleton::setHeight(int newHeight) {
 	height = newHeight;
+	heightsaved = newHeight;
 }
 void TextureManagerSingleton::setWidth(int newWidth) {
 	width = newWidth;
+	widthsaved = newWidth;
 }
 
 sf::Texture* TextureManagerSingleton::getTexture(std::string texture) {

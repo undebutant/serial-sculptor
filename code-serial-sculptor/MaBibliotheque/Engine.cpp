@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Config.h"
+#include <windows.h>
 
 using namespace std;
 using namespace sf;
@@ -17,25 +18,25 @@ Engine::~Engine() {
 
 }
 
-void Engine::init() {
-	invulnerable = 1;
-	drawSculptor = true;
-	srand((unsigned int)time(NULL));
-	
+void Engine::updateMenu() {
+	listOfBackgroundItemsMainMenu.clear();
+	listOfBackgroundItems.clear();
+	listOfHUDItems.clear();
+
 	TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
 	//Main Menu
 	std::unique_ptr<SceneryItem> menuBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
-	menuBackground->setSize((float) manager.getHeight(), (float)manager.getWidth());
+	menuBackground->setSize((float)manager.getHeight(), (float)manager.getWidth());
 
 	std::unique_ptr<SceneryItem> newGameButton = std::unique_ptr<SceneryItem>(new SceneryItem());
-	newGameButton->setSize((float)manager.getHeight()*566/1200, (float)manager.getWidth() *80/675);
+	newGameButton->setSize((float)manager.getHeight() * 566 / 1200, (float)manager.getWidth() * 80 / 675);
 
 	std::unique_ptr<SceneryItem> exitButton = std::unique_ptr<SceneryItem>(new SceneryItem());
-	exitButton->setSize((float)manager.getHeight()*382/1200, (float)manager.getWidth()*80/675);
+	exitButton->setSize((float)manager.getHeight() * 382 / 1200, (float)manager.getWidth() * 80 / 675);
 
 	std::unique_ptr<SceneryItem> hardButton = std::unique_ptr<SceneryItem>(new SceneryItem());
 	hardButton->setSize((float)manager.getHeight() * 382 / 1200, (float)manager.getWidth() * 80 / 675);
-	
+
 	menuBackground->setTexture("mainMenuBackground.jpeg");
 	newGameButton->setTexture("newGameButton.png");
 	exitButton->setTexture("exitButton.png");
@@ -43,9 +44,9 @@ void Engine::init() {
 	if (hardMod) {
 		hardButton->setTexture("hardOnButton.png");
 	}
-	
-	newGameButton->setPosition((float)manager.getHeight()*150/1200, (float)manager.getWidth()*140/675);
-	exitButton->setPosition((float)manager.getHeight()*242/1200, (float)manager.getWidth()*380/675);
+
+	newGameButton->setPosition((float)manager.getHeight() * 150 / 1200, (float)manager.getWidth() * 140 / 675);
+	exitButton->setPosition((float)manager.getHeight() * 242 / 1200, (float)manager.getWidth() * 380 / 675);
 	hardButton->setPosition((float)manager.getHeight() * 242 / 1200, (float)manager.getWidth() * 260 / 675);
 
 
@@ -55,13 +56,13 @@ void Engine::init() {
 	listOfBackgroundItemsMainMenu.push_back(move(hardButton));
 
 	menuTitle.setString(L"Serial Sculptor");
-	menuTitle.setCharacterSize(manager.getHeight()*70/1200);
+	menuTitle.setCharacterSize(manager.getHeight() * 70 / 1200);
 	menuTitle.setFillColor(Color(255, 255, 255, 255));
 	fontLoaded = manager.getFont();
 	menuTitle.setFont(fontLoaded);
 	menuTitle.setStyle(Text::Bold);
 
-	menuTitle.setPosition((float)manager.getHeight()*210/1200, (float)manager.getWidth()*30/675);
+	menuTitle.setPosition((float)manager.getHeight() * 210 / 1200, (float)manager.getWidth() * 30 / 675);
 
 	//Game layout
 
@@ -73,28 +74,28 @@ void Engine::init() {
 	//HUD layout
 
 	vagueTitle.setString(L"Vague : 1");
-	vagueTitle.setCharacterSize(manager.getHeight()*70/1200);
+	vagueTitle.setCharacterSize(manager.getHeight() * 70 / 1200);
 	vagueTitle.setFillColor(Color(255, 0, 0));
 	vagueTitle.setFont(fontLoaded);
 	vagueTitle.setStyle(Text::Bold);
 
-	vagueTitle.setPosition((float)manager.getHeight()*800/1200, (float)manager.getWidth()*30/675);
+	vagueTitle.setPosition((float)manager.getHeight() * 800 / 1200, (float)manager.getWidth() * 30 / 675);
 
-	
+
 
 	failTitle.setString(L"YOU LOST");
-	failTitle.setCharacterSize(manager.getHeight()*200/1200);
+	failTitle.setCharacterSize(manager.getHeight() * 200 / 1200);
 	failTitle.setFillColor(Color(255, 0, 0));
 	failTitle.setFont(fontLoaded);
 	failTitle.setStyle(Text::Bold);
 
-	failTitle.setPosition((float)manager.getHeight()*0/1200, (float)manager.getWidth()*200/600);
+	failTitle.setPosition((float)manager.getHeight() * 0 / 1200, (float)manager.getWidth() * 200 / 600);
 
 	std::unique_ptr<SceneryItem> heartContainer1 = std::unique_ptr<SceneryItem>(new SceneryItem());
 	std::unique_ptr<SceneryItem> heartContainer2 = std::unique_ptr<SceneryItem>(new SceneryItem());
 	std::unique_ptr<SceneryItem> heartContainer3 = std::unique_ptr<SceneryItem>(new SceneryItem());
 
-	heartContainer1->setSize((float)manager.getHeight()*100/1200, (float)manager.getWidth()*100/675);
+	heartContainer1->setSize((float)manager.getHeight() * 100 / 1200, (float)manager.getWidth() * 100 / 675);
 	heartContainer2->setSize((float)manager.getHeight() * 100 / 1200, (float)manager.getWidth() * 100 / 675);
 	heartContainer3->setSize((float)manager.getHeight() * 100 / 1200, (float)manager.getWidth() * 100 / 675);
 
@@ -102,9 +103,9 @@ void Engine::init() {
 	heartContainer2->setTexture("heartEmpty.png");
 	heartContainer3->setTexture("heartEmpty.png");
 
-	heartContainer1->setPosition((float)manager.getHeight()*20/1200, (float)manager.getWidth()*20/675);
-	heartContainer2->setPosition((float)manager.getHeight()*140/1200, (float)manager.getWidth()*20/675);
-	heartContainer3->setPosition((float)manager.getHeight()*260/1200, (float)manager.getWidth()*20/675);
+	heartContainer1->setPosition((float)manager.getHeight() * 20 / 1200, (float)manager.getWidth() * 20 / 675);
+	heartContainer2->setPosition((float)manager.getHeight() * 140 / 1200, (float)manager.getWidth() * 20 / 675);
+	heartContainer3->setPosition((float)manager.getHeight() * 260 / 1200, (float)manager.getWidth() * 20 / 675);
 
 	listOfHUDItems.push_back(move(heartContainer1));
 	listOfHUDItems.push_back(move(heartContainer2));
@@ -129,6 +130,14 @@ void Engine::init() {
 	listOfHUDItems.push_back(move(heartContainerFull1));
 	listOfHUDItems.push_back(move(heartContainerFull2));
 	listOfHUDItems.push_back(move(heartContainerFull3));
+}
+
+void Engine::init() {
+	invulnerable = 1;
+	drawSculptor = true;
+	srand((unsigned int)time(NULL));
+	updateMenu();
+	
 }
 
 void Engine::setVagueTitleFullScreen() {
@@ -165,6 +174,7 @@ void Engine::launchMainMenu() {
 	
 	RenderWindow window(sf::VideoMode(manager.getHeight(), manager.getWidth()), "Serial sculptor", Style::Titlebar | Style::Close, settings);
 
+	
 	Clock clock;
 	Event event;
 	
@@ -173,6 +183,10 @@ void Engine::launchMainMenu() {
 	int lastphase = 0;
 	bool lastisGameLaunched = false;
 	bool lastGameEnded = false;
+
+	bool nomadness = true;
+	bool laltpressed = false;
+	bool returnpressed = false;
 
 	while (window.isOpen()) {
 		while (window.pollEvent(event))
@@ -183,9 +197,83 @@ void Engine::launchMainMenu() {
 				if (event.key.code == Keyboard::Escape) {
 					window.close();
 				}
+				if (event.key.code == Keyboard::LAlt) {
+					laltpressed = true;
+					if (!isGameLaunched) {
+						if (nomadness) {
+							if (laltpressed && returnpressed) {
+								if (!manager.getFullscreen()) {
+									POINT Ecran = { GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN) };
+									window.create(sf::VideoMode(Ecran.x, Ecran.y), "Serial sculptor", Style::Fullscreen | Style::Close, settings);
+
+									auto size = window.getSize();
+									manager.setFullscreen(size.x, size.y);
+									updateMenu();
+									nomadness = false;
+								}
+								else {
+									manager.setFullscreen(false);
+									window.create(sf::VideoMode(manager.getHeight(), manager.getWidth()), "Serial sculptor", Style::Titlebar | Style::Close, settings);
+									updateMenu();
+									nomadness = false;
+								}
+							}
+						}
+					}
+				}
+				if (event.key.code == Keyboard::Return) {
+					returnpressed = true;
+					if (!isGameLaunched) {
+						if (nomadness) {
+							if (laltpressed && returnpressed) {
+								if (!manager.getFullscreen()) {
+									POINT Ecran = { GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN) };
+									window.create(sf::VideoMode(Ecran.x, Ecran.y), "Serial sculptor", Style::Fullscreen | Style::Close, settings);
+									
+
+									auto size = window.getSize();
+									manager.setFullscreen(size.x, size.y);
+									updateMenu();
+									nomadness = false;
+								}
+								else {
+									manager.setFullscreen(false);
+									window.create(sf::VideoMode(manager.getHeight(), manager.getWidth()), "Serial sculptor", Style::Titlebar | Style::Close, settings);
+									updateMenu();
+									nomadness = false;
+								}
+							}
+						}
+					}
+				}
+
+				
 				
 				if (isGameLaunched) {
 					keyPressed(event.key.code);
+				}
+			}
+
+			if (event.type == Event::KeyReleased) {
+				if (event.key.code == Keyboard::LAlt) {
+					laltpressed = false;
+					if (!isGameLaunched) {
+						if (!nomadness) {
+							if (!laltpressed && !returnpressed) {
+								nomadness = true;
+							}
+						}
+					}
+				}
+				if (event.key.code == Keyboard::Return) {
+					returnpressed = false;
+					if (!isGameLaunched) {
+						if (!nomadness) {
+							if (!laltpressed && !returnpressed) {
+								nomadness = true;
+							}
+						}
+					}
 				}
 			}
 
@@ -194,7 +282,7 @@ void Engine::launchMainMenu() {
 			else {
 				if (event.type == Event::MouseButtonPressed) {
 					if (!isGameLaunched) {
-						if (event.mouseButton.x > ((float)manager.getHeight()*150/1200) && event.mouseButton.x < ((float)manager.getHeight()*716/1200) && event.mouseButton.y > ((float)manager.getWidth()*140/600) && event.mouseButton.y < ((float)manager.getWidth()*220/600)) {
+						if (event.mouseButton.x > ((float)manager.getHeight()*150/1200) && event.mouseButton.x < ((float)manager.getHeight()*716/1200) && event.mouseButton.y > ((float)manager.getWidth()*140/675) && event.mouseButton.y < ((float)manager.getWidth()*220/675)) {
 							if (!music.openFromFile("music\\phase0-loop.wav"))
 								assert(false); // erreur
 							music.play();
@@ -202,16 +290,19 @@ void Engine::launchMainMenu() {
 							newGame();
 
 						}
-						if (event.mouseButton.x > ((float)manager.getHeight()*242/1200) && event.mouseButton.x < ((float)manager.getHeight()*624/1200) && event.mouseButton.y > ((float)manager.getWidth()*260/600) && event.mouseButton.y < ((float)manager.getWidth()*340/600)) {
+						if (event.mouseButton.x > ((float)manager.getHeight()*242/1200) && event.mouseButton.x < ((float)manager.getHeight()*624/1200) && event.mouseButton.y > ((float)manager.getWidth()*260/675) && event.mouseButton.y < ((float)manager.getWidth()*340/675)) {
 							setIsHard();
 						}
-						if (event.mouseButton.x >((float)manager.getHeight() * 242 / 1200) && event.mouseButton.x < ((float)manager.getHeight() * 624 / 1200) && event.mouseButton.y >((float)manager.getWidth() * 380 / 600) && event.mouseButton.y < ((float)manager.getWidth() * 460 / 600)) {
+						if (event.mouseButton.x >((float)manager.getHeight() * 242 / 1200) && event.mouseButton.x < ((float)manager.getHeight() * 624 / 1200) && event.mouseButton.y >((float)manager.getWidth() * 380 / 675) && event.mouseButton.y < ((float)manager.getWidth() * 460 / 675)) {
 							window.close();
 						}
 					}
 				}
 			}
 		}
+
+		
+
 		window.clear();
 		
 		float time = clock.restart().asSeconds();
@@ -266,6 +357,7 @@ void Engine::launchMainMenu() {
 			drawAllInGame(window);
 		}
 		else {
+			
 			if (lastisGameLaunched != isGameLaunched) {
 				if (!music.openFromFile("music\\mainmenu-loop.wav"))
 					assert(false); // erreur

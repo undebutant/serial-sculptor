@@ -10,6 +10,10 @@ public:
 	int getWidth();
 	void setHeight(int newHeight);
 	void setWidth(int newWidth);
+	void setFullscreen(int newHeight,int newWidth);
+	void setFullscreen(bool isFull);
+	bool getFullscreen();
+
 private:
 	
 	static TextureManagerSingleton m_instance;
@@ -17,6 +21,9 @@ private:
 	sf::Font fontLoaded;
 	int height;
 	int width;
+	int heightsaved;
+	int widthsaved;
+	bool isFullscreen;
 	bool loadTexture(std::string pathToTexture, std::string nameToStore);
 	bool loadFont(std::string pathToFont);
 	void loadAll();
