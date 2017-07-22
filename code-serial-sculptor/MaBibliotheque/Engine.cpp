@@ -783,25 +783,13 @@ void Engine::drawAllInGame(sf::RenderWindow &renderer) {
 	}
 	
 	// Drawing heart left
-	// TODO fix code for clarity for sculptor.getHealth() to sculptor.getHealth() + 2 to render
-	for (int i = 0; i < ((int)listOfHUDItems.size()); i++) {
-		if (i >= 3 && i < 6) {
-			if (i == 3 && sculptor.getHealth() >= 1) {
-				listOfHUDItems[i]->draw(renderer);
-			}
-			else if (i == 4 && sculptor.getHealth() >= 2) {
-				listOfHUDItems[i]->draw(renderer);
-			}
-			else if (i == 5 && sculptor.getHealth() >= 3) {
-				listOfHUDItems[i]->draw(renderer);
-			}
-		}
-		else {
-			listOfHUDItems[i]->draw(renderer);
-		}
+	for (int i = sculptor.getHealth(); i < sculptor.getHealth() + 3; i++) {
+		listOfHUDItems[i]->draw(renderer);
 	}
 
+	// Drawing current wave number
 	renderer.draw(vagueTitle);
+
 	if (gameEnded) {
 		sculptor.draw(renderer);
 		renderer.draw(failTitle);
