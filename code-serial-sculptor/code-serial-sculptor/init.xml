@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Root>
-	<Array hs0="2" hs1="2" hs2="1" hs3="1" />
+	<Array hs0="0" hs1="0" hs2="0" hs3="0" />
 	<HardMode isHardMode="true" />
 	<info>The game is make to work well on a 16/9 resolution, if you put a non 16/9 resolution deformation will occure</info>
 	<Height>1200</Height>
