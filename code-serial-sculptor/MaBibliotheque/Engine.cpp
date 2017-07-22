@@ -803,17 +803,19 @@ void Engine::drawAllInGame(sf::RenderWindow &renderer) {
 
 	renderer.draw(vagueTitle);
 	if (gameEnded) {
+		sculptor.draw(renderer);
 		renderer.draw(failTitle);
 	}
-
-	if (invulnerable >= 1) {
-		sculptor.draw(renderer);
-	}
-	else { // Clipping during invulnerability TODO fix clipping during game over
-		if (drawSculptor) {
+	else {
+		if (invulnerable >= 1) {
 			sculptor.draw(renderer);
 		}
-		drawSculptor = !drawSculptor;
+		else { // Clipping while invulnerability is up
+			if (drawSculptor) {
+				sculptor.draw(renderer);
+			}
+			drawSculptor = !drawSculptor;
+		}
 	}
 }
 
