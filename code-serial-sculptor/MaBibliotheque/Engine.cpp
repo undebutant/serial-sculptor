@@ -754,8 +754,10 @@ void Engine::update(float time) {
 			listOfClouds.clear();
 			listOfOldClouds.clear();
 			
-			topScores.push_back(vague);
-			std::sort(topScores.begin(), topScores.begin() + topScores.size());
+			if (vague - 1 > 0) {
+				topScores.push_back(vague - 1);
+				std::sort(topScores.begin(), topScores.begin() + topScores.size());
+			}
 		}
 	}
 }
