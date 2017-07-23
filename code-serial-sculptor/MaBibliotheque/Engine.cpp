@@ -655,7 +655,6 @@ void Engine::update(float time) {
 		deleteCloudsDone();
 
 		// Defining references for spawning
-		// TODO move to resetValue and update resetvalue for coherence
 		int n = vague / ((int)vectorOfConfigBoss.size());
 
 		float spawnDelay = 2.f - (n*0.1f);
@@ -678,13 +677,6 @@ void Engine::update(float time) {
 				if (listOfClouds.empty()) {
 					phase = 1;
 					resetValue();
-
-					if (vague % ((int)vectorOfConfigBoss.size()) == 0) { // TODO fix to spawn one / two more boss each wave each vague % .size == 0
-						numberOfSpawnedBoss++;
-						if (hardMode) {
-							numberOfSpawnedBoss++;
-						}
-					}
 				}
 			}
 			else { // Still clouds to spawn, checking on timer
