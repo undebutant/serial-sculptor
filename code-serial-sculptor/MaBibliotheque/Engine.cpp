@@ -37,7 +37,7 @@ void Engine::launchMainMenu() {
 
 	// Checking loading of music files and setting up
 	// Losing life theme to put in private pointer variable
-	sf::Music musicBad;
+	Music musicBad;
 	if (!musicBad.openFromFile("music\\bad.wav")) {
 		assert(false);
 	}
@@ -45,7 +45,7 @@ void Engine::launchMainMenu() {
 	musicBadPtr = &musicBad;
 
 	// Main theme to read in main menu
-	sf::Music music;
+	Music music;
 	if (!music.openFromFile("music\\mainmenu-loop.wav")) {
 		assert(false);
 	}
@@ -53,7 +53,7 @@ void Engine::launchMainMenu() {
 	music.setLoop(true);
 
 	// Creating the displayed window
-	RenderWindow window(sf::VideoMode(manager.getHeight(), manager.getWidth()), "Serial sculptor", Style::Titlebar | Style::Close, settings);
+	RenderWindow window(VideoMode(manager.getHeight(), manager.getWidth()), "Serial sculptor", Style::Titlebar | Style::Close, settings);
 	
 	// Resetting main variables to fit the current window display size
 	init();
@@ -92,7 +92,7 @@ void Engine::launchMainMenu() {
 							POINT Ecran = { GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN) };
 
 							// Recreating the window
-							window.create(sf::VideoMode(Ecran.x, Ecran.y), "Serial sculptor", Style::Fullscreen | Style::Close, settings);
+							window.create(VideoMode(Ecran.x, Ecran.y), "Serial sculptor", Style::Fullscreen | Style::Close, settings);
 
 							// Storing fullscreen data in the TextureManagerSingleton
 							auto size = window.getSize();
@@ -105,7 +105,7 @@ void Engine::launchMainMenu() {
 						else { // Already in fullscreen
 							manager.setFullscreen(false);
 
-							window.create(sf::VideoMode(manager.getHeight(), manager.getWidth()), "Serial sculptor", Style::Titlebar | Style::Close, settings);
+							window.create(VideoMode(manager.getHeight(), manager.getWidth()), "Serial sculptor", Style::Titlebar | Style::Close, settings);
 							
 							updateMenu();
 							nomadness = false;
@@ -120,7 +120,7 @@ void Engine::launchMainMenu() {
 						if (!manager.getFullscreen()) {
 							POINT Ecran = { GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN) };
 
-							window.create(sf::VideoMode(Ecran.x, Ecran.y), "Serial sculptor", Style::Fullscreen | Style::Close, settings);
+							window.create(VideoMode(Ecran.x, Ecran.y), "Serial sculptor", Style::Fullscreen | Style::Close, settings);
 							
 							auto size = window.getSize();
 							manager.setFullscreen(size.x, size.y);
@@ -131,7 +131,7 @@ void Engine::launchMainMenu() {
 						else { // Already in fullscreen
 							manager.setFullscreen(false);
 
-							window.create(sf::VideoMode(manager.getHeight(), manager.getWidth()), "Serial sculptor", Style::Titlebar | Style::Close, settings);
+							window.create(VideoMode(manager.getHeight(), manager.getWidth()), "Serial sculptor", Style::Titlebar | Style::Close, settings);
 							
 							updateMenu();
 							nomadness = false;
@@ -286,7 +286,7 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 	if (!topScores.empty()) {
 		TextureManagerSingleton &manager = TextureManagerSingleton::Instance();
 
-		sf::Text topScoreTitle;
+		Text topScoreTitle;
 		topScoreTitle.setString(L"Top Score");
 		topScoreTitle.setCharacterSize(manager.getHeight() * 70 / 1200);
 		topScoreTitle.setFillColor(Color(255, 0, 0));
@@ -299,11 +299,11 @@ void Engine::drawMainMenu(RenderWindow &renderer) {
 		int j = 0;
 
 		while (j < ((int)topScores.size()) && j < 4) {
-			sf::Text topScore1Title;
+			Text topScore1Title;
 			topScore1Title.setString(L"Top Score");
 
-			std::string score = "Vague : ";
-			score = score + std::to_string(topScores[topScores.size() - 1 - j]);
+			string score = "Vague : ";
+			score = score + to_string(topScores[topScores.size() - 1 - j]);
 
 			topScore1Title.setString(score);
 			topScore1Title.setCharacterSize(manager.getHeight() * 70 / 1200);
@@ -332,16 +332,16 @@ void Engine::updateMenu() {
 
 	// Resizing elements for the main menu
 
-	std::unique_ptr<SceneryItem> menuBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> menuBackground = unique_ptr<SceneryItem>(new SceneryItem());
 	menuBackground->setSize((float)manager.getHeight(), (float)manager.getWidth());
 
-	std::unique_ptr<SceneryItem> newGameButton = std::unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> newGameButton = unique_ptr<SceneryItem>(new SceneryItem());
 	newGameButton->setSize((float)manager.getHeight() * 566 / 1200, (float)manager.getWidth() * 80 / 675);
 
-	std::unique_ptr<SceneryItem> exitButton = std::unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> exitButton = unique_ptr<SceneryItem>(new SceneryItem());
 	exitButton->setSize((float)manager.getHeight() * 382 / 1200, (float)manager.getWidth() * 80 / 675);
 
-	std::unique_ptr<SceneryItem> hardButton = std::unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> hardButton = unique_ptr<SceneryItem>(new SceneryItem());
 	hardButton->setSize((float)manager.getHeight() * 382 / 1200, (float)manager.getWidth() * 80 / 675);
 
 
@@ -379,7 +379,7 @@ void Engine::updateMenu() {
 
 	//Resizing elements for the game layout
 
-	std::unique_ptr<SceneryItem> gameBackground = std::unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> gameBackground = unique_ptr<SceneryItem>(new SceneryItem());
 
 	gameBackground->setSize((float)manager.getHeight(), (float)manager.getWidth());
 	gameBackground->setTexture("gameBackground.jpeg");
@@ -407,9 +407,9 @@ void Engine::updateMenu() {
 	failTitle.setPosition((float)manager.getHeight() * 0 / 1200, (float)manager.getWidth() * 200 / 600);
 
 
-	std::unique_ptr<SceneryItem> heartContainer1 = std::unique_ptr<SceneryItem>(new SceneryItem());
-	std::unique_ptr<SceneryItem> heartContainer2 = std::unique_ptr<SceneryItem>(new SceneryItem());
-	std::unique_ptr<SceneryItem> heartContainer3 = std::unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> heartContainer1 = unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> heartContainer2 = unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> heartContainer3 = unique_ptr<SceneryItem>(new SceneryItem());
 
 	heartContainer1->setSize((float)manager.getHeight() * 100 / 1200, (float)manager.getWidth() * 100 / 675);
 	heartContainer2->setSize((float)manager.getHeight() * 100 / 1200, (float)manager.getWidth() * 100 / 675);
@@ -427,9 +427,9 @@ void Engine::updateMenu() {
 	listOfHUDItems.push_back(move(heartContainer2));
 	listOfHUDItems.push_back(move(heartContainer3));
 
-	std::unique_ptr<SceneryItem> heartContainerFull1 = std::unique_ptr<SceneryItem>(new SceneryItem());
-	std::unique_ptr<SceneryItem> heartContainerFull2 = std::unique_ptr<SceneryItem>(new SceneryItem());
-	std::unique_ptr<SceneryItem> heartContainerFull3 = std::unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> heartContainerFull1 = unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> heartContainerFull2 = unique_ptr<SceneryItem>(new SceneryItem());
+	unique_ptr<SceneryItem> heartContainerFull3 = unique_ptr<SceneryItem>(new SceneryItem());
 
 	heartContainerFull1->setSize((float)manager.getHeight() * 100 / 1200, (float)manager.getWidth() * 100 / 675);
 	heartContainerFull2->setSize((float)manager.getHeight() * 100 / 1200, (float)manager.getWidth() * 100 / 675);
@@ -469,7 +469,7 @@ void Engine::newGame() {
 	gameEnded = false;
 
 	vague = 1;
-	string newstr = "Vague : " + std::to_string(vague);
+	string newstr = "Vague : " + to_string(vague);
 	vagueTitle.setString(newstr);
 	
 	timeUntilNextSpawn = 0;
@@ -514,7 +514,7 @@ void Engine::createNewCloud(int cloudToCreate, bool isBoss) {
 	cloudToAdd->init();
 
 	if (isBoss) {
-		cloudToAdd->setColor(sf::Color(vectorOfConfigBoss[cloudToCreate].getRed(), vectorOfConfigBoss[cloudToCreate].getGreen(), vectorOfConfigBoss[cloudToCreate].getBlue()));
+		cloudToAdd->setColor(Color(vectorOfConfigBoss[cloudToCreate].getRed(), vectorOfConfigBoss[cloudToCreate].getGreen(), vectorOfConfigBoss[cloudToCreate].getBlue()));
 		cloudToAdd->setTexture(vectorOfConfigBoss[cloudToCreate].getSprite());
 		cloudToAdd->setIsBoss(vectorOfConfigBoss[cloudToCreate].getIsBoss());
 
@@ -525,7 +525,7 @@ void Engine::createNewCloud(int cloudToCreate, bool isBoss) {
 		}
 	}
 	else {
-		cloudToAdd->setColor(sf::Color(vectorOfConfigEasy[cloudToCreate].getRed(), vectorOfConfigEasy[cloudToCreate].getGreen(), vectorOfConfigEasy[cloudToCreate].getBlue()));
+		cloudToAdd->setColor(Color(vectorOfConfigEasy[cloudToCreate].getRed(), vectorOfConfigEasy[cloudToCreate].getGreen(), vectorOfConfigEasy[cloudToCreate].getBlue()));
 		cloudToAdd->setTexture(vectorOfConfigEasy[cloudToCreate].getSprite());
 		cloudToAdd->setIsBoss(vectorOfConfigEasy[cloudToCreate].getIsBoss());
 		
@@ -732,7 +732,7 @@ void Engine::update(float time) {
 				resetValue();
 			}
 			else { // 2 seconds break between waves
-				string newstr = "Vague : " + std::to_string(vague);
+				string newstr = "Vague : " + to_string(vague);
 				vagueTitle.setString(newstr);
 				setVagueTitleFullScreen();
 			}
@@ -753,7 +753,7 @@ void Engine::update(float time) {
 			// Adding highscore (last wave completely done
 			if (vague - 1 > 0) {
 				topScores.push_back(vague - 1);
-				std::sort(topScores.begin(), topScores.begin() + topScores.size());
+				sort(topScores.begin(), topScores.begin() + topScores.size());
 			}
 		}
 	}
@@ -761,7 +761,7 @@ void Engine::update(float time) {
 
 
 // Rendering all elements while in game
-void Engine::drawAllInGame(sf::RenderWindow &renderer) {
+void Engine::drawAllInGame(RenderWindow &renderer) {
 	for (int i = 0; i < ((int)listOfBackgroundItems.size()); i++) {
 		listOfBackgroundItems[i]->draw(renderer);
 	}
@@ -824,7 +824,7 @@ void Engine::setVagueTitleCorner() {
 
 
 // Setting up the vector of available easy clouds
-void Engine::setVectorOfConfigEasy(std::vector<Config> newvectorOfConfigEasy) {
+void Engine::setVectorOfConfigEasy(vector<Config> newvectorOfConfigEasy) {
 	vectorOfConfigEasy.clear();
 
 	for (int i = 0; i < (int)newvectorOfConfigEasy.size(); i++) {
@@ -834,7 +834,7 @@ void Engine::setVectorOfConfigEasy(std::vector<Config> newvectorOfConfigEasy) {
 
 
 // Setting up the vector of available boss clouds
-void Engine::setVectorOfConfigBoss(std::vector<Config> newvectorOfConfigBoss) {
+void Engine::setVectorOfConfigBoss(vector<Config> newvectorOfConfigBoss) {
 	vectorOfConfigBoss.clear();
 
 	for (int i = 0; i < (int)newvectorOfConfigBoss.size(); i++) {
@@ -851,7 +851,7 @@ void Engine::setHighScore(int tab[4]) {
 			topScores.push_back(tab[i]);
 		}
 	}
-	std::sort(topScores.begin(), topScores.begin() + topScores.size());
+	sort(topScores.begin(), topScores.begin() + topScores.size());
 }
 
 
