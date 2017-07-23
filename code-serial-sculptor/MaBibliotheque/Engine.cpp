@@ -456,8 +456,9 @@ void Engine::resetValue() {
 	sculptor.updateTexture(isRight);
 
 	numberOfSpawnedClouds = 0;
-	timeUntilNextSpawn = 0;
 	numberOfSpawnedBoss = 0;
+
+	timeUntilNextSpawn = 0;
 }
 
 
@@ -606,8 +607,10 @@ bool Engine::isHPLost(bool isCloudRight, bool isBoss, int posXcloud) {
 	// Checking hitbox for the active cloud
 	if (isCloudRight) {
 		if (posXcloud <= posXlim) {
-			sculptor.decrHealth(1);
-			musicBadPtr->play();
+			if (invulnerable >= 1) {
+				sculptor.decrHealth(1);
+				musicBadPtr->play();
+			}
 			if (sculptor.getHealth() == 0) {
 				gameEnded = true;
 				timeUntilNextSpawn = 0;
@@ -617,8 +620,10 @@ bool Engine::isHPLost(bool isCloudRight, bool isBoss, int posXcloud) {
 	}
 	else {
 		if (posXcloud >= posXlim) {
-			sculptor.decrHealth(1);
-			musicBadPtr->play();
+			if (invulnerable >= 1) {
+				sculptor.decrHealth(1);
+				musicBadPtr->play();
+			}
 			if (sculptor.getHealth() == 0) {
 				gameEnded = true;
 				timeUntilNextSpawn = 0;
@@ -657,7 +662,7 @@ void Engine::update(float time) {
 		// Defining references for spawning
 		int n = vague / ((int)vectorOfConfigBoss.size());
 
-		float spawnDelay = 2.f - (n*0.1f);
+		float spawnDelay = 3.f - (n*0.1f);
 		if (spawnDelay < 1) {
 			spawnDelay = 1;
 		}
@@ -669,6 +674,11 @@ void Engine::update(float time) {
 		}
 		
 		int maxSpawn = vague * facteur;
+
+		int maxBoss = (n + 1);
+		if (hardMode) {
+			maxBoss = 2 * maxBoss + 1;
+		}
 
 		// Handling phase progression
 		if (phase == 0) {
@@ -689,7 +699,7 @@ void Engine::update(float time) {
 			}
 		}
 		else if (phase == 1) {
-			if (numberOfSpawnedClouds >= maxSpawn) {
+			if (numberOfSpawnedClouds >= maxSpawn && numberOfSpawnedBoss >= maxBoss) {
 				if (listOfClouds.empty()) {
 					phase = 2;
 					vague++;
@@ -698,26 +708,20 @@ void Engine::update(float time) {
 				}
 			}
 			else {
-				if (timeUntilNextSpawn > spawnDelay) { // Fix adding delay between spawn
-					if (numberOfSpawnedClouds % 2 == 1) {
+				if (timeUntilNextSpawn > spawnDelay) {
+					if (numberOfSpawnedClouds < maxSpawn) {
 						createNewRandomEasy();
+						numberOfSpawnedClouds++;
 					}
-					int maxBoss = (n + 1);
-					if (hardMode) {
-						maxBoss = 2 * maxBoss;
-					}
+					
 					if (numberOfSpawnedBoss < maxBoss) {
-
-						createNewCloud(vague % ((int)vectorOfConfigBoss.size()), true);
-						numberOfSpawnedBoss++;
-
-					}
-					if (numberOfSpawnedClouds % 2 == 0) {
-						createNewRandomEasy();
+						if (numberOfSpawnedClouds % maxBoss == 0 || numberOfSpawnedClouds >= maxSpawn) {
+							createNewCloud(vague % ((int)vectorOfConfigBoss.size()), true);
+							numberOfSpawnedBoss++;
+						}
 					}
 
 					timeUntilNextSpawn = 0;
-					numberOfSpawnedClouds++;
 				}
 			}
 		}
@@ -746,6 +750,7 @@ void Engine::update(float time) {
 			listOfClouds.clear();
 			listOfOldClouds.clear();
 			
+			// Adding highscore (last wave completely done
 			if (vague - 1 > 0) {
 				topScores.push_back(vague - 1);
 				std::sort(topScores.begin(), topScores.begin() + topScores.size());
