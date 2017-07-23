@@ -49,11 +49,11 @@ public:
 	void setVectorOfConfigEasy(std::vector<Config> newvectorOfConfigEasy);
 	void setVectorOfConfigBoss(std::vector<Config> newvectorOfConfigBoss);
 
-	void setHighScore(int tab[4]);
 	void getHighScore(int tab[4]);
+	void setHighScore(int tab[4]);
 
-	void setIsHard();
 	bool getIsHard();
+	void setIsHard();
 	
 private:
 	bool drawSculptor;				// Allows clipping of the sculptor when losing life
@@ -71,7 +71,9 @@ private:
 	float timeUntilNextSpawn;
 	
 	sf::Music *musicBadPtr;
+
 	sf::Font fontLoaded;
+
 	sf::Text menuTitle;
 	sf::Text vagueTitle;
 	sf::Text failTitle;
