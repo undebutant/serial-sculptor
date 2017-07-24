@@ -660,7 +660,10 @@ void Engine::update(float time) {
 		deleteCloudsDone();
 
 		// Defining references for spawning
-		int n = vague / ((int)vectorOfConfigBoss.size());
+		int n = (vague - 1) / ((int)vectorOfConfigBoss.size());
+		if (n < 0) {
+			n = 0;
+		}
 
 		float spawnDelay = 3.f - (n*0.1f);
 		if (spawnDelay < 1) {
@@ -677,7 +680,7 @@ void Engine::update(float time) {
 
 		int maxBoss = (n + 1);
 		if (hardMode) {
-			maxBoss = 2 * maxBoss + 1;
+			maxBoss = 2 * maxBoss;
 		}
 
 		// Handling phase progression
